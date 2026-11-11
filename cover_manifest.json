@@ -1,0 +1,241 @@
+{
+ "series_ko": "인퍼런스 스터디 북",
+ "title_ko": "인퍼런스 스터디 북 — 『Inference Engineering』 10주 연구실 해설",
+ "site_title": "인퍼런스 스터디 북",
+ "site_url": "https://adminmrobo.github.io/inference_engineering_study/",
+ "ontology": {
+  "pages": [
+   {
+    "path": "index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_01_textbook_preface/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_01_textbook_ch00/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_01_textbook_ch01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_01_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_02_textbook_ch02_p1_p2/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_02_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_03_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_03_textbook_ch02_p3_to_end/index.html",
+    "kg": true,
+    "export": true
+   }
+  ],
+  "files": []
+ },
+ "i18n": {
+  "langs": [
+   "ko"
+  ],
+  "pages": {
+   "ko": 9
+  },
+  "readme_langs": [
+   "ko"
+  ]
+ },
+ "languages": [
+  "ko"
+ ],
+ "items": [
+  {
+   "id": "cover_index",
+   "role": "cover",
+   "path": "index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a long lab corridor with ten doors in a row, each door leaking a different color of light.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing down the corridor;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, holding an open book proudly;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, peeking into the first door;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, holding an upward chart;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, holding a map of the doors;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, carrying a tea tray at the entrance.\nVisual metaphor of the topic: a corridor of ten glowing doors, the first three doors open and bright, the rest softly lit.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_01_textbook_preface/cover_pre",
+   "role": "cover",
+   "path": "week_01_textbook_preface/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a tall glass reagent cabinet overflowing with countless small glowing bottles, some bottles floating out of the shelves.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, arms wide toward the cabinet, excited;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, beside the doctor, holding a clipboard, counting bottles;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, pointing at one bottle, skeptical;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, raising an upward chart;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, calmly sorting bottles into a rack;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, carrying a tray with a teapot and smiling.\nVisual metaphor of the topic: an explosion of open models shown as thousands of small glowing bottles pouring out of a cabinet.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_01_textbook_ch00/cover_00",
+   "role": "cover",
+   "path": "week_01_textbook_ch00/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a three-tier lab shelf: bottom tier server racks with blue light, middle tier a glowing GPU chip with pink light, top tier a simple green control panel.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the middle tier;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, tightening a bolt on the bottom tier;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, inspecting the top tier with a magnifier;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, typing on a calculator;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, labeling each tier with blank tags;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, watering a small plant on the top tier.\nVisual metaphor of the topic: three stacked glowing tiers (infrastructure, runtime, tooling) like a layered lab shelf.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_01_textbook_ch01/cover_01",
+   "role": "cover",
+   "path": "week_01_textbook_ch01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a lab arranged like a small sports field with different training equipment stations.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, holding a stopwatch up;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, writing measurements on a clipboard;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, pointing at the far-right tall bar;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, pointing at the middle of the bars;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, standing by the start line with a small flag;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, cheering from the side with both fists.\nVisual metaphor of the topic: a long histogram of response times drawn as a row of glowing bars with one tall bar far to the right (the tail), no numbers.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_01_article_01/cover_lb",
+   "role": "cover",
+   "path": "week_01_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a lab bulletin board where fresh blank exam sheets are being pinned while old sheets are taken down.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, holding a red stamp;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, pinning a fresh blank sheet;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, examining an old sheet with a magnifier;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, holding a scoreboard with blank rows;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, removing old sheets neatly into a box;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, handing out new sheets from a stack.\nVisual metaphor of the topic: a monthly rotating board of blank exam papers, one sixth of them glowing new.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_02_textbook_ch02_p1_p2/cover_ch2",
+   "role": "cover",
+   "path": "week_02_textbook_ch02_p1_p2/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a lab kitchen counter where order tickets come in and small glowing plates (tokens) go out one by one.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, reading a long order ticket;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, placing one plate on the conveyor;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, counting plates;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, assigning chefs from a small team of tiny figures;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, arranging prepared ingredient bins;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, carrying a teapot past the conveyor.\nVisual metaphor of the topic: plates leaving the kitchen one at a time on a conveyor, a prepared ingredient bin glowing (KV cache).\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_02_article_01/cover_01",
+   "role": "cover",
+   "path": "week_02_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a long table of word cards with colored highlighter beams connecting distant cards.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, conducting the beams with both hands;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, holding a pink highlighter;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, reading the cards in order one by one;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, holding many highlighters at once;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, aligning the cards in a straight row;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, sorting highlighters by color into a cup.\nVisual metaphor of the topic: several colored highlighter light beams jumping directly between far-apart cards.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_03_article_01/cover_03",
+   "role": "cover",
+   "path": "week_03_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a small bright lab bench in front and a huge dim storage room at the end of a corridor.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, watching with arms crossed;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, carrying a tray of blocks;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, writing two lines in a notebook;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, standing at the storage room door with an abacus;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, stacking empty trays neatly;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, sweeping the corridor with a duster.\nVisual metaphor of the topic: trays of tiles carried from the storage room to a small bench, only one tile glowing green on the bench.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  }
+ ],
+ "updated": "2026-11-11"
+}

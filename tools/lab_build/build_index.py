@@ -70,7 +70,7 @@ body = cover('cover_index', '인퍼런스 스터디 북 · 목차', '밤의 연�
 ''' + crew({'doc': '해설·심판. 주차마다 핵심 한 줄을 정리', 'asst': '실험 진행·숫자 발표. 독자의 눈높이로 질문', 'fly': '의심하는 쪽. 한계와 다음 단계를 짚음', 'robo': '확신하는 쪽. 크고 많은 숫자를 좋아함',
             'sia': '순서 정리·진행 신호. 주차 지도 안내', 'moa': '기록 모으기·응원. 지식 색인과 꾸러미 소개', 'x1': '방청석 (…)', 'x2': '방청석 (반짝)', 'x3': '방청석 (짝짝)'},
            extra='<p class="muted" style="margin-top:12px">밑줄 친 말을 누르면 뜻이 나옵니다. 각 해설 페이지는 단일 HTML이라 설치 없이 브라우저에서 바로 열립니다.</p>') + '''
-<section class="level" id="map"><div class="wrap"><div class="lvhead"><div class="hexno">1<small>지도</small></div><div><h2>10주 지도</h2><p class="sub"><span class="lvtag g">시아의 순서표</span><span class="lvtag p">주차를 누르면 오른쪽에 나와요</span></p></div></div>
+<section class="level" id="map"><div class="wrap"><div class="lvhead"><div class="hexno">1<small>지도</small></div><div><h2>10주 지도</h2><p class="sub"><span class="lvtag g">시아의 순서표</span><span class="lvtag p">주차를 누르면 아래에 나와요</span></p></div></div>
 ''' + say('sia', 'explain', '0장부터 7장까지, 큰 장은 둘로 나눴습니다. 2장은 2주차와 3주차, 5장은 6·7주차, 7장은 9·10주차예요. 장이 바뀌는 주차는 3장·4장·6장처럼 한 장씩 따로 만듭니다.') + '''
 <div class="panel"><h3>주차를 고르세요</h3><div class="cwrap"><canvas id="cMap" class="wide" aria-label="10주 지도. 육각형 하나가 한 주차이고, 초록은 연구실판 완성, 파랑은 원본 그대로, 회색은 준비 중입니다."></canvas></div>
 <div class="ctrl"><div class="group" id="wkBtns"></div></div><div id="wkOut" aria-live="polite"></div>

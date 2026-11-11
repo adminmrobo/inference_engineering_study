@@ -1,58 +1,34 @@
-# 추론 엔지니어링 스터디 3주차 · 논문 1 — 번개 어텐션 (FlashAttention)
+# 인퍼런스 스터디 북 · 03-A1 — 번개 어텐션 — 창고를 덜 오가면 빨라진다
 
-![번개 어텐션 표지](assets/img/cover_03_960.webp)
+> 『Inference Engineering』 스터디 논문 해설 · 연구실 식구 전원 출연
 
-> 계산을 줄이지 않고도, 어텐션을 몇 배 빠르게 만들 수 있을까?
+- **바로 읽기:** https://adminmrobo.github.io/inference_engineering_study/week_03_article_01/
+- **스터디 북 목차:** https://adminmrobo.github.io/inference_engineering_study/
+- **자료:** Dao et al. (2022) FlashAttention
+- **해설 페이지:** [`03_flash_attention.html`](03_flash_attention.html) (단일 HTML, 설치 없이 브라우저에서 열림)
 
-박사 · 조수(하루) · 초파리 연구원 · 주판봇, 연구실 네 캐릭터가 진행하는 **FlashAttention 논문 인터랙티브 해설**입니다. 설치할 것 없이 브라우저에서 바로 엽니다.
+## 이번 판에서 바뀐 것
 
-- **바로 읽기:** https://adminmrobo.github.io/inference_engineering_study_week_03_article_01/
-- **해설 페이지:** [`03_flash_attention.html`](03_flash_attention.html)
-- **원문:** Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, Christopher Ré (2022). *FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness.* [arXiv:2205.14135](https://arxiv.org/abs/2205.14135)
+- 연구실 스킬 v1.12 규격으로 다시 적용: 식구 전원(박사·조수(하루)·초파리 연구원·주판봇·인턴 시아·인턴 모아, 방청석의 미공개 X1~X3) 등장
+- 글 표지를 여섯 식구 표지로 교체(그림 지시문 `COVER_03.md`), 히어로·등장인물·대결·정리에 시아·모아 자리 추가
+- 본문 실험·수치·지식 색인·꾸러미는 이전 판 그대로
+- 외국어판(`*.en.html` 등)은 이전 판입니다. 새 판 번역은 언어팩으로 다시 만들 예정입니다.
 
-## 무엇을 배우나
+## 페이지 구성
 
-| 절 | 내용 | 직접 해 보기 |
-|---|---|---|
-| 1 질문 | 근사 어텐션은 왜 실제로 빨라지지 않았나 — 메모리 계층(SRAM 19TB/s vs HBM 1.5TB/s) | — |
-| 2 방법 | 블록 나누기 → K·V 올리기 → Q 돌며 계산 → 노트로 합치기 → 역방향 다시 계산 | 단계 버튼 |
-| 결과 ① | 창고 왕복 Θ(Nd+N²) → Θ(N²d²/M), 그림 2: 40.3 → 4.4 GB, 41.7 → 7.3 ms | 왕복 계산기 · 쟁반 나르기 |
-| 결과 ② | 온라인 소프트맥스(m, ℓ)로 쪼개도 답이 똑같다 — 정확한 어텐션 | 블록 소프트맥스 실험 |
-| 결과 ③ | BERT·GPT-2 학습 속도, 긴 문맥(Path-X 61.4), 표 20·21 벤치마크 | 길이별 시간·메모리 그래프 |
-| 모형 실험실 | 몰아 하기 → 쟁반 나누기 → 다시 계산을 하나씩 켜기 | 블록 크기 슬라이더 |
-| 대결 | FLOP가 적은 쪽이 더 빠를까? (판정: 원문 실측값) | 예측 → 결과 보기 |
-
-페이지 끝에는 **지식 색인**(검색·미니 그래프)과 **온톨로지·서지 꾸러미**(JSON-LD · Turtle · CSV · CSL-JSON · BibTeX · RIS를 ZIP 하나로)가 있습니다.
+표지 → 히어로 → 등장인물(여섯 식구 + 버튼 뒤 미공개) → 개념 사다리(또는 논문 순서) → 대결 → 정리(모아의 기록장) → 아웃트로 → 지식 색인 → 온톨로지·서지 꾸러미
 
 ## 정확성 표시
 
-- 논문 수치는 원문 그대로 옮겼습니다(반올림하지 않음). 화면에 `원문` 칩으로 표시합니다.
-- 시뮬레이션·계산기 상수·예시 점수는 설명용 모형이며, 캔버스에 노란 도장을 찍었습니다.
-- 이 해설은 2022년 arXiv v2와 A100 등 당시 GPU 기준입니다. 이후 개정판·후속 연구는 다루지 않습니다.
+- 교재·논문 수치는 원문 그대로이며 `원문` 칩을 붙였습니다.
+- 시뮬레이션의 상수·예시는 설명용 모형이며 캔버스에 노란 도장을 찍었습니다.
 
-## 저장소 구조
+## 파일
 
-```
-index.html                  3주차 목차 (GitHub Pages 첫 화면)
-03_flash_attention.html     논문 1 해설 페이지 (단일 HTML, 외부 라이브러리 없음)
-assets/img/                 표지·장면·컷·배경 (WebP), og 이미지
-assets/img/src/             그림 원본 PNG
-docs/kg_03.json             지식 그래프 (노드 61 · 관계 79)
-docs/KG_00_registry_add_03.json  시리즈 등록부 추가분
-docs/IMG_03_flash_attention.md   이미지 제작 명세서 · 매니페스트
-docs/COVER_03_flash_attention.md 글 표지 생성 지시문
-```
+| 파일 | 내용 |
+|---|---|
+| `03_flash_attention.html` | 해설 페이지 |
+| `COVER_cover_03.md` | 글 표지 그림 지시문 (Genspark 등) |
+| `IMG_cover_03.md` | 이미지 제작 명세서 |
 
-## GitHub Pages로 열기
-
-Settings → Pages → Source를 **Deploy from a branch**, Branch를 **main / (root)** 로 두면 위 주소로 공개됩니다. 로컬에서는 `index.html`을 더블클릭해도 됩니다.
-
-## 이 페이지 인용하기
-
-> 안상선 (2026). 번개 어텐션 — 창고를 덜 오가면 빨라진다 (FlashAttention 논문 해설). 추론 엔지니어링 스터디 3주차 논문 1, v1.0.
-
-## 저작권
-
-- 글 · 안상선 ((주)M-Robo 대표) — [소개](https://adminmrobo.github.io/who_am_i/who_am_i.html)
-- 캐릭터 박사 · 조수 · 초파리 연구원 · 주판봇 © 안상선
-- 논문 내용·그림·표의 저작권은 원저자에게 있으며, 이 저장소는 학습용 해설입니다.
+글 · 안상선 ((주)M-Robo 대표) · 캐릭터 설정·그림은 저작권자 허락 없이 사용할 수 없습니다.

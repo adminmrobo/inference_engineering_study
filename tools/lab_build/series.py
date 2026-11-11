@@ -32,7 +32,7 @@ WEEKS = [
         {'kind': 'article', 'folder': 'week_03_article_01', 'label': '논문 1', 'title': '번개 어텐션 — 창고를 덜 오가면 빨라진다', 'range': 'Dao et al. (2022) FlashAttention', 'status': 'done', 'old': 'week_03_article_01'}]},
     {'no': 4, 'title': 'GPU 구조와 추론 실행 환경', 'items': [
         {'kind': 'textbook', 'folder': 'week_04_textbook_ch03', 'label': '3장', 'title': '하드웨어', 'range': 'Chapter 3 Hardware 3.1–3.5', 'status': 'plan'},
-        {'kind': 'article', 'folder': 'week_04_article_01', 'label': '논문 1', 'title': '루프라인 모델 (예정)', 'range': 'Williams et al. (2009) Roofline', 'status': 'plan'}]},
+        {'kind': 'article', 'folder': 'week_04_article_01', 'label': '논문 1', 'title': '루프라인 모델 (예정)', 'range': 'Williams et al. (2008) Roofline', 'status': 'plan'}]},
     {'no': 5, 'title': '추론 소프트웨어와 성능 측정', 'items': [
         {'kind': 'textbook', 'folder': 'week_05_textbook_ch04', 'label': '4장', 'title': '소프트웨어', 'range': 'Chapter 4 Software 4.1–4.5', 'status': 'plan'},
         {'kind': 'article', 'folder': 'week_05_article_01', 'label': '논문 1', 'title': '페이지드 어텐션 · vLLM (예정)', 'range': 'Kwon et al. (2023) PagedAttention', 'status': 'plan'}]},
