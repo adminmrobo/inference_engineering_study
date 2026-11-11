@@ -1,0 +1,594 @@
+{
+ "registry_add": "03_flash_attention",
+ "date": "2026-11-07",
+ "nodes": [
+  {
+   "id": "lab:method/flashattention",
+   "type": "Method",
+   "label": {
+    "ko": "번개 어텐션 (FlashAttention)",
+    "en": "FlashAttention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/standard-attention",
+   "type": "Method",
+   "label": {
+    "ko": "표준 어텐션",
+    "en": "standard attention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/self-attention",
+   "type": "Method",
+   "label": {
+    "ko": "셀프 어텐션",
+    "en": "self-attention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/block-sparse-flashattention",
+   "type": "Method",
+   "label": {
+    "ko": "블록 희소 번개 어텐션",
+    "en": "block-sparse FlashAttention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/approximate-attention",
+   "type": "Method",
+   "label": {
+    "ko": "근사 어텐션",
+    "en": "approximate attention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/tiling",
+   "type": "Method",
+   "label": {
+    "ko": "쟁반 나누기 (타일링)",
+    "en": "tiling"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/recomputation",
+   "type": "Method",
+   "label": {
+    "ko": "다시 계산하기 (재계산)",
+    "en": "recomputation"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/kernel-fusion",
+   "type": "Method",
+   "label": {
+    "ko": "한 번에 몰아 하기 (커널 융합)",
+    "en": "kernel fusion"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/online-softmax",
+   "type": "Method",
+   "label": {
+    "ko": "온라인 소프트맥스",
+    "en": "online softmax (softmax with scaling)"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:method/gradient-checkpointing",
+   "type": "Method",
+   "label": {
+    "ko": "그래디언트 체크포인팅",
+    "en": "gradient checkpointing"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/io-awareness",
+   "type": "Concept",
+   "label": {
+    "ko": "IO-인지",
+    "en": "IO-awareness"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/memory-hierarchy",
+   "type": "Concept",
+   "label": {
+    "ko": "메모리 계층",
+    "en": "memory hierarchy"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/hbm",
+   "type": "Concept",
+   "label": {
+    "ko": "창고 메모리 (HBM)",
+    "en": "high bandwidth memory"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/sram",
+   "type": "Concept",
+   "label": {
+    "ko": "실험대 메모리 (SRAM)",
+    "en": "on-chip SRAM"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/memory-bound",
+   "type": "Concept",
+   "label": {
+    "ko": "메모리 바운드",
+    "en": "memory-bound operation"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/compute-bound",
+   "type": "Concept",
+   "label": {
+    "ko": "계산 바운드",
+    "en": "compute-bound operation"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/arithmetic-intensity",
+   "type": "Concept",
+   "label": {
+    "ko": "산술 강도",
+    "en": "arithmetic intensity"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/io-complexity",
+   "type": "Concept",
+   "label": {
+    "ko": "IO 복잡도",
+    "en": "IO complexity"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/attention-matrix",
+   "type": "Concept",
+   "label": {
+    "ko": "어텐션 행렬",
+    "en": "attention matrix"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/softmax",
+   "type": "Concept",
+   "label": {
+    "ko": "소프트맥스",
+    "en": "softmax"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/exact-attention",
+   "type": "Concept",
+   "label": {
+    "ko": "정확한 어텐션",
+    "en": "exact attention"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:concept/kernel",
+   "type": "Concept",
+   "label": {
+    "ko": "GPU 커널",
+    "en": "GPU kernel"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:limitation/quadratic-io",
+   "type": "Limitation",
+   "label": {
+    "ko": "N² 창고 왕복과 메모리",
+    "en": "quadratic HBM access and memory"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:limitation/flop-not-wallclock",
+   "type": "Limitation",
+   "label": {
+    "ko": "FLOP 감소 ≠ 시간 감소",
+    "en": "FLOP reduction without wall-clock speedup"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:limitation/backward-needs-p",
+   "type": "Limitation",
+   "label": {
+    "ko": "역방향에 P가 필요",
+    "en": "backward pass needs P"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:limitation/still-quadratic-flops",
+   "type": "Limitation",
+   "label": {
+    "ko": "계산량은 여전히 N²",
+    "en": "still O(N²d) FLOPs"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:limitation/cuda-engineering",
+   "type": "Limitation",
+   "label": {
+    "ko": "CUDA 커널 직접 작성",
+    "en": "requires custom CUDA kernels"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:metric/wall-clock",
+   "type": "Metric",
+   "label": {
+    "ko": "실행 시간",
+    "en": "wall-clock runtime"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:metric/hbm-accesses",
+   "type": "Metric",
+   "label": {
+    "ko": "창고 왕복량",
+    "en": "HBM accesses"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:metric/memory-footprint",
+   "type": "Metric",
+   "label": {
+    "ko": "메모리 사용량",
+    "en": "memory footprint"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:metric/flops",
+   "type": "Metric",
+   "label": {
+    "ko": "FLOP",
+    "en": "floating-point operations"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:metric/perplexity",
+   "type": "Metric",
+   "label": {
+    "ko": "퍼플렉서티",
+    "en": "perplexity"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:task/language-modeling",
+   "type": "Task",
+   "label": {
+    "ko": "언어 모델링",
+    "en": "language modeling"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:task/long-document-classification",
+   "type": "Task",
+   "label": {
+    "ko": "긴 문서 분류",
+    "en": "long-document classification"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:dataset/path-x",
+   "type": "Dataset",
+   "label": {
+    "ko": "Path-X / Path-256",
+    "en": "Path-X and Path-256"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:dataset/lra",
+   "type": "Dataset",
+   "label": {
+    "ko": "Long-range Arena",
+    "en": "Long-range Arena"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/dao2022flashattention",
+   "type": "Work",
+   "label": {
+    "ko": "Dao 외 (2022) FlashAttention",
+    "en": "Dao et al. 2022"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/vaswani2017attention",
+   "type": "Work",
+   "label": {
+    "ko": "Vaswani 외 (2017) Attention Is All You Need",
+    "en": "Vaswani et al. 2017"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/aggarwal1988io",
+   "type": "Work",
+   "label": {
+    "ko": "Aggarwal & Vitter (1988) IO 복잡도",
+    "en": "Aggarwal and Vitter 1988"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/milakov2018online",
+   "type": "Work",
+   "label": {
+    "ko": "Milakov & Gimelshein (2018) 온라인 소프트맥스",
+    "en": "Milakov and Gimelshein 2018"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/rabe2021selfattention",
+   "type": "Work",
+   "label": {
+    "ko": "Rabe & Staats (2021)",
+    "en": "Rabe and Staats 2021"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  },
+  {
+   "id": "lab:work/tay2020lra",
+   "type": "Work",
+   "label": {
+    "ko": "Tay 외 (2020) Long Range Arena",
+    "en": "Tay et al. 2020"
+   },
+   "domain": [
+    "ai"
+   ],
+   "pages": [
+    "03_flash_attention"
+   ]
+  }
+ ]
+}

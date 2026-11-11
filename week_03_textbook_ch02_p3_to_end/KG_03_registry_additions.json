@@ -1,0 +1,565 @@
+{
+ "version": "0.1+03",
+ "updated": "2026-11-07",
+ "note": "인퍼런스러닝 등록부(KG_00_registry.json v0.1)에 합칠 3주차 추가분. 2주차와 같은 개념(어텐션, KV 캐시 등)은 합칠 때 2주차 ID로 맞출 것.",
+ "entries": [
+  {
+   "id": "lab:method/image-generation-pipeline",
+   "type": "Method",
+   "label_ko": "이미지 생성 파이프라인",
+   "label_en": "image generation pipeline",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/text-encoder",
+   "type": "Method",
+   "label_ko": "텍스트 인코더",
+   "label_en": "text encoder",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/denoising-model",
+   "type": "Method",
+   "label_ko": "디노이저",
+   "label_en": "denoising model",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:topic/vae",
+   "type": "Method",
+   "label_ko": "VAE(변분 오토인코더)",
+   "label_en": "variational autoencoder",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/latent-space",
+   "type": "Concept",
+   "label_ko": "잠재 공간",
+   "label_en": "latent space",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/denoising-step",
+   "type": "Concept",
+   "label_ko": "디노이징 단계",
+   "label_en": "denoising step",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/guidance-scale",
+   "type": "Concept",
+   "label_ko": "가이던스 스케일",
+   "label_en": "guidance scale",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/forward-pass",
+   "type": "Concept",
+   "label_ko": "순전파",
+   "label_en": "forward pass",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/negative-prompt",
+   "type": "Concept",
+   "label_ko": "네거티브 프롬프트",
+   "label_en": "negative prompt",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:topic/lora",
+   "type": "Method",
+   "label_ko": "LoRA",
+   "label_en": "LoRA",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/controlnet",
+   "type": "Method",
+   "label_ko": "ControlNet",
+   "label_en": "ControlNet",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/diffusion-transformer",
+   "type": "Method",
+   "label_ko": "확산 트랜스포머",
+   "label_en": "diffusion transformer",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/sdxl",
+   "type": "Method",
+   "label_ko": "SDXL",
+   "label_en": "Stable Diffusion XL",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/qwen-image",
+   "type": "Method",
+   "label_ko": "Qwen Image",
+   "label_en": "Qwen Image",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/few-step-model",
+   "type": "Method",
+   "label_ko": "퓨스텝 모델",
+   "label_en": "few-step image generation model",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/distillation",
+   "type": "Method",
+   "label_ko": "증류",
+   "label_en": "distillation",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/latent-consistency",
+   "type": "Method",
+   "label_ko": "잠재 일관성",
+   "label_en": "latent consistency",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/video-generation",
+   "type": "Method",
+   "label_ko": "영상 생성 모델",
+   "label_en": "video generation model",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/error-accumulation",
+   "type": "Concept",
+   "label_ko": "오차 누적",
+   "label_en": "error accumulation",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/self-forcing",
+   "type": "Method",
+   "label_ko": "Self Forcing",
+   "label_en": "Self Forcing",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/compute",
+   "type": "Concept",
+   "label_ko": "연산 성능",
+   "label_en": "compute (FLOPS)",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/memory-bandwidth",
+   "type": "Concept",
+   "label_ko": "메모리 대역폭",
+   "label_en": "memory bandwidth",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/ops-byte-ratio",
+   "type": "Concept",
+   "label_ko": "ops:byte 비율",
+   "label_en": "ops:byte ratio",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/arithmetic-intensity",
+   "type": "Concept",
+   "label_ko": "산술 강도",
+   "label_en": "arithmetic intensity",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/roofline-model",
+   "type": "Method",
+   "label_ko": "루프라인 모델",
+   "label_en": "roofline model",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/compute-bound",
+   "type": "Concept",
+   "label_ko": "계산 병목",
+   "label_en": "compute bound",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/memory-bound",
+   "type": "Concept",
+   "label_ko": "메모리 병목",
+   "label_en": "memory bound",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/prefill",
+   "type": "Concept",
+   "label_ko": "프리필",
+   "label_en": "prefill",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/decode",
+   "type": "Concept",
+   "label_ko": "디코드",
+   "label_en": "decode",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/batching",
+   "type": "Method",
+   "label_ko": "배칭",
+   "label_en": "batching",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:metric/ttft",
+   "type": "Metric",
+   "label_ko": "TTFT",
+   "label_en": "time to first token",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:metric/tps",
+   "type": "Metric",
+   "label_ko": "TPS",
+   "label_en": "tokens per second",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/kv-cache",
+   "type": "Concept",
+   "label_ko": "KV 캐시",
+   "label_en": "KV cache",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:topic/self-attention",
+   "type": "Concept",
+   "label_ko": "어텐션",
+   "label_en": "attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/standard-attention",
+   "type": "Method",
+   "label_ko": "표준 어텐션 구현",
+   "label_en": "standard attention implementation",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/hbm",
+   "type": "Term",
+   "label_ko": "HBM",
+   "label_en": "high bandwidth memory",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/fp16",
+   "type": "Term",
+   "label_ko": "FP16",
+   "label_en": "FP16",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:concept/kernel",
+   "type": "Term",
+   "label_ko": "커널",
+   "label_en": "kernel",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/flashattention",
+   "type": "Method",
+   "label_ko": "FlashAttention",
+   "label_en": "FlashAttention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/pagedattention",
+   "type": "Method",
+   "label_ko": "PagedAttention",
+   "label_en": "PagedAttention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/sliding-window-attention",
+   "type": "Method",
+   "label_ko": "슬라이딩 윈도우 어텐션",
+   "label_en": "sliding window attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/gated-attention",
+   "type": "Method",
+   "label_ko": "게이트 어텐션",
+   "label_en": "gated attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/linear-attention",
+   "type": "Method",
+   "label_ko": "선형 어텐션",
+   "label_en": "linear attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/compressed-attention",
+   "type": "Method",
+   "label_ko": "압축 어텐션",
+   "label_en": "compressed attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/multi-latent-attention",
+   "type": "Method",
+   "label_ko": "멀티 잠재 어텐션",
+   "label_en": "multi-latent attention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/mamba",
+   "type": "Method",
+   "label_ko": "맘바",
+   "label_en": "Mamba",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:method/hybrid-ssm",
+   "type": "Method",
+   "label_ko": "하이브리드 모델",
+   "label_en": "hybrid SSM-transformer",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:task/text-to-image",
+   "type": "Task",
+   "label_ko": "텍스트→이미지 생성",
+   "label_en": "text-to-image generation",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:task/text-to-video",
+   "type": "Task",
+   "label_ko": "텍스트→영상 생성",
+   "label_en": "text-to-video generation",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/many-steps",
+   "type": "Limitation",
+   "label_ko": "단계가 많아 느리다",
+   "label_en": "many denoising steps are slow",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/unmeasured-cause",
+   "type": "Limitation",
+   "label_ko": "느린 이유를 재지 않았다",
+   "label_en": "bottleneck not yet measured",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/need-intensity",
+   "type": "Limitation",
+   "label_ko": "작업의 산술 강도를 모른다",
+   "label_en": "arithmetic intensity unknown",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/quadratic",
+   "type": "Limitation",
+   "label_ko": "여전히 N²",
+   "label_en": "still quadratic",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/approx-quality",
+   "type": "Limitation",
+   "label_ko": "근사는 품질을 내준다",
+   "label_en": "approximation trades quality",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:limitation/fixed-length-video",
+   "type": "Limitation",
+   "label_ko": "영상 길이 고정",
+   "label_en": "fixed number of frames",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:question/gpu-faster-how",
+   "type": "Question",
+   "label_ko": "느린 GPU에는 더 빠른 계산이 필요할까, 더 넓은 대역폭이 필요할까?",
+   "label_en": "Does a slow workload need more compute or more bandwidth?",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:question/duel-image-2x",
+   "type": "Question",
+   "label_ko": "이미지 디노이저 행렬곱에서 연산 ×2와 대역폭 ×2 중 무엇이 빠른가",
+   "label_en": "Which doubles image-denoiser speed: 2x compute or 2x bandwidth?",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:question/video-limits",
+   "type": "Question",
+   "label_ko": "영상 생성의 느린 속도·비현실적 물리·짧은 길이는 어떻게 없앨까",
+   "label_en": "How to remove the limits of video generation?",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:question/ssm-adoption",
+   "type": "Question",
+   "label_ko": "상태 공간 모델은 어디까지 트랜스포머를 대신할까",
+   "label_en": "How far can state-space models replace attention?",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:work/kiely2026inference",
+   "type": "Work",
+   "label_ko": "Inference Engineering",
+   "label_en": "Inference Engineering",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:work/dao2022flashattention",
+   "type": "Work",
+   "label_ko": "FlashAttention (Dao 외 2022)",
+   "label_en": "FlashAttention",
+   "pages": [
+    "03"
+   ]
+  },
+  {
+   "id": "lab:work/podell2023sdxl",
+   "type": "Work",
+   "label_ko": "SDXL (Podell 외 2023)",
+   "label_en": "SDXL",
+   "pages": [
+    "03"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>추론 엔지니어링 스터디 3주차 — 연구실 해설</title>
+<meta name="description" content="추론 엔지니어링 스터디 3주차 논문 해설 목차. 논문 1: FlashAttention (Dao 외 2022).">
+<meta property="og:type" content="website">
+<meta property="og:title" content="추론 엔지니어링 스터디 3주차 — 연구실 해설">
+<meta property="og:description" content="논문 1: FlashAttention — 창고를 덜 오가면 빨라진다">
+<meta property="og:image" content="https://adminmrobo.github.io/inference_engineering_study_week_03_article_01/assets/img/og_03.jpg">
+<meta property="og:url" content="https://adminmrobo.github.io/inference_engineering_study_week_03_article_01/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#13141f;--panel:#1c1e2d;--panel2:#25283a;--rule:#363a52;--text:#eceaf3;--muted:#9d9bb8;--stain:#d672d6;--gfp:#5ee39c;--eye:#f0604d;--amber:#f1b646;--info:#82b8ff;--c-doc:#b07cff;--c-asst:#ff86b8;--c-fly:#ef5b5b;--c-robo:#57d0dc;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.72 "IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,p,li,td{word-break:keep-all;overflow-wrap:break-word}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.15;margin:.2em 0 .3em}
+h2{font-size:clamp(22px,3vw,30px);margin:0 0 .5em}
+a{color:var(--info)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav.top{position:sticky;top:0;z-index:50;height:54px;background:rgba(19,20,31,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:16px;padding:0 16px;overflow-x:auto;white-space:nowrap}
+nav.top .logo{font-weight:700;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+nav.top .logo i{display:inline-block;width:18px;height:20px;background:var(--gfp);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+nav.top a.l{color:var(--muted);text-decoration:none;font-size:14px}
+.cover{position:relative;margin:0;width:100%;height:min(56.25vw,72vh);overflow:hidden;background:linear-gradient(160deg,#1b1533,#13141f)}
+.cover img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.cover-chip{position:absolute;left:16px;bottom:14px;padding:4px 10px;border-radius:999px;background:rgba(19,20,31,.72);font-size:13px}
+@media (max-width:600px){.cover{height:56.25vw}}
+header.intro{padding:44px 0 28px;border-bottom:1px solid var(--rule)}
+.eyebrow{color:var(--gfp);font-weight:700;font-size:14px}
+.lead{font-size:18px;color:var(--muted);max-width:760px}
+section{padding:48px 0;border-bottom:1px solid var(--rule)}
+.card{display:grid;grid-template-columns:minmax(220px,360px) 1fr;gap:20px;background:var(--panel);border:1px solid var(--rule);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .2s}
+.card:hover{border-color:var(--gfp)}
+.card img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/2}
+.card .body{padding:18px 20px 18px 0}
+.card .no{display:inline-flex;width:44px;height:50px;align-items:center;justify-content:center;background:var(--gfp);color:#10241a;font-weight:700;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);margin-bottom:6px}
+.card h3{font-size:22px;margin:0 0 4px}
+.card .cite{font-size:14px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{font-size:13px;border:1px solid var(--rule);background:var(--panel2);border-radius:999px;padding:2px 10px;color:var(--muted)}
+.tag.g{color:var(--gfp);border-color:rgba(94,227,156,.4)}
+.go{color:var(--gfp);font-weight:700}
+.card.soon{opacity:.55;pointer-events:none;grid-template-columns:1fr}
+.card.soon .body{padding:18px 20px}
+.list{display:grid;gap:14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.steps div{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:14px 16px}
+.steps b{display:block;margin-bottom:4px}
+.cast{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.cast div{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:12px 14px;border-top:3px solid var(--c)}
+.cast b{color:var(--c)}
+.cast p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{border-bottom:1px solid var(--rule);padding:8px 10px;text-align:left}
+th{color:var(--muted);font-weight:500}
+code{background:var(--panel2);border-radius:5px;padding:1px 6px;font-size:13px}
+footer{padding:36px 0 60px;color:var(--muted);font-size:14px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}.cast{grid-template-columns:1fr 1fr}}
+@media (max-width:700px){.card{grid-template-columns:1fr}.card .body{padding:0 18px 18px}}
+</style>
+</head><body>
+<nav class="top" aria-label="바로가기">
+  <a class="logo" href="#top"><i></i>추론 엔지니어링 · 3주차</a>
+  <a class="l" href="#papers">논문 목록</a>
+  <a class="l" href="#how">읽는 법</a>
+  <a class="l" href="#cast">등장인물</a>
+  <a class="l" href="#files">자료</a>
+</nav>
+
+<!-- lab-cover -->
+<header class="cover" id="cover" data-img="cover_index" data-img-src="cover_03">
+  <picture>
+    <source type="image/webp" srcset="assets/img/cover_03_960.webp 960w, assets/img/cover_03.webp 1600w" sizes="100vw">
+    <img src="assets/img/cover_03.webp" width="1600" height="900" alt="밤의 연구실에서 조수가 창고의 블록 쟁반을 실험대로 옮기고, 초파리 연구원과 주판봇이 실험대 타일 판을 바라보며 박사가 뒤에서 지켜보는 표지" fetchpriority="high" decoding="async">
+  </picture>
+  <span class="cover-chip">추론 엔지니어링 스터디 · 3주차</span>
+</header>
+<!-- /lab-cover -->
+
+<header class="intro" id="top">
+  <div class="wrap">
+    <div class="eyebrow">추론 엔지니어링 스터디 · 3주차 · 연구실 해설</div>
+    <h1>3주차 — 어텐션을 빠르게 만드는 법</h1>
+    <p class="lead">이번 주 논문을 박사·조수·초파리 연구원·주판봇이 진행하는 인터랙티브 해설 페이지로 읽습니다. 숫자는 원문 그대로, 장난감 모형에는 노란 도장을 찍었습니다. 페이지는 설치 없이 브라우저에서 바로 열립니다.</p>
+  </div>
+</header>
+
+<section id="papers">
+  <div class="wrap">
+    <h2>논문 목록</h2>
+    <div class="list">
+      <a class="card" href="03_flash_attention.html">
+        <img src="assets/img/thumb_03.webp" width="600" height="400" alt="실험대 타일 판을 둘러싼 네 캐릭터 — 번개 어텐션 표지 축소판" loading="lazy" decoding="async">
+        <div class="body">
+          <span class="no">1</span>
+          <h3>번개 어텐션 — 창고를 덜 오가면 빨라진다</h3>
+          <p class="cite">Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, Christopher Ré (2022). <i>FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness.</i> arXiv:2205.14135</p>
+          <p>계산을 줄이지 않고도 어텐션이 빨라질 수 있을까? GPU의 창고 메모리(HBM) 왕복을 줄이는 타일링·온라인 소프트맥스·재계산을 직접 돌려 보며 이해한다.</p>
+          <div class="tags"><span class="tag g">인공지능 · 논문 모드</span><span class="tag">시뮬레이션 4개</span><span class="tag">대결: FLOP가 적으면 빠를까?</span><span class="tag">퀴즈 12문항</span><span class="tag">지식 색인 · 꾸러미</span></div>
+          <span class="go">읽으러 가기 →</span>
+        </div>
+      </a>
+      <div class="card soon" aria-disabled="true"><div class="body"><span class="no" style="background:var(--panel2);color:var(--muted)">2</span><h3>다음 논문 — 준비 중</h3><p class="cite">같은 주차의 다음 논문이 추가되면 여기에 붙습니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>읽는 법</h2>
+    <div class="steps">
+      <div><b>1. 질문부터</b>각 페이지는 "왜?"라는 질문 하나로 시작해 방법 → 핵심 결과 → 모형 실험실 → 대결 순서로 갑니다.</div>
+      <div><b>2. 직접 만지기</b>슬라이더와 버튼으로 실험을 돌립니다. 노란 점선 밑줄을 누르면 용어 뜻이 나옵니다.</div>
+      <div><b>3. 가져가기</b>맨 아래에서 지식 그래프와 참고문헌을 ZIP(JSON-LD·Turtle·CSV·BibTeX·RIS)으로 내려받을 수 있습니다.</div>
+    </div>
+  </div>
+</section>
+
+<section id="cast">
+  <div class="wrap">
+    <h2>등장인물</h2>
+    <div class="cast">
+      <div style="--c:var(--c-doc)"><b>박사</b><p>해설과 판정. 판정은 숫자대로.</p></div>
+      <div style="--c:var(--c-asst)"><b>조수(하루)</b><p>실험 진행과 숫자 발표.</p></div>
+      <div style="--c:var(--c-fly)"><b>초파리 연구원</b><p>의심하는 쪽. "시계로 재 봤어?"</p></div>
+      <div style="--c:var(--c-robo)"><b>주판봇</b><p>확신하는 쪽. 계산량 장부를 믿는다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="files">
+  <div class="wrap">
+    <h2>자료</h2>
+    <div class="tw"><table>
+      <thead><tr><th>파일</th><th>내용</th></tr></thead>
+      <tbody>
+        <tr><td><a href="03_flash_attention.html"><code>03_flash_attention.html</code></a></td><td>논문 1 해설 페이지 (단일 HTML, 외부 라이브러리 없음)</td></tr>
+        <tr><td><a href="docs/kg_03.json"><code>docs/kg_03.json</code></a></td><td>논문 1 지식 그래프 (노드 61 · 관계 79)</td></tr>
+        <tr><td><a href="docs/KG_00_registry_add_03.json"><code>docs/KG_00_registry_add_03.json</code></a></td><td>시리즈 등록부 추가분 (새 ID 42개)</td></tr>
+        <tr><td><a href="docs/IMG_03_flash_attention.md"><code>docs/IMG_03_flash_attention.md</code></a></td><td>이미지 제작 명세서와 매니페스트</td></tr>
+        <tr><td><a href="docs/COVER_03_flash_attention.md"><code>docs/COVER_03_flash_attention.md</code></a></td><td>글 표지 생성 지시문</td></tr>
+      </tbody></table></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>글 · 안상선 ((주)M-Robo 대표) · <a href="https://adminmrobo.github.io/who_am_i/who_am_i.html">소개</a></p>
+    <p>캐릭터 박사·조수·초파리 연구원·주판봇 © 안상선. 논문 내용과 수치의 저작권은 원저자에게 있습니다. 원문: <a href="https://arxiv.org/abs/2205.14135">arXiv:2205.14135</a></p>
+  </div>
+</footer>
+</body></html>

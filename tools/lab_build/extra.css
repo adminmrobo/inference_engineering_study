@@ -1,0 +1,55 @@
+/* ---------- 연구실 식구 확장 (시아·모아·미공개) ---------- */
+:root{--c-sia:#b9c2d6;--c-moa:#e7b47c;--c-x:#a99ee8}
+.say[data-who=sia]{--who:var(--c-sia)} .say[data-who=moa]{--who:var(--c-moa)} .say[data-who=x1],.say[data-who=x2],.say[data-who=x3]{--who:var(--c-x)}
+.say[data-who^=x] img.who{background:#d9d6ec}
+.cast.c6{grid-template-columns:repeat(3,1fr)}
+.cast .card .no{font-size:12px;color:var(--muted)}
+.cast .card[data-who=doc] b{color:var(--c-doc)} .cast .card[data-who=asst] b{color:var(--c-asst)} .cast .card[data-who=fly] b{color:var(--c-fly)} .cast .card[data-who=robo] b{color:var(--c-robo)} .cast .card[data-who=sia] b{color:var(--c-sia)} .cast .card[data-who=moa] b{color:var(--c-moa)}
+.hiddenrow{margin-top:12px}
+.hiddenrow .xs{display:none;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.hiddenrow.open .xs{display:grid}
+.hiddenrow .xs .card{background:#e9e6f6;color:#1d1a22;text-align:center}
+.hiddenrow .xs img{width:72px;height:72px;object-fit:contain}
+.cover .line6{position:absolute;left:5%;right:5%;bottom:13%;display:flex;justify-content:space-between;align-items:flex-end;gap:2%}
+.cover .line6 img{height:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
+.cover .line6 img[data-who=doc]{width:min(17vw,170px)} .cover .line6 img[data-who=asst]{width:min(15.5vw,155px)}
+.cover .line6 img[data-who=sia]{width:min(15vw,150px)} .cover .line6 img[data-who=moa]{width:min(14.5vw,145px)}
+.cover .line6 img[data-who=robo]{width:min(13vw,130px)} .cover .line6 img[data-who=fly]{width:min(10vw,100px)}
+.cover .motif{position:absolute;left:50%;top:9%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;flex-wrap:nowrap}
+.cover .motif i{display:block;width:22px;height:22px;border-radius:5px;background:rgba(94,227,156,.22);border:1px solid rgba(94,227,156,.55)}
+.cover .motif i.on{background:rgba(94,227,156,.75);box-shadow:0 0 14px rgba(94,227,156,.8)}
+.cover .motif i.m{background:rgba(214,114,214,.35);border-color:rgba(214,114,214,.7)}
+.cover .motif i.a{background:rgba(241,182,70,.35);border-color:rgba(241,182,70,.7)}
+/* 방청석 (미공개 식구, 버튼 뒤) */
+.audience{margin-top:10px}
+.audience .seats{display:none;gap:12px;justify-content:center;align-items:flex-end;padding:10px;background:#e9e6f6;border-radius:12px;margin-top:8px}
+.audience.open .seats{display:flex}
+.audience .seats img{width:64px;height:64px;object-fit:contain}
+.audience .seats span{font-size:13px;color:#4b4768}
+/* 진행 신호 (시아) · 응원 (모아) */
+.signal{display:flex;gap:10px;align-items:center;justify-content:center;margin:6px 0 2px;font-size:14px;color:var(--muted)}
+.signal img{width:48px;height:48px;object-fit:contain}
+.signal b{color:var(--c-sia)}
+.cheer b{color:var(--c-moa)}
+/* 순서표 (시아) */
+.route{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}
+.route a{display:block;background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--text);font-size:14px}
+.route a b{display:block;color:var(--gfp);font-size:12px}
+.route a:hover{border-color:var(--gfp)}
+/* 기록장 (모아) */
+.notebook{background:#1e1b2b;border:1px solid rgba(231,180,124,.4);border-radius:14px;padding:14px 18px;margin:16px 0}
+.notebook h4{margin:0 0 6px;color:var(--c-moa)}
+.notebook ul{margin:4px 0;padding-left:20px}
+.chip-src{font-size:12px;border-radius:999px;padding:0 8px;border:1px solid rgba(130,184,255,.5);color:var(--info);margin-left:6px;white-space:nowrap}
+.chip-demo{font-size:12px;border-radius:999px;padding:0 8px;border:1px solid rgba(241,182,70,.5);color:var(--amber);margin-left:6px;white-space:nowrap}
+figure.fig{margin:16px 0;background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:12px}
+figure.fig figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.svgwrap{overflow-x:auto}
+.svgwrap svg{display:block;min-width:640px;width:100%;height:auto}
+.backlink{font-size:14px;margin:0 0 6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:860px){.cast.c6{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:1fr}}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}}
+@media (max-width:460px){.hiddenrow .xs{grid-template-columns:repeat(3,1fr)}.cover .motif{display:none}}
+.duel .head > div{display:flex;flex-direction:column;align-items:center;gap:4px}

@@ -1,0 +1,2288 @@
+{
+ "version": "1.0",
+ "page": "03_flash_attention",
+ "nodes": [
+  {
+   "id": "lab:method/flashattention",
+   "type": "Method",
+   "label": {
+    "ko": "번개 어텐션 (FlashAttention)",
+    "en": "FlashAttention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#method",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "블록으로 쪼개기와 다시 계산하기로 창고 메모리(HBM) 왕복을 줄인, IO를 따지는 정확한 어텐션 알고리즘."
+   },
+   "altLabel": {
+    "ko": [
+     "플래시어텐션"
+    ],
+    "en": [
+     "Flash Attention"
+    ]
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F04",
+    "F05"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1, 알고리즘 1",
+     "verified": true
+    }
+   ],
+   "match": [
+    {
+     "scheme": "wikidata",
+     "id": "",
+     "rel": "closeMatch",
+     "verified": false
+    }
+   ]
+  },
+  {
+   "id": "lab:method/standard-attention",
+   "type": "Method",
+   "label": {
+    "ko": "표준 어텐션",
+    "en": "standard attention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "S=QKᵀ, P=softmax(S)를 창고 메모리에 쓰고 다시 읽어 O=PV를 계산하는 구현(알고리즘 0)."
+   },
+   "level": 2,
+   "family": "sequence",
+   "evidence": [
+    "F01"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.2, 알고리즘 0",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/self-attention",
+   "type": "Method",
+   "label": {
+    "ko": "셀프 어텐션",
+    "en": "self-attention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "문장 안 모든 단어가 서로를 얼마나 참고할지 가중치를 계산해 섞는 방법."
+   },
+   "altLabel": {
+    "ko": [
+     "어텐션"
+    ],
+    "en": [
+     "attention"
+    ]
+   },
+   "level": 2,
+   "family": "sequence",
+   "source": [
+    {
+     "cite": "vaswani2017attention",
+     "work": "vaswani2017attention",
+     "loc": "",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/block-sparse-flashattention",
+   "type": "Method",
+   "label": {
+    "ko": "블록 희소 번개 어텐션",
+    "en": "block-sparse FlashAttention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#reread",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "마스크가 0인 블록을 건너뛰는 근사 어텐션. 창고 접근이 희소도 s에 비례해 준다."
+   },
+   "level": 4,
+   "family": "systems",
+   "evidence": [
+    "F20"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.3, 명제 4",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/approximate-attention",
+   "type": "Method",
+   "label": {
+    "ko": "근사 어텐션",
+    "en": "approximate attention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "희소·저랭크 근사로 계산을 줄인 어텐션. 실행 시간이 줄지 않는 경우가 많았다."
+   },
+   "altLabel": {
+    "ko": [
+     "Linformer",
+     "Reformer"
+    ],
+    "en": [
+     "efficient transformers"
+    ]
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "1장",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/tiling",
+   "type": "Method",
+   "label": {
+    "ko": "쟁반 나누기 (타일링)",
+    "en": "tiling"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#method",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "입력을 빠른 메모리에 들어가는 블록으로 나눠 여러 번에 걸쳐 처리하는 기법."
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F04"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/recomputation",
+   "type": "Method",
+   "label": {
+    "ko": "다시 계산하기 (재계산)",
+    "en": "recomputation"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#lab",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "순방향의 N×N 중간값을 보관하지 않고 역방향에서 다시 계산하는 기법."
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F04"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1, 부록 B.4",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/kernel-fusion",
+   "type": "Method",
+   "label": {
+    "ko": "한 번에 몰아 하기 (커널 융합)",
+    "en": "kernel fusion"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#lab",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "여러 연산을 GPU 커널 하나로 묶어 입력을 한 번만 읽게 하는 기법."
+   },
+   "level": 2,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/online-softmax",
+   "type": "Method",
+   "label": {
+    "ko": "온라인 소프트맥스",
+    "en": "online softmax (softmax with scaling)"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "최댓값 m과 지수합 ℓ을 들고 다니며 블록별 소프트맥스를 정확히 합치는 방법."
+   },
+   "altLabel": {
+    "ko": [
+     "실험 노트 두 줄"
+    ],
+    "en": [
+     "softmax decomposition"
+    ]
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F04"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:method/gradient-checkpointing",
+   "type": "Method",
+   "label": {
+    "ko": "그래디언트 체크포인팅",
+    "en": "gradient checkpointing"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#lab",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "중간값 일부만 보관하고 역방향에서 다시 계산해 메모리를 아끼는 방법."
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/io-awareness",
+   "type": "Concept",
+   "label": {
+    "ko": "IO-인지",
+    "en": "IO-awareness"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "빠른 메모리와 느린 메모리 사이의 읽기·쓰기 양을 따져 알고리즘을 설계하는 원칙."
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "1장",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/memory-hierarchy",
+   "type": "Concept",
+   "label": {
+    "ko": "메모리 계층",
+    "en": "memory hierarchy"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "작고 빠른 메모리부터 크고 느린 메모리까지 층을 이룬 구조 (SRAM, HBM, DRAM)."
+   },
+   "level": 2,
+   "family": "systems",
+   "evidence": [
+    "F02",
+    "F03"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1, 그림 1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/hbm",
+   "type": "Concept",
+   "label": {
+    "ko": "창고 메모리 (HBM)",
+    "en": "high bandwidth memory"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GPU의 큰 주 메모리. A100에서 40~80GB, 1.5~2.0TB/s."
+   },
+   "altLabel": {
+    "ko": [
+     "HBM"
+    ],
+    "en": [
+     "HBM"
+    ]
+   },
+   "level": 2,
+   "family": "systems",
+   "evidence": [
+    "F02"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/sram",
+   "type": "Concept",
+   "label": {
+    "ko": "실험대 메모리 (SRAM)",
+    "en": "on-chip SRAM"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GPU 칩 위 작은 메모리. A100 SM당 192KB, 약 19TB/s."
+   },
+   "altLabel": {
+    "ko": [
+     "SRAM"
+    ],
+    "en": [
+     "SRAM"
+    ]
+   },
+   "level": 2,
+   "family": "systems",
+   "evidence": [
+    "F02"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/memory-bound",
+   "type": "Concept",
+   "label": {
+    "ko": "메모리 바운드",
+    "en": "memory-bound operation"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "계산보다 메모리 접근이 시간을 정하는 연산."
+   },
+   "level": 2,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/compute-bound",
+   "type": "Concept",
+   "label": {
+    "ko": "계산 바운드",
+    "en": "compute-bound operation"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "산술 연산 횟수가 시간을 정하는 연산(큰 행렬 곱 등)."
+   },
+   "level": 2,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/arithmetic-intensity",
+   "type": "Concept",
+   "label": {
+    "ko": "산술 강도",
+    "en": "arithmetic intensity"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#reread",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "메모리 1바이트당 산술 연산 수."
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/io-complexity",
+   "type": "Concept",
+   "label": {
+    "ko": "IO 복잡도",
+    "en": "IO complexity"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "알고리즘이 느린 메모리에 접근하는 횟수를 입력 크기의 함수로 나타낸 것."
+   },
+   "level": 4,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.2",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/attention-matrix",
+   "type": "Concept",
+   "label": {
+    "ko": "어텐션 행렬",
+    "en": "attention matrix"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "N×N 점수 행렬 S=QKᵀ와 그 소프트맥스 P."
+   },
+   "level": 2,
+   "family": "sequence",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "2.2",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/softmax",
+   "type": "Concept",
+   "label": {
+    "ko": "소프트맥스",
+    "en": "softmax"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "점수를 지수로 바꿔 합이 1인 비율로 만드는 함수."
+   },
+   "level": 1,
+   "family": "basics"
+  },
+  {
+   "id": "lab:concept/exact-attention",
+   "type": "Concept",
+   "label": {
+    "ko": "정확한 어텐션",
+    "en": "exact attention"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "근사 없이 softmax(QKᵀ)V와 같은 값을 내는 계산."
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F05"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "정리 1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:concept/kernel",
+   "type": "Concept",
+   "label": {
+    "ko": "GPU 커널",
+    "en": "GPU kernel"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#method",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GPU에서 한 번에 실행되는 작업 단위."
+   },
+   "level": 2,
+   "family": "systems"
+  },
+  {
+   "id": "lab:limitation/quadratic-io",
+   "type": "Limitation",
+   "label": {
+    "ko": "N² 창고 왕복과 메모리",
+    "en": "quadratic HBM access and memory"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "표준 어텐션은 N×N 행렬을 창고에 쓰고 읽어 Θ(Nd+N²) 접근과 O(N²) 메모리가 든다."
+   },
+   "level": 2,
+   "family": "systems",
+   "evidence": [
+    "F01",
+    "F06"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "정리 2",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:limitation/flop-not-wallclock",
+   "type": "Limitation",
+   "label": {
+    "ko": "FLOP 감소 ≠ 시간 감소",
+    "en": "FLOP reduction without wall-clock speedup"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "계산을 줄여도 메모리 접근을 무시하면 실제 시간이 줄지 않는다."
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "1장",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:limitation/backward-needs-p",
+   "type": "Limitation",
+   "label": {
+    "ko": "역방향에 P가 필요",
+    "en": "backward pass needs P"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "블록으로 계산해도 학습 역방향이 N×N P를 요구하면 메모리와 왕복이 남는다."
+   },
+   "level": 3,
+   "family": "systems",
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "3.1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:limitation/still-quadratic-flops",
+   "type": "Limitation",
+   "label": {
+    "ko": "계산량은 여전히 N²",
+    "en": "still O(N²d) FLOPs"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "번개 어텐션도 계산은 O(N²d)라 아주 긴 문장에서는 시간이 크게 는다."
+   },
+   "level": 3,
+   "family": "systems",
+   "evidence": [
+    "F05",
+    "F18"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "정리 1, 4.3",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:limitation/cuda-engineering",
+   "type": "Limitation",
+   "label": {
+    "ko": "CUDA 커널 직접 작성",
+    "en": "requires custom CUDA kernels"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#summary",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "변형마다 저수준 CUDA 커널을 새로 짜야 하고 GPU 구조 사이에 옮기기 어렵다."
+   },
+   "level": 4,
+   "family": "systems",
+   "evidence": [
+    "F19"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "5장",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:metric/wall-clock",
+   "type": "Metric",
+   "label": {
+    "ko": "실행 시간",
+    "en": "wall-clock runtime"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "실제 시계로 잰 시간(ms)."
+   },
+   "level": 1,
+   "family": "evaluation"
+  },
+  {
+   "id": "lab:metric/hbm-accesses",
+   "type": "Metric",
+   "label": {
+    "ko": "창고 왕복량",
+    "en": "HBM accesses"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "창고 메모리에서 읽고 쓴 양(GB 또는 원소 수)."
+   },
+   "altLabel": {
+    "ko": [
+     "왕복 횟수",
+     "IO"
+    ],
+    "en": [
+     "HBM R/W"
+    ]
+   },
+   "level": 3,
+   "family": "evaluation"
+  },
+  {
+   "id": "lab:metric/memory-footprint",
+   "type": "Metric",
+   "label": {
+    "ko": "메모리 사용량",
+    "en": "memory footprint"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "계산에 필요한 최대 GPU 메모리."
+   },
+   "level": 1,
+   "family": "evaluation"
+  },
+  {
+   "id": "lab:metric/flops",
+   "type": "Metric",
+   "label": {
+    "ko": "FLOP",
+    "en": "floating-point operations"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "부동소수점 연산 횟수."
+   },
+   "altLabel": {
+    "ko": [
+     "계산량"
+    ],
+    "en": [
+     "GFLOPs"
+    ]
+   },
+   "level": 1,
+   "family": "evaluation"
+  },
+  {
+   "id": "lab:metric/perplexity",
+   "type": "Metric",
+   "label": {
+    "ko": "퍼플렉서티",
+    "en": "perplexity"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "언어 모델이 다음 단어를 얼마나 헷갈려 하는지. 낮을수록 좋다."
+   },
+   "level": 2,
+   "family": "evaluation"
+  },
+  {
+   "id": "lab:task/language-modeling",
+   "type": "Task",
+   "label": {
+    "ko": "언어 모델링",
+    "en": "language modeling"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "다음 단어를 예측하는 문제 (GPT-2)."
+   },
+   "level": 2,
+   "family": "sequence"
+  },
+  {
+   "id": "lab:task/long-document-classification",
+   "type": "Task",
+   "label": {
+    "ko": "긴 문서 분류",
+    "en": "long-document classification"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "MIMIC-III, ECtHR처럼 아주 긴 문서를 분류."
+   },
+   "level": 3,
+   "family": "sequence"
+  },
+  {
+   "id": "lab:dataset/path-x",
+   "type": "Dataset",
+   "label": {
+    "ko": "Path-X / Path-256",
+    "en": "Path-X and Path-256"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "흑백 그림의 두 점이 이어졌는지 한 픽셀씩 읽어 맞히는 긴 문맥 과제(16K, 64K)."
+   },
+   "level": 4,
+   "family": "evaluation",
+   "source": [
+    {
+     "cite": "tay2020lra",
+     "work": "tay2020long",
+     "loc": "",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:dataset/lra",
+   "type": "Dataset",
+   "label": {
+    "ko": "Long-range Arena",
+    "en": "Long-range Arena"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "긴 문맥 트랜스포머를 비교하는 벤치마크 (길이 1K~4K 다섯 과제)."
+   },
+   "level": 3,
+   "family": "evaluation",
+   "source": [
+    {
+     "cite": "tay2020lra",
+     "work": "tay2020long",
+     "loc": "",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/fig2-hbm",
+   "type": "Claim",
+   "label": {
+    "ko": "창고 R/W 40.3→4.4GB, 41.7→7.3ms",
+    "en": "GPT-2 medium: HBM R/W 40.3 vs 4.4 GB, runtime 41.7 vs 7.3 ms"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GFLOPs는 66.6→75.2로 늘었지만 창고 왕복이 줄어 시간이 줄었다."
+   },
+   "family": "systems",
+   "evidence": [
+    "F08"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "그림 2 왼쪽",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/theorem2",
+   "type": "Claim",
+   "label": {
+    "ko": "정리 2: Θ(Nd+N²) vs Θ(N²d²/M)",
+    "en": "Theorem 2 IO complexity"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "표준은 Θ(Nd+N²), 번개는 Θ(N²d²M⁻¹) 창고 접근."
+   },
+   "family": "systems",
+   "evidence": [
+    "F06"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "정리 2, 부록 C",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/lower-bound",
+   "type": "Claim",
+   "label": {
+    "ko": "명제 3: 하한",
+    "en": "Proposition 3 lower bound"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "모든 M∈[d,Nd]에서 o(N²d²/M)로 정확한 어텐션을 할 수 없다."
+   },
+   "family": "systems",
+   "evidence": [
+    "F07"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "명제 3",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/theorem1",
+   "type": "Claim",
+   "label": {
+    "ko": "정리 1: 정확, O(N) 추가 메모리",
+    "en": "Theorem 1 correctness"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "O=softmax(QKᵀ)V를 O(N²d) FLOPs와 O(N) 추가 메모리로 계산한다."
+   },
+   "family": "systems",
+   "evidence": [
+    "F05"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "정리 1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/bert-15",
+   "type": "Claim",
+   "label": {
+    "ko": "BERT-large 17.4 vs 20.0분",
+    "en": "BERT-large 15% faster than MLPerf 1.1"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "목표 정확도 72.0%까지 17.4±1.4분, Nvidia MLPerf 1.1은 20.0±1.5분."
+   },
+   "family": "systems",
+   "evidence": [
+    "F10"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "표 1",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/gpt2-speed",
+   "type": "Claim",
+   "label": {
+    "ko": "GPT-2 학습 최대 3.5×",
+    "en": "GPT-2 training speedup"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GPT-2 small 2.7일(HF 9.5일), medium 6.9일(HF 21.0일), 퍼플렉서티 같음."
+   },
+   "family": "systems",
+   "evidence": [
+    "F11"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "표 2",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/long-context",
+   "type": "Claim",
+   "label": {
+    "ko": "문맥 4K, 퍼플렉서티 0.7 개선",
+    "en": "4K context, 0.7 better perplexity"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "GPT-2 small 문맥 4K가 Megatron 1K보다 30% 빠르고 퍼플렉서티 17.5 vs 18.2."
+   },
+   "family": "systems",
+   "evidence": [
+    "F13"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "표 4",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/path-x",
+   "type": "Claim",
+   "label": {
+    "ko": "Path-X 61.4, Path-256 63.1",
+    "en": "Path-X 61.4%, Path-256 63.1%"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "트랜스포머가 처음으로 우연 이상의 성능을 냈다."
+   },
+   "family": "systems",
+   "evidence": [
+    "F15"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "표 6",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:claim/memory-linear",
+   "type": "Claim",
+   "label": {
+    "ko": "메모리 선형, 최대 20배 절약",
+    "en": "memory linear in N, up to 20x"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "메모리가 길이에 선형이고 정확한 어텐션 기준선보다 최대 20배 효율적."
+   },
+   "family": "systems",
+   "evidence": [
+    "F17"
+   ],
+   "source": [
+    {
+     "cite": "Dao et al. 2022",
+     "work": "dao2022flashattention",
+     "loc": "4.3, 표 21",
+     "verified": true
+    }
+   ]
+  },
+  {
+   "id": "lab:question/core",
+   "type": "Question",
+   "label": {
+    "ko": "계산을 줄이지 않고 어텐션을 빠르게 할 수 있을까?",
+    "en": "Can attention be faster without fewer FLOPs?"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#top",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems"
+  },
+  {
+   "id": "lab:question/duel",
+   "type": "Question",
+   "label": {
+    "ko": "대결: FLOP가 적은 쪽이 더 빠를까?",
+    "en": "Duel: are fewer FLOPs faster?"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#duel",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems"
+  },
+  {
+   "id": "lab:question/multi-gpu",
+   "type": "Question",
+   "label": {
+    "ko": "여러 GPU 사이 왕복까지 따지는 IO-인지 방법은?",
+    "en": "Multi-GPU IO-aware attention?"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#summary",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "mid",
+   "family": "systems"
+  },
+  {
+   "id": "lab:question/high-level-compile",
+   "type": "Question",
+   "label": {
+    "ko": "고수준 언어에서 IO-인지 커널을 자동으로 만들 수 있을까?",
+    "en": "Compile high-level attention to IO-aware CUDA?"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#summary",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "mid",
+   "family": "systems"
+  },
+  {
+   "id": "lab:analogy/lab-storage",
+   "type": "Analogy",
+   "label": {
+    "ko": "실험대 ↔ 시약 창고",
+    "en": "lab bench vs storage room"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "SRAM은 작은 실험대, HBM은 복도 끝 큰 창고."
+   },
+   "family": "systems"
+  },
+  {
+   "id": "lab:analogy/tray",
+   "type": "Analogy",
+   "label": {
+    "ko": "쟁반 단위 실험 ↔ 타일링",
+    "en": "tray-by-tray experiment"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#method",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "실험대에 들어갈 쟁반만 가져와 그 자리에서 끝낸다."
+   },
+   "family": "systems"
+  },
+  {
+   "id": "lab:analogy/notebook",
+   "type": "Analogy",
+   "label": {
+    "ko": "실험 노트 두 줄 ↔ m, ℓ",
+    "en": "two-line lab notebook"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "definition": {
+    "ko": "최댓값과 보정 합계만 적어 소프트맥스를 정확히 맞춘다."
+   },
+   "family": "systems"
+  },
+  {
+   "id": "lab:sim/io-calculator",
+   "type": "Simulation",
+   "label": {
+    "ko": "왕복 계산기",
+    "en": "HBM access calculator"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems"
+  },
+  {
+   "id": "lab:sim/online-softmax",
+   "type": "Simulation",
+   "label": {
+    "ko": "블록 소프트맥스 실험",
+    "en": "blockwise softmax demo"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems"
+  },
+  {
+   "id": "lab:sim/lab-ladder",
+   "type": "Simulation",
+   "label": {
+    "ko": "기술 사다리 모형 실험실",
+    "en": "technique ladder toy lab"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#lab",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems"
+  },
+  {
+   "id": "lab:work/dao2022flashattention",
+   "type": "Work",
+   "label": {
+    "ko": "Dao 외 (2022) FlashAttention",
+    "en": "Dao et al. 2022"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#top",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "dao2022flashattention"
+  },
+  {
+   "id": "lab:work/vaswani2017attention",
+   "type": "Work",
+   "label": {
+    "ko": "Vaswani 외 (2017) Attention Is All You Need",
+    "en": "Vaswani et al. 2017"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#q",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "vaswani2017attention"
+  },
+  {
+   "id": "lab:work/aggarwal1988io",
+   "type": "Work",
+   "label": {
+    "ko": "Aggarwal & Vitter (1988) IO 복잡도",
+    "en": "Aggarwal and Vitter 1988"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r1",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "aggarwal1988input"
+  },
+  {
+   "id": "lab:work/milakov2018online",
+   "type": "Work",
+   "label": {
+    "ko": "Milakov & Gimelshein (2018) 온라인 소프트맥스",
+    "en": "Milakov and Gimelshein 2018"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "milakov2018online"
+  },
+  {
+   "id": "lab:work/rabe2021selfattention",
+   "type": "Work",
+   "label": {
+    "ko": "Rabe & Staats (2021)",
+    "en": "Rabe and Staats 2021"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r2",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "rabe2021selfattention"
+  },
+  {
+   "id": "lab:work/tay2020lra",
+   "type": "Work",
+   "label": {
+    "ko": "Tay 외 (2020) Long Range Arena",
+    "en": "Tay et al. 2020"
+   },
+   "page": "03_flash_attention",
+   "anchor": "#r3",
+   "domain": [
+    "ai"
+   ],
+   "anchorType": "B",
+   "flyStrength": "none",
+   "status": "known",
+   "confidence": "high",
+   "family": "systems",
+   "ref": "tay2020long"
+  }
+ ],
+ "edges": [
+  {
+   "s": "lab:method/self-attention",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/standard-attention",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/standard-attention",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/softmax",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/online-softmax",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/memory-hierarchy",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:concept/io-awareness",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/io-awareness",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/tiling",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/online-softmax",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:prerequisiteOf",
+   "o": "lab:method/block-sparse-flashattention",
+   "anchor": "#reread",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/standard-attention",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/quadratic-io",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/quadratic-io",
+   "p": "lab:addressedBy",
+   "o": "lab:method/approximate-attention",
+   "anchor": "#q",
+   "confidence": "mid"
+  },
+  {
+   "s": "lab:method/approximate-attention",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/flop-not-wallclock",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/flop-not-wallclock",
+   "p": "lab:addressedBy",
+   "o": "lab:method/tiling",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/tiling",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/backward-needs-p",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/backward-needs-p",
+   "p": "lab:addressedBy",
+   "o": "lab:method/recomputation",
+   "anchor": "#lab",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/recomputation",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/still-quadratic-flops",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/still-quadratic-flops",
+   "p": "lab:addressedBy",
+   "o": "lab:method/block-sparse-flashattention",
+   "anchor": "#reread",
+   "confidence": "mid"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:hasLimitation",
+   "o": "lab:limitation/cuda-engineering",
+   "anchor": "#summary",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/quadratic-io",
+   "p": "lab:addressedBy",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/tiling",
+   "p": "lab:partOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/recomputation",
+   "p": "lab:partOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/kernel-fusion",
+   "p": "lab:partOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/online-softmax",
+   "p": "lab:partOf",
+   "o": "lab:method/flashattention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/recomputation",
+   "p": "lab:broader",
+   "o": "lab:method/gradient-checkpointing",
+   "anchor": "#lab",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:broader",
+   "o": "lab:method/self-attention",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/standard-attention",
+   "p": "lab:broader",
+   "o": "lab:method/self-attention",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/block-sparse-flashattention",
+   "p": "lab:broader",
+   "o": "lab:method/approximate-attention",
+   "anchor": "#reread",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/hbm",
+   "p": "lab:partOf",
+   "o": "lab:concept/memory-hierarchy",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/sram",
+   "p": "lab:partOf",
+   "o": "lab:concept/memory-hierarchy",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/memory-bound",
+   "p": "lab:contrastsWith",
+   "o": "lab:concept/compute-bound",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/arithmetic-intensity",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/memory-bound",
+   "anchor": "#reread",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/attention-matrix",
+   "p": "lab:partOf",
+   "o": "lab:method/standard-attention",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/io-complexity",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/io-awareness",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/exact-attention",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/kernel-fusion",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/kernel",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:contrastsWith",
+   "o": "lab:method/standard-attention",
+   "anchor": "#duel",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:contrastsWith",
+   "o": "lab:method/approximate-attention",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:evaluatedBy",
+   "o": "lab:metric/wall-clock",
+   "anchor": "#duel",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:evaluatedBy",
+   "o": "lab:metric/hbm-accesses",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:evaluatedBy",
+   "o": "lab:metric/memory-footprint",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/approximate-attention",
+   "p": "lab:evaluatedBy",
+   "o": "lab:metric/flops",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:solves",
+   "o": "lab:task/language-modeling",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:solves",
+   "o": "lab:task/long-document-classification",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:evaluatedOn",
+   "o": "lab:dataset/path-x",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:evaluatedOn",
+   "o": "lab:dataset/lra",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:task/language-modeling",
+   "p": "lab:evaluatedBy",
+   "o": "lab:metric/perplexity",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/fig2-hbm",
+   "p": "lab:supports",
+   "o": "lab:method/flashattention",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/fig2-hbm",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r1",
+   "confidence": "high",
+   "loc": "그림 2 왼쪽"
+  },
+  {
+   "s": "lab:claim/theorem2",
+   "p": "lab:supports",
+   "o": "lab:concept/io-complexity",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/theorem2",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r1",
+   "confidence": "high",
+   "loc": "정리 2"
+  },
+  {
+   "s": "lab:claim/lower-bound",
+   "p": "lab:supports",
+   "o": "lab:concept/io-complexity",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/lower-bound",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r1",
+   "confidence": "high",
+   "loc": "명제 3"
+  },
+  {
+   "s": "lab:claim/theorem1",
+   "p": "lab:supports",
+   "o": "lab:concept/exact-attention",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/theorem1",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r2",
+   "confidence": "high",
+   "loc": "정리 1"
+  },
+  {
+   "s": "lab:claim/bert-15",
+   "p": "lab:supports",
+   "o": "lab:method/flashattention",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/bert-15",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r3",
+   "confidence": "high",
+   "loc": "표 1"
+  },
+  {
+   "s": "lab:claim/gpt2-speed",
+   "p": "lab:supports",
+   "o": "lab:method/flashattention",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/gpt2-speed",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r3",
+   "confidence": "high",
+   "loc": "표 2"
+  },
+  {
+   "s": "lab:claim/long-context",
+   "p": "lab:supports",
+   "o": "lab:task/language-modeling",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/long-context",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r3",
+   "confidence": "high",
+   "loc": "표 4"
+  },
+  {
+   "s": "lab:claim/path-x",
+   "p": "lab:supports",
+   "o": "lab:dataset/path-x",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/path-x",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r3",
+   "confidence": "high",
+   "loc": "표 6"
+  },
+  {
+   "s": "lab:claim/memory-linear",
+   "p": "lab:supports",
+   "o": "lab:metric/memory-footprint",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:claim/memory-linear",
+   "p": "lab:assertedIn",
+   "o": "lab:work/dao2022flashattention",
+   "anchor": "#r3",
+   "confidence": "high",
+   "loc": "4.3, 표 21"
+  },
+  {
+   "s": "lab:work/vaswani2017attention",
+   "p": "lab:relatedTo",
+   "o": "lab:method/self-attention",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/io-complexity",
+   "p": "lab:assertedIn",
+   "o": "lab:work/aggarwal1988io",
+   "anchor": "#r1",
+   "confidence": "high",
+   "loc": "논문 참고문헌 [1]"
+  },
+  {
+   "s": "lab:method/online-softmax",
+   "p": "lab:assertedIn",
+   "o": "lab:work/milakov2018online",
+   "anchor": "#r2",
+   "confidence": "high",
+   "loc": "논문 참고문헌 [60]"
+  },
+  {
+   "s": "lab:work/rabe2021selfattention",
+   "p": "lab:relatedTo",
+   "o": "lab:method/flashattention",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:work/tay2020lra",
+   "p": "lab:relatedTo",
+   "o": "lab:dataset/lra",
+   "anchor": "#r3",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:question/core",
+   "p": "lab:relatedTo",
+   "o": "lab:concept/io-awareness",
+   "anchor": "#top",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/flop-not-wallclock",
+   "p": "lab:raises",
+   "o": "lab:question/core",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:question/duel",
+   "p": "lab:relatedTo",
+   "o": "lab:metric/flops",
+   "anchor": "#duel",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:limitation/cuda-engineering",
+   "p": "lab:raises",
+   "o": "lab:question/high-level-compile",
+   "anchor": "#summary",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/flashattention",
+   "p": "lab:raises",
+   "o": "lab:question/multi-gpu",
+   "anchor": "#summary",
+   "confidence": "mid"
+  },
+  {
+   "s": "lab:analogy/lab-storage",
+   "p": "lab:analogyOf",
+   "o": "lab:concept/memory-hierarchy",
+   "anchor": "#q",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:analogy/tray",
+   "p": "lab:analogyOf",
+   "o": "lab:method/tiling",
+   "anchor": "#method",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:analogy/notebook",
+   "p": "lab:analogyOf",
+   "o": "lab:method/online-softmax",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:concept/io-complexity",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/io-calculator",
+   "anchor": "#r1",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/online-softmax",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/online-softmax",
+   "anchor": "#r2",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/recomputation",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/lab-ladder",
+   "anchor": "#lab",
+   "confidence": "high"
+  },
+  {
+   "s": "lab:method/kernel-fusion",
+   "p": "lab:demonstratedBy",
+   "o": "lab:sim/lab-ladder",
+   "anchor": "#lab",
+   "confidence": "high"
+  }
+ ]
+}
