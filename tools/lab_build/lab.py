@@ -163,6 +163,12 @@ def build(spec, out):
             'var GL=' + J(spec.get('gl', {})) + ';var CORE=' + J(spec.get('core', [])) + ';var QUIZ=' + J(spec.get('quiz', {})) + ';</script>'
             '<script>' + core + '</script><script>(function(){var L=window.LAB,$=L.$,$$=L.$$;' + spec.get('js', '') + '\nL.start();})();</script></body></html>')
     page = head + '<div id="prog" aria-hidden="true"></div>' + spec['nav'] + body + kg_section() + export_section() + spec['footer'] + tail
+    try:  # 인퍼런스 공장 — 이 페이지가 맡은 층을 첫 화면에 (층이 없는 페이지는 그대로)
+        import factory
+        ab = os.path.abspath(out)
+        page = factory.apply(page, os.path.dirname(os.path.dirname(ab)), os.path.basename(os.path.dirname(ab)))
+    except ImportError:
+        pass
     os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
     open(out, 'w', encoding='utf-8').write(page)
     return len(page.encode('utf-8'))

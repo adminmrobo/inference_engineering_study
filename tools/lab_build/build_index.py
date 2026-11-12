@@ -57,9 +57,8 @@ chap_html = ''.join('<details class="math"><summary><b>%d장 %s</b> · %s</summa
 
 WEEK_JS = json.dumps([{'no': w['no'], 'title': w['title'], 'items': [{'label': it['label'], 'kind': it['kind'], 'title': it['title'], 'st': it['st'], 'folder': it['folder'], 'range': it['range']} for it in w['items']]} for w in WEEKS], ensure_ascii=False)
 
-body = cover('cover_index', '인퍼런스 스터디 북 · 목차', '밤의 연구실에 박사·조수 하루·초파리 연구원·주판봇·인턴 시아·인턴 모아가 한 줄로 서서 열 개의 문이 이어진 복도를 바라보는 대체 표지',
-             motif=''.join('<i class="%s"></i>' % ('on' if i < 3 else ('a' if i < 10 else 'm')) for i in range(13)),
-             moods={'doc': 'front', 'asst': 'proud', 'fly': 'clip', 'robo': 'chart', 'sia': 'guide', 'moa': 'tea'}) + '''
+import factory
+body = factory.index_section(ROOT) + '''
 <header class="hero" id="top"><div class="wrap"><div class="hero-text">
 <p class="eyebrow">INFERENCE STUDY BOOK · 2026 가을 · 10주 + 부록</p>
 <h1>인퍼런스 스터디 북</h1>
@@ -148,7 +147,7 @@ CSS = '''.wk{margin:20px 0 28px}.wkh{display:flex;gap:12px;align-items:center;ma
 code{font-size:.92em;background:var(--panel2);border-radius:5px;padding:0 5px}'''
 
 spec = {'meta': META, 'kg': KG, 'refs': REFS, 'body': body, 'css': CSS, 'js': JS,
-        'nav': nav([('map', '10주 지도'), ('weeks', '주차별 목차'), ('special', '부록'), ('book', '책 지도'), ('how', '읽는 법'), ('kg', '지식 색인'), ('export', '꾸러미')], home='#top', home_label='인퍼런스 스터디 북'),
+        'nav': nav([('factory', '공장'), ('map', '10주 지도'), ('weeks', '주차별 목차'), ('special', '부록'), ('book', '책 지도'), ('how', '읽는 법'), ('kg', '지식 색인'), ('export', '꾸러미')], home='#top', home_label='인퍼런스 스터디 북'),
         'gl': {'추론': ['추론 (inference)', '개념', '이미 학습을 마친 모델에 입력을 넣어 결과를 얻는 일. 학습(training)과 구분한다.'],
                '지연시간': ['지연시간 (latency)', '지표', '요청 하나가 답을 받기까지 걸리는 시간.'],
                '처리량': ['처리량 (throughput)', '지표', '일정 시간 동안 처리하는 요청·토큰의 양.'],

@@ -313,7 +313,504 @@ figure.fig figcaption{font-size:13px;color:var(--muted);margin-top:6px}
   <a class="l" href="#summary">한 장으로</a>
   <a class="l" href="#kg">지식 색인</a>
   <a class="l" href="#export">꾸러미</a>
-<!-- lab-crew --><a class="l" href="../index.html" style="color:var(--gfp)">↩ 스터디 북 목차</a><!-- /lab-crew --></nav>
+<!-- lab-crew --><a class="l" href="../index.html" style="color:var(--gfp)">↩ 스터디 북 목차</a><!-- /lab-crew --></nav><!-- gf:floor --><style>.gf{--gf-bg:#13141f;--gf-p:#1c1e2d;--gf-p2:#25283a;--gf-r:#363a52;--gf-t:#eceaf3;--gf-m:#9d9bb8;--gf-g:#5ee39c;--gf-a:#f1b646;--gf-i:#82b8ff;
+  position:relative;background:radial-gradient(ellipse at 30% 0%,#221d3a 0%,#13141f 62%);color:var(--gf-t);border-bottom:1px solid var(--gf-r);padding:18px 0 14px;font-family:inherit}
+.gf *{box-sizing:border-box}
+.gf-head{max-width:1180px;margin:0 auto;padding:6px 20px 4px}
+.gf-eye{color:var(--gf-g);font-weight:700;font-size:12px;letter-spacing:.06em;margin:0 0 4px}
+.gf-h{font-size:clamp(30px,4.4vw,50px);line-height:1.12;margin:0 0 6px}
+.gf-h2{font-size:24px;line-height:1.25;margin:0 0 4px}
+.gf-lead{max-width:860px;color:#d6d3e6;margin:0 0 8px;font-size:15px;line-height:1.65}
+.gf-proc{color:var(--gf-a);font-weight:500;margin:0 0 10px;font-size:15px;line-height:1.5}
+.gf-grid{max-width:1180px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr);gap:16px;align-items:start}
+.gf-stage{position:relative;border:1px solid var(--gf-r);border-radius:16px;overflow:hidden;background:#101119;min-height:280px}
+.gf-building .gf-stage{height:min(78vh,760px)}
+.gf-floor .gf-stage{height:auto;aspect-ratio:16/10.5;max-height:70vh;position:sticky;top:64px}
+.gf-cv,.gf-cv canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.gf-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.gf-lb{position:absolute;transform:translate(-50%,-100%);white-space:nowrap;font-size:12px;line-height:1.25;pointer-events:auto;cursor:pointer;user-select:none}
+.gf-lb.fl{transform:translate(0,-50%);background:rgba(19,20,31,.78);border:1px solid var(--gf-r);border-left:4px solid var(--c);border-radius:7px;padding:2px 8px;color:var(--gf-t)}
+.gf-lb.fl small{color:var(--gf-m);margin-left:4px}
+.gf-lb.fl.on{background:rgba(37,40,58,.95);border-color:var(--c);box-shadow:0 0 12px rgba(0,0,0,.6)}
+.gf-lb.fl.dim{opacity:.55}
+.gf-lb.st{display:flex;align-items:center;gap:5px;background:rgba(19,20,31,.86);border:1px solid var(--gf-r);border-radius:999px;padding:2px 9px 2px 3px;color:var(--gf-t)}
+.gf-lb.st b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--c);color:#10121c;font-size:11px}
+.gf-lb.st.other{opacity:.7}.gf-lb.st.other b{background:#4a4e6a;color:#eceaf3}
+.gf-lb.st.hot{border-color:var(--gf-a);box-shadow:0 0 0 2px rgba(241,182,70,.35)}
+.gf-lb.st{padding:2px}.gf-lb.st .nm{display:none;padding-right:6px}.gf-lb.st.hot{z-index:2}.gf-lb.st.hot .nm{display:inline}
+.gf-err{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-align:center;padding:24px;color:var(--gf-m);font-size:14px;background:#101119}
+.gf-tools{position:absolute;left:10px;bottom:10px;right:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;pointer-events:none}
+.gf-tools>*{pointer-events:auto}
+.gf-bt{appearance:none;border:1px solid var(--gf-r);background:rgba(28,30,45,.92);color:var(--gf-t);border-radius:9px;padding:6px 11px;font:500 13px/1.2 inherit;cursor:pointer;text-decoration:none}
+.gf-bt:hover{border-color:var(--gf-g)}
+.gf-hint{font-size:12px;color:var(--gf-m);background:rgba(19,20,31,.7);border-radius:6px;padding:3px 7px}
+.gf-side{background:var(--gf-p);border:1px solid var(--gf-r);border-radius:16px;padding:14px;min-width:0}
+.gf-building .gf-side{max-height:min(78vh,760px);overflow:auto}
+.gf-guide{display:flex;gap:10px;align-items:flex-start;background:var(--gf-p2);border-radius:12px;padding:10px;margin-bottom:10px}
+.gf-guide img{width:56px;height:56px;flex:0 0 56px;object-fit:contain}
+.gf-guide b{font-size:13px;color:#ffb3d1}
+.gf-guide p{margin:2px 0 0;font-size:14px;line-height:1.55}
+.gf-lift{display:grid;gap:4px;margin-bottom:10px}
+.gf-lift button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:42px 1fr auto;gap:8px;align-items:center;cursor:pointer;border:1px solid var(--gf-r);border-left:4px solid var(--c);border-radius:9px;padding:5px 9px;font-size:13.5px;background:rgba(19,20,31,.5)}
+.gf-lift button:hover,.gf-lift button[aria-pressed=true]{background:var(--gf-p2);border-color:var(--c)}
+.gf-lift button:focus-visible{outline:2px solid var(--gf-a);outline-offset:1px}
+.gf-lift .n{font-weight:700;font-variant-numeric:tabular-nums}
+.gf-lift .w{font-size:12px;color:var(--gf-m)}
+.gf-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px;vertical-align:1px}
+.gf-info h3{font-size:19px;margin:6px 0 2px}
+.gf-info .chip{display:inline-block;font-size:12px;border-radius:999px;padding:1px 9px;margin:0 4px 4px 0;background:var(--gf-p2);color:var(--gf-t);border:1px solid var(--gf-r)}
+.gf-info p{font-size:14px;line-height:1.6;margin:6px 0}
+.gf-pages{display:grid;gap:6px;margin:8px 0}
+.gf-pg{display:block;border:1px solid var(--gf-r);border-radius:10px;padding:8px 10px;color:var(--gf-t);text-decoration:none;background:rgba(19,20,31,.45)}
+a.gf-pg:hover{border-color:var(--gf-g)}
+.gf-pg small{display:block;color:var(--gf-m);font-size:12px}
+.gf-pg.plan{opacity:.65}
+.gf-st{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:5px}
+.gf-st li button,.gf-st li a{all:unset;box-sizing:border-box;display:grid;grid-template-columns:26px 1fr;gap:8px;width:100%;cursor:pointer;border:1px solid var(--gf-r);border-radius:10px;padding:6px 9px;background:rgba(19,20,31,.45)}
+.gf-st li button:hover,.gf-st li a:hover,.gf-st li .hot{border-color:var(--gf-a);background:var(--gf-p2)}
+.gf-st li button:focus-visible,.gf-st li a:focus-visible{outline:2px solid var(--gf-a)}
+.gf-st .no{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:#10121c;font-weight:700;font-size:12px}
+.gf-st .other .no{background:#4a4e6a;color:#eceaf3}
+.gf-st b{font-size:14px;display:block}
+.gf-st span.d{font-size:13px;color:#cfcbe0;line-height:1.5;display:block}
+.gf-st small{color:var(--gf-m);font-size:12px}
+.gf-st .sep{font-size:12px;color:var(--gf-m);margin:6px 0 0}
+.gf-mini{margin-top:12px;font-size:12px;color:var(--gf-m)}
+.gf-mini .t{display:block;margin-bottom:4px}
+.gf-mini .bar{display:flex;gap:2px}
+.gf-mini .bar i{flex:1;font-style:normal;text-align:center;font-size:10.5px;line-height:18px;border-radius:4px;background:#2c2f45;border-bottom:3px solid var(--c);color:var(--gf-m)}
+.gf-mini .bar i.on{background:var(--c);color:#10121c;font-weight:700;box-shadow:0 0 8px var(--c)}
+.gf-mini small{display:block;margin-top:4px}
+.gf-legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--gf-m);margin-top:10px}
+.gf-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.gf-note{max-width:1180px;margin:8px auto 0;padding:0 20px;font-size:12px;color:var(--gf-m)}
+@media (max-width:600px){.gf-lb.fl .nm{display:none}}
+@media (max-width:860px){.gf-grid{grid-template-columns:1fr}.gf-building .gf-stage{height:62vh}.gf-floor .gf-stage{aspect-ratio:4/3.4;max-height:none;position:relative;top:auto}.gf-building .gf-side{max-height:none}}
+@media (prefers-reduced-motion:reduce){.gf-bt{transition:none}}
+</style><section class="gf gf-floor" id="factory" aria-label="인퍼런스 공장 — 이 페이지의 층"><div class="gf-grid"><div class="gf-stage"><div class="gf-cv" id="gf-cv" role="img" aria-label="3F 병목 진단실 3D. 번호 붙은 기계가 이 페이지의 칸입니다."></div><div class="gf-labels" id="gf-labels" aria-hidden="true"></div><div class="gf-err" id="gf-err">3D 층을 불러오지 못했습니다. 오른쪽 기계 목록으로 그대로 안내받을 수 있어요.</div><div class="gf-tools"><a class="gf-bt" href="../index.html#f2">건물 전체 보기 ↗</a><span class="gf-hint" id="gf-hint">끌어서 돌리기 · 휠로 확대</span></div></div><aside class="gf-side"><p class="gf-eye">INFERENCE FACTORY · 3주차 · 2장 모델</p><h2 class="gf-h2">3F 병목 진단실</h2><p class="gf-proc">느린 곳을 찾는다 — 계산이 막혔나, 메모리 통로가 막혔나</p><div class="gf-guide"><img alt="" aria-hidden="true" src="data:image/webp;base64,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"><div><b>인턴 시아 · 공정 안내</b><p id="gf-say">여기는 <b>3F 병목 진단실</b>이에요. 계산이 막혔나, 메모리 통로가 막혔나. 이 해설은 이 층의 기계 2대를 맡았어요. 번호를 누르면 그 칸으로 내려갑니다.</p></div></div><ol class="gf-st" id="gf-st"></ol><div class="gf-mini" id="gf-mini" aria-label="건물 속 위치"></div></aside></div></section><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script><script type="application/json" id="gf-data">{"mode": "floor", "focus": 2, "page": "week_03_article_01", "base": "../", "floors": [{"i": 0, "fl": "1F", "week": 1, "name": "정문 · 설계실", "chap": "서문 · 0장 · 1장", "col": "#b07cff", "process": "주문 접수와 설계 — 무엇을, 누구에게, 어떤 눈금으로 만들지 정한다", "desc": "주문(요청)이 들어오는 정문입니다. 추론이 왜 모두의 일이 됐는지 보고, 학습과 추론을 나누고, 공유냐 전용이냐 · 어떤 모델이냐 · 무엇으로 재느냐를 먼저 정합니다.", "st": "done", "pages": [{"folder": "week_01_textbook_preface", "kind": "textbook", "label": "서문", "title": "추론은 이제 모두의 일", "range": "Preface", "week": 1, "st": "done"}, {"folder": "week_01_textbook_ch00", "kind": "textbook", "label": "0장", "title": "추론이란 무엇인가", "range": "Chapter 0 Inference", "week": 1, "st": "done"}, {"folder": "week_01_textbook_ch01", "kind": "textbook", "label": "1장", "title": "시작 전에 정할 것", "range": "Chapter 1 Prerequisites 1.1–1.4", "week": 1, "st": "done"}, {"folder": "week_01_article_01", "kind": "article", "label": "논문 1", "title": "라이브벤치 — 새 시험지로만 재는 성적표", "range": "White et al. (ICLR 2025) LiveBench", "week": 1, "st": "done"}], "stations": [{"type": "door", "name": "정문 — 쏟아지는 모델", "desc": "해마다 늘어나는 모델이 정문으로 밀려 들어옵니다. 추론이 왜 모두의 일이 됐는지 여기서 시작해요.", "page": "week_01_textbook_preface", "sec": "lv1", "st": "done"}, {"type": "scale", "name": "세 개의 저울", "desc": "지연시간 · 가용성 · 비용. 이 공장이 끝까지 지켜야 할 세 눈금입니다.", "page": "week_01_textbook_preface", "sec": "lv3", "st": "done"}, {"type": "twin", "name": "학습동과 추론동", "desc": "모델은 한 번 만들고(학습), 주문마다 돌립니다(추론). 이 건물은 돌리는 쪽 공장이에요.", "page": "week_01_textbook_ch00", "sec": "lv1", "st": "done"}, {"type": "board", "name": "세 층 안내판", "desc": "런타임 · 인프라 · 도구. 책 전체가 이 세 층 위에 지어집니다.", "page": "week_01_textbook_ch00", "sec": "big", "st": "done"}, {"type": "desk", "name": "설계 책상", "desc": "공유 추론을 빌려 쓸까, 전용으로 띄울까. 우리 앱이 어떤 앱인지부터 정합니다.", "page": "week_01_textbook_ch01", "sec": "lv2", "st": "done"}, {"type": "gauge", "name": "계량대 — 지연·처리량", "desc": "평균만 보면 속습니다. 지연시간과 처리량을 재는 법, P99까지 봅니다.", "page": "week_01_textbook_ch01", "sec": "lv5", "st": "done"}, {"type": "screen", "name": "성적 게시판", "desc": "매달 문제를 바꾸는 시험지로 모델 성적을 잽니다. 모델 고르기와 짝을 이루는 논문이에요.", "page": "week_01_article_01", "sec": "method", "st": "done"}]}, {"i": 1, "fl": "2F", "week": 2, "name": "모델 조립 라인", "chap": "2장 모델", "col": "#5ee39c", "process": "모델이라는 기계를 뜯어 본다 — 토큰 하나가 층을 지나 다음 토큰이 되기까지", "desc": "신경망의 기본 동작(행렬곱)부터 어텐션과 KV 캐시, 전문가 혼합까지 모델 내부 공정을 따라갑니다. 짝 논문은 트랜스포머입니다.", "st": "done", "pages": [{"folder": "week_02_textbook_ch02_p1_p2", "kind": "textbook", "label": "2장 전반", "title": "모델 속 들여다보기", "range": "Chapter 2 Models 2.1–2.2", "week": 2, "st": "done"}, {"folder": "week_02_article_01", "kind": "article", "label": "논문 1", "title": "트랜스포머 — 어텐션만으로 충분하다", "range": "Vaswani et al. (2017) Attention Is All You Need", "week": 2, "st": "done"}], "stations": [{"type": "conveyor", "name": "주문 → 다음 토큰 컨베이어", "desc": "주문 한 줄이 토큰으로 쪼개져 모델을 지나 다음 토큰 하나로 나오는 큰 그림입니다.", "page": "week_02_textbook_ch02_p1_p2", "sec": "big", "st": "done"}, {"type": "press", "name": "행렬곱 프레스", "desc": "신경망이 하는 일의 대부분은 숫자 표끼리 곱하기입니다.", "page": "week_02_textbook_ch02_p1_p2", "sec": "lv1", "st": "done"}, {"type": "layers", "name": "어텐션 · KV 캐시 선반", "desc": "앞 토큰을 매번 다시 계산하지 않도록 키·값을 선반에 쌓아 둡니다.", "page": "week_02_textbook_ch02_p1_p2", "sec": "lv4", "st": "done"}, {"type": "split", "name": "전문가 작업대 (MoE)", "desc": "거대한 기계 하나 대신 작은 전문가 여럿 중 몇 명만 일을 맡깁니다.", "page": "week_02_textbook_ch02_p1_p2", "sec": "lv5", "st": "done"}, {"type": "lamp", "name": "형광펜 작업대", "desc": "질문 · 색인표 · 내용으로 문장의 어디를 볼지 칠합니다 (셀프 어텐션).", "page": "week_02_article_01", "sec": "r1", "st": "done"}, {"type": "heads", "name": "여러 색 형광펜", "desc": "머리 여러 개가 서로 다른 관계를 동시에 봅니다 (멀티헤드).", "page": "week_02_article_01", "sec": "r2", "st": "done"}]}, {"i": 2, "fl": "3F", "week": 3, "name": "병목 진단실", "chap": "2장 모델", "col": "#5ee39c", "process": "느린 곳을 찾는다 — 계산이 막혔나, 메모리 통로가 막혔나", "desc": "GPU를 주방에 빗대어 요리사(연산)와 재료 통로(메모리)를 나누고, 그림·영상 생성 공정과 루프라인으로 병목을 짚습니다. 짝 논문은 FlashAttention입니다.", "st": "done", "pages": [{"folder": "week_03_textbook_ch02_p3_to_end", "kind": "textbook", "label": "2장 후반", "title": "병목을 찾아라", "range": "Chapter 2 Models 2.3–2.5", "week": 3, "st": "kept"}, {"folder": "week_03_article_01", "kind": "article", "label": "논문 1", "title": "번개 어텐션 — 창고를 덜 오가면 빨라진다", "range": "Dao et al. (2022) FlashAttention", "week": 3, "st": "done"}], "stations": [{"type": "kitchen", "name": "GPU 주방", "desc": "요리사(연산)와 재료 통로(메모리 대역폭) — 두 자원 중 무엇이 모자란지 봅니다.", "page": "week_03_textbook_ch02_p3_to_end", "sec": "lv1", "st": "kept"}, {"type": "denoise", "name": "그림 닦기 라인", "desc": "그림 생성은 잡음을 서른 번 넘게 닦아 내는 공정입니다.", "page": "week_03_textbook_ch02_p3_to_end", "sec": "lv2", "st": "kept"}, {"type": "roofline", "name": "루프라인 게시판", "desc": "어디가 막혔나 — 지붕선 그래프 하나로 판정합니다.", "page": "week_03_textbook_ch02_p3_to_end", "sec": "lv6", "st": "kept"}, {"type": "pipe", "name": "동선 줄이기", "desc": "결과는 그대로 두고 오가는 길만 줄여 빨라지게 합니다.", "page": "week_03_textbook_ch02_p3_to_end", "sec": "lv8", "st": "kept"}, {"type": "warehouse", "name": "작은 창고 · 큰 창고", "desc": "작고 빠른 창고(SRAM)와 크고 느린 창고(HBM) 사이 왕복을 줄입니다.", "page": "week_03_article_01", "sec": "method", "st": "done"}, {"type": "tiles", "name": "타일 계산대", "desc": "쪼개서 계산해도 답은 똑같습니다 — 그래서 한 번에 다 올리지 않아도 돼요.", "page": "week_03_article_01", "sec": "r2", "st": "done"}]}, {"i": 3, "fl": "4F", "week": 4, "name": "GPU 기계실", "chap": "3장 하드웨어", "col": "#82b8ff", "process": "공장의 엔진룸 — GPU의 구조와 세대, 빌려 쓰는 단위", "desc": "GPU 내부 구조와 메모리, 세대별 차이, 클라우드 인스턴스, 다른 가속기와 로컬 추론까지 하드웨어를 둘러봅니다. 짝 논문은 루프라인 모델(예정)입니다.", "st": "plan", "pages": [{"folder": "week_04_textbook_ch03", "kind": "textbook", "label": "3장", "title": "하드웨어", "range": "Chapter 3 Hardware 3.1–3.5", "week": 4, "st": "plan"}, {"folder": "week_04_article_01", "kind": "article", "label": "논문 1", "title": "루프라인 모델 (예정)", "range": "Williams et al. (2008) Roofline", "week": 4, "st": "plan"}], "stations": [{"type": "rack", "name": "GPU 랙", "desc": "3.1 GPU 구조 — 연산 장치가 어떻게 모여 있나.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "tower", "name": "메모리 탑 (HBM)", "desc": "3.1 — 모델 무게를 담는 고대역폭 메모리.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "shelf", "name": "세대별 진열장", "desc": "3.2 GPU 세대 — 세대가 바뀌면 무엇이 달라지나.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "cells", "name": "인스턴스 칸막이", "desc": "3.3 인스턴스 — 빌려 쓰는 단위와 묶음.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "chip", "name": "다른 가속기 코너", "desc": "3.4 GPU 말고 다른 데이터센터 가속기.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "laptop", "name": "로컬 추론 책상", "desc": "3.5 내 컴퓨터에서 돌리는 추론.", "page": "week_04_textbook_ch03", "sec": null, "st": "plan"}, {"type": "roofline", "name": "루프라인 측정대", "desc": "논문 — 연산과 메모리의 지붕선 (예정).", "page": "week_04_article_01", "sec": null, "st": "plan"}]}, {"i": 4, "fl": "5F", "week": 5, "name": "엔진 제어실", "chap": "4장 소프트웨어", "col": "#57d0dc", "process": "기계를 움직이는 소프트웨어 — CUDA부터 추론 엔진, 부하 시험까지", "desc": "GPU를 부리는 CUDA, 딥러닝 프레임워크, 추론 엔진과 Dynamo, 성능 측정과 부하 시험을 다룹니다. 짝 논문은 페이지드 어텐션 · vLLM(예정)입니다.", "st": "plan", "pages": [{"folder": "week_05_textbook_ch04", "kind": "textbook", "label": "4장", "title": "소프트웨어", "range": "Chapter 4 Software 4.1–4.5", "week": 5, "st": "plan"}, {"folder": "week_05_article_01", "kind": "article", "label": "논문 1", "title": "페이지드 어텐션 · vLLM (예정)", "range": "Kwon et al. (2023) PagedAttention", "week": 5, "st": "plan"}], "stations": [{"type": "panel", "name": "CUDA 배전반", "desc": "4.1 — GPU에 일을 시키는 가장 아래 층.", "page": "week_05_textbook_ch04", "sec": null, "st": "plan"}, {"type": "wall", "name": "프레임워크 공구벽", "desc": "4.2 딥러닝 프레임워크와 라이브러리.", "page": "week_05_textbook_ch04", "sec": null, "st": "plan"}, {"type": "turbine", "name": "추론 엔진", "desc": "4.3 요청을 받아 모델을 돌리는 엔진.", "page": "week_05_textbook_ch04", "sec": null, "st": "plan"}, {"type": "hub", "name": "분배기 (Dynamo)", "desc": "4.4 여러 GPU에 일을 나눠 주는 분배기.", "page": "week_05_textbook_ch04", "sec": null, "st": "plan"}, {"type": "load", "name": "부하 시험대", "desc": "4.5 성능 측정과 부하 시험.", "page": "week_05_textbook_ch04", "sec": null, "st": "plan"}, {"type": "drawers", "name": "페이지 서랍장", "desc": "논문 — KV 캐시를 서랍(페이지)처럼 나눠 담기 (예정).", "page": "week_05_article_01", "sec": null, "st": "plan"}]}, {"i": 5, "fl": "6F", "week": 6, "name": "튜닝 공방 ①", "chap": "5장 최적화 기법", "col": "#f1b646", "process": "같은 기계로 더 빨리 — 숫자를 줄이고, 초안을 먼저 쓰고 검수한다", "desc": "양자화로 숫자 크기를 줄이고, 작은 모델이 초안을 쓰면 큰 모델이 검수하는 추측 디코딩을 봅니다. 짝 논문은 추측 디코딩 논문(예정)입니다.", "st": "plan", "pages": [{"folder": "week_06_textbook_ch05_p1_p2", "kind": "textbook", "label": "5장 전반", "title": "최적화 기법 ① 양자화·추측 디코딩", "range": "Chapter 5 Techniques 5.1–5.2", "week": 6, "st": "plan"}, {"folder": "week_06_article_01", "kind": "article", "label": "논문 1", "title": "추측 디코딩 논문 (예정)", "range": "DFlash (2026)", "week": 6, "st": "plan"}], "stations": [{"type": "press", "name": "양자화 압축기", "desc": "5.1 숫자를 작게 눌러 담아 더 빨리, 더 싸게.", "page": "week_06_textbook_ch05_p1_p2", "sec": null, "st": "plan"}, {"type": "gauge", "name": "품질 계량대", "desc": "5.1 줄여도 품질이 버티는지 잽니다.", "page": "week_06_textbook_ch05_p1_p2", "sec": null, "st": "plan"}, {"type": "draft", "name": "초안 · 검수 쌍둥이 라인", "desc": "5.2 작은 모델이 먼저 쓰고 큰 모델이 한 번에 검수.", "page": "week_06_textbook_ch05_p1_p2", "sec": null, "st": "plan"}, {"type": "screen", "name": "논문 부스", "desc": "논문 — 추측 디코딩 (예정).", "page": "week_06_article_01", "sec": null, "st": "plan"}]}, {"i": 6, "fl": "7F", "week": 7, "name": "튜닝 공방 ②", "chap": "5장 최적화 기법", "col": "#f1b646", "process": "다시 쓰고, 나눠 싣고, 갈라 세운다 — 캐시 · 병렬화 · 분리", "desc": "이미 한 계산을 다시 쓰는 캐시, 모델을 여러 GPU에 나눠 싣는 병렬화, 프리필과 디코드를 다른 방으로 나누는 분리를 다룹니다. 짝 논문은 SGLang(예정)입니다.", "st": "plan", "pages": [{"folder": "week_07_textbook_ch05_p3_to_end", "kind": "textbook", "label": "5장 후반", "title": "최적화 기법 ② 캐시·병렬화·분리", "range": "Chapter 5 Techniques 5.3–5.5", "week": 7, "st": "plan"}, {"folder": "week_07_article_01", "kind": "article", "label": "논문 1", "title": "SGLang (예정)", "range": "Zheng et al. (2023) SGLang", "week": 7, "st": "plan"}], "stations": [{"type": "cache", "name": "캐시 창고", "desc": "5.3 한 번 만든 결과를 다시 꺼내 씁니다.", "page": "week_07_textbook_ch05_p3_to_end", "sec": null, "st": "plan"}, {"type": "parallel", "name": "병렬 분할 라인", "desc": "5.4 큰 모델을 여러 GPU에 나눠 싣기.", "page": "week_07_textbook_ch05_p3_to_end", "sec": null, "st": "plan"}, {"type": "rooms", "name": "프리필 · 디코드 분리실", "desc": "5.5 성격이 다른 두 공정을 다른 방에서.", "page": "week_07_textbook_ch05_p3_to_end", "sec": null, "st": "plan"}, {"type": "router", "name": "프로그램 라우터", "desc": "논문 — SGLang (예정).", "page": "week_07_article_01", "sec": null, "st": "plan"}]}, {"i": 7, "fl": "8F", "week": 8, "name": "다품종 라인", "chap": "6장 입출력 유형", "col": "#ff86b8", "process": "글만이 아니다 — 그림 · 소리 · 영상을 받고 내보내는 라인", "desc": "그림을 읽는 언어 모델, 임베딩, 음성 인식과 합성, 그림·영상 생성까지 입출력 유형별 추론을 봅니다. 짝 논문은 LLaVA(예정)입니다.", "st": "plan", "pages": [{"folder": "week_08_textbook_ch06", "kind": "textbook", "label": "6장", "title": "입출력 유형", "range": "Chapter 6 Modalities 6.1–6.6", "week": 8, "st": "plan"}, {"folder": "week_08_article_01", "kind": "article", "label": "논문 1", "title": "LLaVA (예정)", "range": "Liu et al. (2023) Visual Instruction Tuning", "week": 8, "st": "plan"}], "stations": [{"type": "eye", "name": "그림 읽는 라인 (VLM)", "desc": "6.1 그림을 보고 글로 답하는 모델.", "page": "week_08_textbook_ch06", "sec": null, "st": "plan"}, {"type": "sorter", "name": "임베딩 분류대", "desc": "6.2 글을 숫자 좌표로 바꿔 비슷한 것끼리.", "page": "week_08_textbook_ch06", "sec": null, "st": "plan"}, {"type": "booth", "name": "듣기 · 말하기 부스", "desc": "6.3–6.4 음성 인식(ASR)과 음성 합성(TTS).", "page": "week_08_textbook_ch06", "sec": null, "st": "plan"}, {"type": "canvas", "name": "그림 · 영상 라인", "desc": "6.5–6.6 그림과 영상 생성 모델.", "page": "week_08_textbook_ch06", "sec": null, "st": "plan"}, {"type": "screen", "name": "논문 부스", "desc": "논문 — LLaVA (예정).", "page": "week_08_article_01", "sec": null, "st": "plan"}]}, {"i": 8, "fl": "9F", "week": 9, "name": "출하 준비실", "chap": "7장 운영", "col": "#ef5b5b", "process": "포장하고, 늘렸다 줄였다 — 컨테이너와 자동 확장", "desc": "모델을 컨테이너로 포장하고, 요청량에 따라 GPU를 늘리고 줄이는 자동 확장을 다룹니다. 짝 논문은 Orca(예정)입니다.", "st": "plan", "pages": [{"folder": "week_09_textbook_ch07_p1_p2", "kind": "textbook", "label": "7장 전반", "title": "운영 ① 컨테이너·자동 확장", "range": "Chapter 7 Production 7.1–7.2", "week": 9, "st": "plan"}, {"folder": "week_09_article_01", "kind": "article", "label": "논문 1", "title": "Orca (예정)", "range": "Yu et al. (2022) Orca", "week": 9, "st": "plan"}], "stations": [{"type": "container", "name": "컨테이너 포장대", "desc": "7.1 어디서나 똑같이 돌게 포장하기.", "page": "week_09_textbook_ch07_p1_p2", "sec": null, "st": "plan"}, {"type": "servers", "name": "자동 확장 서버 줄", "desc": "7.2 요청이 몰리면 늘리고, 빠지면 줄이기.", "page": "week_09_textbook_ch07_p1_p2", "sec": null, "st": "plan"}, {"type": "gauge", "name": "요청량 계기판", "desc": "7.2 언제 늘릴지 정하는 눈금.", "page": "week_09_textbook_ch07_p1_p2", "sec": null, "st": "plan"}, {"type": "dispatcher", "name": "반복 단위 배차기", "desc": "논문 — Orca (예정).", "page": "week_09_article_01", "sec": null, "st": "plan"}]}, {"i": 9, "fl": "10F", "week": 10, "name": "운영 관제 · 출하장", "chap": "7장 운영", "col": "#ef5b5b", "process": "멈추지 않게 운영하고 손님에게 내보낸다", "desc": "여러 클라우드에 걸친 용량 관리, 시험과 배포, 클라이언트 코드, 실제 운영까지 다룹니다. 짝 논문은 AgentDojo(예정)입니다.", "st": "plan", "pages": [{"folder": "week_10_textbook_ch07_p3_to_end", "kind": "textbook", "label": "7장 후반", "title": "운영 ② 멀티 클라우드·배포·클라이언트", "range": "Chapter 7 Production 7.3–7.6", "week": 10, "st": "plan"}, {"folder": "week_10_article_01", "kind": "article", "label": "논문 1", "title": "AgentDojo (예정)", "range": "Debenedetti et al. (2024) AgentDojo", "week": 10, "st": "plan"}], "stations": [{"type": "crane", "name": "멀티 클라우드 크레인", "desc": "7.3 여러 클라우드의 GPU를 끌어다 쓰기.", "page": "week_10_textbook_ch07_p3_to_end", "sec": null, "st": "plan"}, {"type": "gate", "name": "시험 · 배포 관문", "desc": "7.4 새 버전을 안전하게 내보내기.", "page": "week_10_textbook_ch07_p3_to_end", "sec": null, "st": "plan"}, {"type": "window", "name": "클라이언트 창구", "desc": "7.5 손님 쪽 코드가 받는 법.", "page": "week_10_textbook_ch07_p3_to_end", "sec": null, "st": "plan"}, {"type": "panel", "name": "운영 관제석", "desc": "7.6 실제 운영 사례.", "page": "week_10_textbook_ch07_p3_to_end", "sec": null, "st": "plan"}, {"type": "shield", "name": "보안 시험장", "desc": "논문 — AgentDojo (예정).", "page": "week_10_article_01", "sec": null, "st": "plan"}]}, {"i": 10, "fl": "RF", "week": 0, "name": "옥상 연구 전망대", "chap": "부록", "col": "#9d9bb8", "process": "공장 밖을 내다본다 — 부록 · 특별편", "desc": "본편 10층을 다 오른 뒤 공장 밖을 내다보는 특별편 2~3편 자리입니다. 주제는 준비 중입니다.", "st": "plan", "pages": [{"folder": "special_01", "kind": "special", "label": "부록 A", "title": "특별편 1 (주제 준비 중)", "range": "", "week": 0, "st": "plan"}, {"folder": "special_02", "kind": "special", "label": "부록 B", "title": "특별편 2 (주제 준비 중)", "range": "", "week": 0, "st": "plan"}, {"folder": "special_03", "kind": "special", "label": "부록 C", "title": "특별편 3 (선택, 주제 준비 중)", "range": "", "week": 0, "st": "plan"}], "stations": [{"type": "dome", "name": "전망대", "desc": "부록 A — 특별편 1 (주제 준비 중).", "page": "special_01", "sec": null, "st": "plan"}, {"type": "antenna", "name": "안테나", "desc": "부록 B — 특별편 2 (주제 준비 중).", "page": "special_02", "sec": null, "st": "plan"}, {"type": "board", "name": "특별편 게시판", "desc": "부록 C — 특별편 3 (선택, 준비 중).", "page": "special_03", "sec": null, "st": "plan"}]}], "statusKo": {"done": "연구실판 완성", "kept": "원본 그대로", "plan": "준비 중", "wip": "다시 만드는 중"}}</script><script type="module">// 인퍼런스 공장 — 건물 전체(building) / 한 층(floor) 3D와 안내판. three.js(CDN) 없이도 안내판은 동작한다.
+const D = JSON.parse(document.getElementById('gf-data').textContent);
+const F = D.floors, N = F.length, MODE = D.mode, PAGE = D.page;
+const $ = id => document.getElementById(id);
+const SC = { done: '#5ee39c', kept: '#82b8ff', wip: '#f1b646', plan: '#4a4e6a' };
+const KO = D.statusKo, KIND = { textbook: '교재', article: '논문', special: '부록' };
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+const open = st => st !== 'plan';
+
+// 역 번호: 층 모드에서는 이 페이지 기계가 1번부터, 나머지는 그 뒤
+const NUM = F.map(f => {
+  const ord = MODE === 'floor' && f.i === D.focus ? [...f.stations.keys()].sort((a, b) => (f.stations[b].page === PAGE) - (f.stations[a].page === PAGE) || a - b) : [...f.stations.keys()];
+  const n = []; ord.forEach((k, j) => n[k] = j + 1); return n;
+});
+function href(s) {
+  if (!open(s.st)) return null;
+  if (MODE === 'floor' && s.page === PAGE) return '#' + (s.sec || 'top');
+  return D.base + s.page + '/' + (s.sec ? '#' + s.sec : '');
+}
+
+// ---------------- 안내판 ----------------
+let sel = MODE === 'floor' ? D.focus : -1;
+const m0 = /^#f(\d+)$/.exec(location.hash); if (MODE === 'building' && m0 && +m0[1] < N) sel = +m0[1];
+let three = null;
+
+function stationItems(f, onlyNums) {
+  const ks = [...f.stations.keys()].sort((a, b) => NUM[f.i][a] - NUM[f.i][b]);
+  let out = '', sep = false;
+  ks.forEach(k => {
+    const s = f.stations[k], h = href(s), mine = MODE !== 'floor' || s.page === PAGE;
+    if (MODE === 'floor' && !mine && !sep) { out += '<li class="sep">같은 층의 다른 해설</li>'; sep = true; }
+    const pg = (F[f.i].pages.find(p => p.folder === s.page) || {});
+    const inner = '<span class="no">' + NUM[f.i][k] + '</span><span><b>' + esc(s.name) + '</b><span class="d">' + esc(s.desc) + '</span>' +
+      (MODE === 'floor' && mine ? '' : '<small>' + esc((KIND[pg.kind] || '') + ' · ' + (pg.label || '') + ' · ' + (KO[s.st] || '')) + '</small>') + '</span>';
+    out += '<li data-k="' + k + '" class="' + (mine ? '' : 'other') + '" style="--c:' + f.col + '">' + (h ? '<a href="' + esc(h) + '">' + inner + '</a>' : '<button type="button" aria-disabled="true">' + inner + '</button>') + '</li>';
+  });
+  return out;
+}
+function bindHot(root) {
+  root.querySelectorAll('li[data-k]').forEach(li => {
+    li.addEventListener('mouseenter', () => three && three.hot(+li.dataset.k));
+    li.addEventListener('mouseleave', () => three && three.hot(-1));
+    li.addEventListener('focusin', () => three && three.hot(+li.dataset.k));
+  });
+}
+function say(t) { const e = $('gf-say'); if (e) e.innerHTML = t; }
+
+function renderLift() {
+  const L = $('gf-lift'); if (!L) return;
+  L.innerHTML = F.slice().reverse().map(f => '<button type="button" data-i="' + f.i + '" aria-pressed="' + (f.i === sel) + '" style="--c:' + f.col + '"><span class="n">' + f.fl +
+    '</span><span>' + esc(f.name) + '<br><span class="w">' + (f.week ? f.week + '주차 · ' : '') + esc(f.chap) + '</span></span><span class="gf-dot" style="background:' + SC[f.st] + '" title="' + esc(KO[f.st]) + '"></span></button>').join('');
+  L.querySelectorAll('button').forEach(b => b.addEventListener('click', () => select(+b.dataset.i === sel ? -1 : +b.dataset.i)));
+}
+function renderInfo() {
+  const I = $('gf-info'); if (!I) return;
+  if (sel < 0) {
+    const openN = F.filter(f => open(f.st)).length, pages = F.reduce((a, f) => a + f.pages.filter(p => open(p.st)).length, 0);
+    I.innerHTML = '<h3>건물 안내</h3><p>' + N + '개 층(본편 10층 + 옥상) 중 <b>' + openN + '개 층</b>에 불이 켜졌고, 지금 열 수 있는 해설은 <b>' + pages + '편</b>입니다.</p>' +
+      '<p>층 = 주차 · 오른쪽 색 띠 = 책의 장. 같은 장을 두 주에 나눠 읽는 2장 · 5장 · 7장은 두 층에 걸쳐 있어요. 토큰(빛 알갱이)은 1층 정문에서 들어와 층을 하나씩 지나 위로 올라갑니다.</p>';
+    say('어서 오세요. 엘리베이터 버튼이나 건물의 층을 누르면 그 층의 공정과 해설을 안내해 드려요. 불이 켜진 층은 지금 읽을 수 있고, 회색 층은 공사 중이에요.');
+    return;
+  }
+  const f = F[sel];
+  I.innerHTML = '<h3>' + f.fl + ' ' + esc(f.name) + '</h3><span class="chip">' + (f.week ? f.week + '주차' : '부록') + '</span><span class="chip" style="border-color:' + f.col + '">' + esc(f.chap) +
+    '</span><span class="chip"><span class="gf-dot" style="background:' + SC[f.st] + '"></span>' + esc(KO[f.st]) + '</span>' +
+    '<p style="color:#f1b646">' + esc(f.process) + '</p><p>' + esc(f.desc) + '</p><div class="gf-pages">' +
+    f.pages.map(p => (open(p.st) ? '<a class="gf-pg" href="' + esc(D.base + p.folder + '/') + '">' : '<div class="gf-pg plan">') + '<b>' + (KIND[p.kind] || '') + ' · ' + esc(p.label) + '</b> ' + esc(p.title) +
+      '<small>' + esc(p.range) + (p.range ? ' · ' : '') + esc(KO[p.st]) + (open(p.st) ? ' · 해설 열기 →' : '') + '</small>' + (open(p.st) ? '</a>' : '</div>')).join('') +
+    '</div><p style="margin-bottom:0"><b>이 층의 기계</b> <span style="color:#9d9bb8;font-size:12px">번호 = 3D 위 번호</span></p><ol class="gf-st">' + stationItems(f) + '</ol>';
+  bindHot(I);
+  say(f.fl + ' <b>' + esc(f.name) + '</b>입니다. ' + esc(f.process) + '. ' + (open(f.st) ? '불이 켜진 해설 ' + f.pages.filter(p => open(p.st)).length + '편을 지금 열 수 있어요. 기계를 누르면 그 칸으로 바로 갑니다.' : '아직 공사 중인 층이에요. 해설이 완성되면 불이 켜집니다.'));
+}
+function select(i) {
+  sel = i;
+  if (MODE === 'building') {
+    renderLift(); renderInfo();
+    try { history.replaceState(null, '', i < 0 ? location.pathname + location.search : '#f' + i); } catch (e) {}
+  }
+  three && three.select(i);
+}
+function renderFloorPanel() {
+  const f = F[D.focus], S = $('gf-st');
+  if (S) { S.innerHTML = stationItems(f); bindHot(S); }
+  const M = $('gf-mini');
+  if (M) M.innerHTML = '<span class="t">건물 속 위치</span><span class="bar">' + F.map(g => '<i class="' + (g.i === f.i ? 'on' : '') + '" style="--c:' + g.col + '" title="' + g.fl + ' ' + esc(g.name) + '">' + g.fl + '</i>').join('') + '</span><small>' + f.fl + ' ' + esc(f.name) + ' · 같은 색 = ' + esc(f.chap) + '</small>';
+}
+if (MODE === 'building') { renderLift(); renderInfo(); $('gf-all') && $('gf-all').addEventListener('click', () => select(-1)); window.addEventListener('hashchange', () => { const m = /^#f(\d+)$/.exec(location.hash); if (m && +m[1] < N && +m[1] !== sel) select(+m[1]); }); }
+else renderFloorPanel();
+
+// ---------------- 3D ----------------
+try { three = await initThree(); } catch (e) { console.error(e); $('gf-err').style.display = 'flex'; const h = $('gf-hint'); if (h) h.style.display = 'none'; }
+
+async function initThree() {
+  const THREE = await import('three');
+  const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
+  const host = $('gf-cv'), LBL = $('gf-labels');
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  host.appendChild(renderer.domElement);
+  const scene = new THREE.Scene(); scene.background = new THREE.Color('#101119');
+  const FW = 20, FD = 8, H = 3.4, GAP = MODE === 'floor' ? 2.4 : 3.2, WALL = 2.6;
+  const cam = new THREE.OrthographicCamera(-10, 10, 10, -10, 0.1, 600);
+  const DIR = new THREE.Vector3(1, .78, 1.3).normalize();
+  const controls = new OrbitControls(cam, renderer.domElement);
+  const AZ = Math.atan2(DIR.x, DIR.z);
+  Object.assign(controls, { enableDamping: true, enablePan: false, minAzimuthAngle: AZ - .75, maxAzimuthAngle: AZ + .75, minPolarAngle: .45, maxPolarAngle: 1.32, minZoom: .6, maxZoom: 4 });
+  cam.position.copy(DIR).multiplyScalar(120); controls.target.set(0, 0, 0); controls.update();
+
+  scene.add(new THREE.HemisphereLight('#dfe2ff', '#22253a', 1.35));
+  scene.add(new THREE.AmbientLight('#ffffff', .18));
+  const sun = new THREE.DirectionalLight('#fff1dc', 1.75); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -26, right: 26, top: 26, bottom: -26, near: 1, far: 160 }); sun.shadow.bias = -.0006;
+  scene.add(sun, sun.target);
+
+  // 땅
+  const ground = new THREE.Mesh(new THREE.BoxGeometry(64, .4, 44), new THREE.MeshStandardMaterial({ color: '#171927', roughness: .95 }));
+  ground.position.set(2, -.5, 2); ground.receiveShadow = true; scene.add(ground);
+  const grid = new THREE.GridHelper(64, 32, '#262a40', '#1f2234'); grid.position.set(2, -.29, 2); scene.add(grid);
+  const road = new THREE.Mesh(new THREE.BoxGeometry(5, .05, 14), new THREE.MeshStandardMaterial({ color: '#23263a' })); road.position.set(-7, -.27, 11); scene.add(road);
+
+  const grey = new THREE.Color('#3b3f5a');
+  const pick = [], spin = [], blink = [], floors = [];
+  let fadeOn = false;
+
+  function buildFloor(f) {
+    const g = new THREE.Group(); scene.add(g);
+    const ghost = !open(f.st) && f.fl !== 'RF' ? true : f.fl === 'RF';
+    const fade = MODE === 'floor' && f.i !== D.focus;
+    const mats = [];
+    const M = (c, o = {}) => { const col = new THREE.Color(c); if (ghost) col.lerp(grey, .55); const m = new THREE.MeshStandardMaterial({ color: col, roughness: .7, metalness: .08, ...o }); mats.push(m); return m; };
+    const G = (c, k = .8, op) => { if (ghost) return M(c); const m = new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: k, roughness: .4, ...(op ? { transparent: true, opacity: op } : {}) }); mats.push(m); return m; };
+    const add = (geo, mat, x, y, z, p) => { const m = new THREE.Mesh(geo, typeof mat === 'string' ? M(mat) : mat); m.position.set(x, y, z); m.castShadow = m.receiveShadow = true; p.add(m); return m; };
+    const kit = p => ({
+      box: (w, h, d, c, x, y, z) => add(new THREE.BoxGeometry(w, h, d), c, x, y, z, p),
+      cyl: (rt, rb, h, c, x, y, z, s = 18) => add(new THREE.CylinderGeometry(rt, rb, h, s), c, x, y, z, p),
+      sph: (r, c, x, y, z) => add(new THREE.SphereGeometry(r, 18, 14), c, x, y, z, p),
+      hemi: (r, c, x, y, z) => add(new THREE.SphereGeometry(r, 22, 12, 0, Math.PI * 2, 0, Math.PI / 2), c, x, y, z, p),
+      tor: (r, t, c, x, y, z) => add(new THREE.TorusGeometry(r, t, 8, 24), c, x, y, z, p), M, G
+    });
+    const B = kit(g);
+    const roof = f.fl === 'RF';
+    // 바닥판 · 벽 · 기둥
+    const slab = B.box(FW, .3, FD, '#2a2d42', 0, -.15, 0); slab.userData.fl = f.i; pick.push(slab);
+    const wallH = roof ? .7 : WALL;
+    const wm = M('#23263a', { transparent: true, opacity: .92 });
+    B.box(FW, wallH, .14, wm, 0, wallH / 2, -FD / 2 + .07).userData.fl = f.i;
+    B.box(.14, wallH, FD, wm, -FW / 2 + .07, wallH / 2, 0).userData.fl = f.i;
+    if (roof) { B.box(FW, .7, .14, wm, 0, .35, FD / 2 - .07); B.box(.14, .7, FD, wm, FW / 2 - .07, .35, 0); }
+    else {
+      // 창 띠 (불 켜진 층)
+      const lit = open(f.st);
+      B.box(FW - .6, .34, .04, lit ? G(SC[f.st], .55) : M('#30344c'), 0, WALL - .45, -FD / 2 + .16);
+      B.box(.04, .34, FD - .6, lit ? G(SC[f.st], .55) : M('#30344c'), -FW / 2 + .16, WALL - .45, 0);
+      [[FW / 2 - .15, FD / 2 - .15], [-FW / 2 + .15, FD / 2 - .15], [FW / 2 - .15, -FD / 2 + .15]].forEach(([x, z]) => B.box(.3, H - .3, .3, '#4a4f6e', x, (H - .3) / 2, z));
+      // 장 색 띠 (오른쪽 뒤 기둥)
+      const band = B.box(.34, H - .3, .34, new THREE.MeshStandardMaterial({ color: f.col, emissive: f.col, emissiveIntensity: lit ? .55 : .12 }), FW / 2 - .15, (H - .3) / 2, -FD / 2 + .15); mats.push(band.material);
+    }
+    // 앞 난간 불빛
+    const rail = B.box(FW, .08, .08, open(f.st) ? G(SC[f.st], 1) : M('#555a74'), 0, .05, FD / 2 - .04);
+    // 컨베이어 (토큰 길)
+    if (!roof) { B.box(FW - 1.2, .1, .9, '#1b1d2b', 0, .05, 2.4); }
+    // 공사 중 표시
+    if (!open(f.st) && !roof) {
+      for (let k = 0; k < 9; k++) { const bar = B.box(1.6, .12, .08, k % 2 ? '#1b1d2b' : new THREE.MeshStandardMaterial({ color: '#f1b646', emissive: '#f1b646', emissiveIntensity: .25 }), -8 + k * 2, .75, FD / 2 - .25); if (bar.material.emissive) mats.push(bar.material); }
+      [-8.8, 8.8].forEach(x => B.box(.12, 1.6, .12, '#6c7192', x, .8, FD / 2 - .25));
+    }
+    // 기계
+    const n = f.stations.length, sp = (FW - 3) / n, sc = Math.min(1, (sp - .25) / 2.4);
+    const sts = f.stations.map((s, k) => {
+      const sg = new THREE.Group(); sg.position.set(-FW / 2 + 1.6 + sp * (k + .5), 0, -.9); sg.scale.setScalar(sc); g.add(sg);
+      (MK[s.type] || MK.box)(kit(sg), s);
+      sg.traverse(o => { if (o.isMesh) { o.userData.fl = f.i; o.userData.st = k; pick.push(o); } });
+      return { g: sg, top: 2.5 * sc, s };
+    });
+    if (fade) mats.forEach(m => { m.transparent = true; m.opacity = (m.opacity ?? 1) * .14; m.depthWrite = false; });
+    if (fade) g.traverse(o => { if (o.isMesh) { o.castShadow = false; if (o.material && !mats.includes(o.material)) { o.material.transparent = true; o.material.opacity = .14; o.material.depthWrite = false; } } });
+    const outline = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(FW + .3, .5, FD + .3)), new THREE.LineBasicMaterial({ color: f.col, transparent: true, opacity: 0 }));
+    outline.position.y = -.1; g.add(outline);
+    return { g, f, sts, y: 0, outline, delay: f.i * .09 };
+  }
+
+  // ---- 기계 모양 ----
+  const PI = Math.PI;
+  const legs = (b, w, d, h, c = '#4a4f6e') => [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([a, e]) => b.box(.08, h, .08, c, a * (w / 2 - .08), h / 2, e * (d / 2 - .08)));
+  const MK = {
+    box: b => b.box(1.4, 1.2, 1.2, '#5d6386', 0, .6, 0),
+    door: b => { b.box(.3, 2.2, .3, '#8a8fa8', -1, 1.1, 0); b.box(.3, 2.2, .3, '#8a8fa8', 1, 1.1, 0); b.box(2.4, .35, .4, '#b07cff', 0, 2.3, 0); b.box(1.7, 1.9, .06, b.G('#82b8ff', .5, .55), 0, .98, 0); ['#ff86b8', '#5ee39c', '#f1b646'].forEach((c, i) => b.box(.32, .32, .32, c, -.6 + i * .6, .16, 1.0)); },
+    scale: b => { b.cyl(.35, .45, .2, '#555a74', 0, .1, 0); b.cyl(.07, .07, 1.9, '#a7abc4', 0, 1.05, 0); b.box(2.2, .08, .08, '#d6d9ea', 0, 2.0, 0); b.box(.08, .08, .7, '#d6d9ea', 0, 2.0, .35);
+      [[-1, 0, '#82b8ff'], [1, 0, '#5ee39c'], [0, .7, '#f1b646']].forEach(([x, z, c]) => { b.cyl(.015, .015, .55, '#a7abc4', x, 1.72, z); b.cyl(.34, .24, .08, c, x, 1.42, z); }); },
+    twin: b => { b.box(.95, 1.7, 1.3, '#4a4f6e', -.65, .85, 0); b.box(.95, 1.05, 1.3, '#d6d9ea', .65, .52, 0); b.box(.6, .16, .02, b.G('#5ee39c', .8), .65, .75, .66); b.box(.6, .16, .02, b.G('#b07cff', .5), -.65, 1.3, .66); b.box(.5, .08, .12, b.G('#f1b646', .9), 0, 1.15, 0); },
+    board: b => { b.cyl(.05, .05, 1.2, '#8a8fa8', -.8, .6, 0); b.cyl(.05, .05, 1.2, '#8a8fa8', .8, .6, 0); b.box(1.9, 1.25, .08, '#2a2e45', 0, 1.65, 0); ['#b07cff', '#82b8ff', '#5ee39c'].forEach((c, k) => b.box(1.65, .28, .02, b.G(c, .55), 0, 1.25 + k * .38, .05)); },
+    desk: b => { b.box(2, .1, 1.1, '#8a6f55', 0, .8, 0); legs(b, 2, 1.1, .78); b.box(1.2, .02, .8, b.G('#82b8ff', .35), -.2, .86, 0); b.cyl(.03, .03, .6, '#ccc', .75, 1.15, -.35); b.sph(.1, b.G('#f1b646', 1), .75, 1.47, -.3); },
+    gauge: b => { b.box(1.6, 1.3, .6, '#3d425e', 0, .65, 0); [-.4, .4].forEach((x, i) => { const d = b.cyl(.36, .36, .06, '#eceaf3', x, .85, .31); d.rotation.x = PI / 2; const nd = b.box(.04, .3, .02, '#ef5b5b', x, .92, .36); nd.rotation.z = i ? -.7 : .5; }); b.box(1.2, .16, .02, b.G('#5ee39c', .7), 0, .3, .31); },
+    screen: b => { b.box(.8, .08, .5, '#555a74', 0, .04, 0); b.cyl(.08, .08, 1.1, '#777c96', 0, .6, 0); b.box(2.1, 1.25, .12, '#1b1d2b', 0, 1.65, 0); [.3, .55, .4, .75, .6].forEach((h, k) => b.box(.24, h, .02, b.G(['#5ee39c', '#82b8ff', '#ff86b8', '#f1b646', '#b07cff'][k], .7), -.7 + k * .35, 1.15 + h / 2, .07)); },
+    conveyor: b => { b.box(2.3, .12, .8, '#2a2d3f', 0, .6, 0); legs(b, 2.2, .7, .55); b.box(.6, .7, .7, '#5d6386', -.85, 1.0, 0); ['#ff86b8', '#82b8ff', '#f1b646'].forEach((c, k) => b.box(.25, .25, .25, c, -.2 + k * .4, .8, 0)); b.box(.3, .3, .3, b.G('#5ee39c', .9), .95, .82, 0); },
+    press: b => { b.box(1.8, .3, .9, '#3d425e', 0, .15, 0); [-.8, .8].forEach(x => b.box(.2, 2, .2, '#6c7192', x, 1, 0)); b.box(1.9, .3, .6, '#6c7192', 0, 2.05, 0); b.box(1.0, .35, .5, '#a7abc4', 0, 1.45, 0); b.cyl(.08, .08, .5, '#a7abc4', 0, 1.8, 0);
+      for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) b.box(.2, .12, .2, b.G((i + j) % 2 ? '#5ee39c' : '#82b8ff', .5), -.3 + i * .3, .36, -.3 + j * .3); },
+    layers: b => { [-.6, .0].forEach(x => b.cyl(.04, .04, 1.9, '#8a8fa8', x - .5, .95, -.45)); for (let k = 0; k < 4; k++) b.box(1.5, .08, 1.0, b.G('#5ee39c', .25, .7), -.4, .45 + k * .42, 0); b.box(.6, 1.8, .6, '#3d425e', .85, .9, 0); for (let k = 0; k < 4; k++) b.box(.4, .26, .4, b.G('#f1b646', .6), .85, .35 + k * .38, .32); },
+    split: b => { b.box(.6, .6, .6, '#b07cff', 0, .3, .55); [-.9, -.3, .3, .9].forEach((x, i) => { b.box(.45, .75, .45, i === 1 || i === 2 ? b.G('#5ee39c', .45) : '#4a4f6e', x, .38, -.45); b.box(.06, .06, .7, '#8a8fa8', x * .5, .55, .05).rotation.y = -x * .6; }); },
+    lamp: b => { b.box(2, .08, 1, '#3d425e', 0, .7, 0); legs(b, 2, 1, .68); b.box(1.4, .02, .7, '#eceaf3', 0, .75, 0); b.box(1.0, .022, .12, b.G('#f1b646', .7), -.1, .765, -.12); b.box(.7, .022, .12, b.G('#f1b646', .7), .05, .765, .15); const p = b.box(.12, .6, .12, '#f1b646', .7, 1.0, .25); p.rotation.z = .6; },
+    heads: b => { b.box(1.9, .12, .55, '#3d425e', 0, .06, 0); ['#f1b646', '#ff86b8', '#5ee39c', '#82b8ff'].forEach((c, k) => { b.cyl(.13, .13, 1.3, c, -.66 + k * .44, .78, 0); b.cyl(.14, .14, .26, '#eceaf3', -.66 + k * .44, 1.5, 0); }); },
+    kitchen: b => { b.box(.9, .9, .8, '#5d6386', -.55, .45, -.1); b.cyl(.18, .18, .03, b.G('#ef5b5b', .9), -.55, .92, -.1); b.cyl(.17, .21, .6, '#eceaf3', -.55, .3, .62); b.sph(.16, '#f1d9c2', -.55, .76, .62); b.cyl(.13, .13, .2, '#ffffff', -.55, .96, .62); b.box(.7, 1.7, .7, '#a7abc4', .75, .85, -.1); b.box(.62, .09, .09, b.G('#82b8ff', .7), .12, .72, -.1); },
+    denoise: b => { b.box(2.2, .1, .35, '#3d425e', 0, .5, 0); legs(b, 2.1, .3, .48); ['#6b6f87', '#8a7a96', '#b07cb0', '#e08cc4', '#ff86b8'].forEach((c, k) => b.box(.36, .55, .05, k > 2 ? b.G(c, .35) : c, -.84 + k * .42, .85, 0)); },
+    roofline: b => { b.cyl(.05, .05, 1, '#8a8fa8', -.85, .5, 0); b.cyl(.05, .05, 1, '#8a8fa8', .85, .5, 0); b.box(2, 1.3, .08, '#1b1d2b', 0, 1.5, 0); b.box(1.8, .03, .02, '#6c7192', 0, .95, .05); b.box(.03, 1.1, .02, '#6c7192', -.9, 1.45, .05);
+      const s = b.box(1.03, .06, .03, b.G('#5ee39c', 1), -.45, 1.25, .06); s.rotation.z = .507; b.box(.9, .06, .03, b.G('#ef5b5b', 1), .45, 1.5, .06); b.sph(.08, b.G('#f1b646', 1), .15, 1.3, .08); },
+    pipe: b => { b.cyl(.45, .45, 1.3, '#a7abc4', -.75, .65, 0); b.cyl(.45, .45, 1.3, '#a7abc4', .75, .65, 0); const p = b.cyl(.15, .15, .7, b.G('#5ee39c', .5), 0, .95, 0); p.rotation.z = PI / 2; const q = b.cyl(.06, .06, 1.6, '#555a74', 0, 1.55, 0); q.rotation.z = PI / 2; },
+    warehouse: b => { b.box(1.1, 1.9, 1.1, '#5d6386', -.55, .95, -.15); b.box(.7, .02, 1.12, '#82b8ff', -.55, 1.5, -.15); b.box(.65, .65, .65, b.G('#5ee39c', .5), .72, .33, .3); b.box(.7, .06, .25, '#2a2d3f', .15, .2, .3); [0, .2].forEach(x => b.box(.14, .14, .14, '#f1b646', x + .05, .3, .3)); },
+    tiles: b => { b.box(1.9, .1, 1.2, '#3d425e', 0, .7, 0); legs(b, 1.9, 1.2, .68); for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) b.box(.5, .05, .32, b.G(i === 1 && j === 1 ? '#f1b646' : (i + j) % 2 ? '#5ee39c' : '#82b8ff', .45), -.6 + i * .6, .78, -.38 + j * .38); },
+    rack: b => { [-.5, .5].forEach(x => { b.box(.8, 2.1, .8, '#2b2f45', x, 1.05, 0); for (let k = 0; k < 6; k++) b.box(.6, .06, .02, b.G('#5ee39c', .9), x, .35 + k * .3, .41); }); },
+    tower: b => { b.box(1.6, .12, 1.2, '#3d425e', 0, .06, 0); [[-.4, -.3], [.4, -.3], [-.4, .3], [.4, .3]].forEach(([x, z]) => { b.cyl(.22, .22, 1.5, '#82b8ff', x, .87, z); for (let k = 0; k < 3; k++) b.tor(.23, .03, b.G('#57d0dc', .6), x, .5 + k * .4, z).rotation.x = PI / 2; }); },
+    shelf: b => { [-.95, .95].forEach(x => b.box(.06, 2, .6, '#6c7192', x, 1, 0)); [.5, 1.1, 1.7].forEach((y, k) => { b.box(1.9, .06, .6, '#6c7192', 0, y, 0); [.3, .4, .5].forEach((s, j) => b.box(s - k * .06, .1, s - k * .06, b.G(['#82b8ff', '#57d0dc', '#5ee39c'][k], .4), -.55 + j * .55, y + .08, 0)); }); },
+    cells: b => { b.box(2.1, .08, 1.1, '#3d425e', 0, .04, 0); [-1, -.33, .33, 1].forEach(x => b.box(.05, 1.2, 1.1, b.M('#8a8fa8', { transparent: true, opacity: .55 }), x, .64, 0)); [-.66, 0, .66].forEach(x => { b.box(.4, .95, .4, '#2b2f45', x, .55, 0); b.box(.3, .05, .02, b.G('#5ee39c', .9), x, .8, .21); }); },
+    chip: b => { b.box(1.6, .3, 1.4, '#3d425e', 0, .15, 0); b.box(1.2, .14, 1.0, '#2b2f45', -.1, .37, 0); b.box(.55, .06, .55, b.G('#57d0dc', .7), -.1, .47, 0); b.box(.35, .35, .35, '#ef5b5b', .75, .48, .45); b.box(.3, .3, .3, '#f1b646', .75, .46, -.4); },
+    laptop: b => { b.box(1.4, .08, .8, '#8a6f55', 0, .75, 0); legs(b, 1.4, .8, .72); b.box(.75, .04, .45, '#a7abc4', 0, .81, .05); const s = b.box(.75, .46, .03, b.G('#82b8ff', .5), 0, 1.05, -.18); s.rotation.x = -.2; },
+    panel: b => { b.box(1.7, 1.9, .4, '#3d425e', 0, .95, -.1); [-.5, -.17, .17, .5].forEach(x => b.box(.05, 1.4, .02, b.G('#57d0dc', .9), x, 1.0, .11)); [.5, 1.0, 1.5].forEach(y => b.box(1.2, .04, .02, b.G('#57d0dc', .6), 0, y, .11)); },
+    wall: b => { b.box(2, 1.6, .08, '#5d6386', 0, 1.2, -.3); b.cyl(.05, .05, 1.2, '#8a8fa8', -.9, .6, -.3); b.cyl(.05, .05, 1.2, '#8a8fa8', .9, .6, -.3); ['#ef5b5b', '#f1b646', '#5ee39c', '#82b8ff', '#b07cff', '#ff86b8'].forEach((c, k) => b.box(.22, .45 + (k % 3) * .12, .1, c, -.7 + k * .28, 1.25, -.22)); },
+    turbine: b => { b.box(1.9, .3, .9, '#3d425e', 0, .15, 0); const c = b.cyl(.5, .5, 1.6, '#a7abc4', 0, .85, 0); c.rotation.z = PI / 2; [-.5, 0, .5].forEach(x => b.tor(.52, .05, '#5d6386', x, .85, 0).rotation.y = PI / 2); const fan = b.cyl(.44, .44, .06, b.G('#57d0dc', .7), .82, .85, 0); fan.rotation.z = PI / 2; const bl = b.box(.04, .8, .14, '#eceaf3', .86, .85, 0); spin.push([bl, 'x', 3]); },
+    hub: b => { b.cyl(.08, .08, 1, '#8a8fa8', 0, .5, 0); b.sph(.35, b.G('#57d0dc', .6), 0, 1.1, 0); [[-.8, -.4], [.8, -.4], [-.8, .4], [.8, .4]].forEach(([x, z]) => { b.box(.36, .36, .36, '#5d6386', x, .18, z); const a = b.box(Math.hypot(x, z), .05, .05, '#8a8fa8', x / 2, .65, z / 2); a.rotation.y = -Math.atan2(z, x); a.rotation.z = .5 * Math.sign(x); }); },
+    load: b => { b.box(1.9, .2, 1.1, '#3d425e', 0, .1, 0); [[-.6, 3], [-.15, 5], [.3, 2], [.75, 4]].forEach(([x, n]) => { for (let k = 0; k < n; k++) b.box(.32, .2, .32, k === n - 1 ? b.G('#f1b646', .5) : '#82b8ff', x, .3 + k * .22, 0); }); },
+    drawers: b => { b.box(1.7, 1.7, .7, '#5d6386', 0, .85, 0); for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) b.box(.34, .32, .03, (i * 3 + j) % 5 < 2 ? b.G('#f1b646', .6) : '#3d425e', -.6 + i * .4, .3 + j * .4, .36); },
+    cache: b => { [-.95, .95].forEach(x => b.box(.06, 2, .7, '#6c7192', x, 1, 0)); [.4, 1.0, 1.6].forEach(y => { b.box(1.9, .06, .7, '#6c7192', 0, y, 0); for (let j = 0; j < 4; j++) b.box(.3, .3, .3, j % 3 ? b.G('#5ee39c', .55) : '#4a4f6e', -.6 + j * .4, y + .18, 0); }); },
+    parallel: b => { [-.5, 0, .5].forEach((z, k) => { b.box(2.1, .08, .3, '#2a2d3f', 0, .55, z); b.box(.5, .3, .25, b.G(['#f1b646', '#5ee39c', '#82b8ff'][k], .45), -.3 + k * .35, .74, z); }); legs(b, 2, 1.2, .52); b.box(.5, .9, 1.4, '#5d6386', -1.0, .45, 0); },
+    rooms: b => { b.box(.9, 1.3, 1.2, '#5d6386', -.6, .65, 0); b.box(.9, 1.3, 1.2, '#4a4f6e', .6, .65, 0); b.box(.5, .3, .02, b.G('#f1b646', .8), -.6, .9, .61); b.box(.5, .3, .02, b.G('#5ee39c', .8), .6, .9, .61); const p = b.cyl(.08, .08, .4, '#a7abc4', 0, 1.15, 0); p.rotation.z = PI / 2; },
+    router: b => { b.box(.6, .6, .6, b.G('#f1b646', .3), -.6, .5, 0); [[.7, -.5], [.7, 0], [.7, .5]].forEach(([x, z], k) => { b.box(.36, .36, .36, ['#5ee39c', '#82b8ff', '#ff86b8'][k], x, .3, z); const t = b.box(Math.hypot(1.3, z), .06, .06, '#8a8fa8', .05, .45, z / 2); t.rotation.y = -Math.atan2(z, 1.3); }); },
+    eye: b => { b.box(1.0, 1.0, .9, '#5d6386', .2, .5, 0); b.sph(.3, b.G('#82b8ff', .7), .2, .6, .45); b.box(.75, .55, .04, '#ff86b8', -.75, .9, .2).rotation.y = .4; b.cyl(.03, .03, .6, '#8a8fa8', -.75, .3, .2); },
+    sorter: b => { [-.65, 0, .65].forEach((x, k) => { b.box(.5, .5, .6, '#3d425e', x, .25, 0); for (let j = 0; j < 3; j++) b.sph(.1, b.G(['#5ee39c', '#82b8ff', '#ff86b8'][k], .5), x - .12 + j * .12, .58, 0); }); },
+    booth: b => { [-.5, .5].forEach((x, k) => { b.box(.85, 1.7, .85, b.G('#82b8ff', .1, .35), x, .85, 0); k ? b.cyl(.15, .2, .35, '#eceaf3', x, 1.0, 0) : b.sph(.15, b.G('#ff86b8', .6), x, 1.1, 0); b.cyl(.03, .03, .9, '#8a8fa8', x, .45, 0); }); },
+    canvas: b => { [-.4, .4].forEach(x => { const l = b.box(.06, 1.6, .06, '#8a6f55', x, .8, 0); l.rotation.z = x > 0 ? -.12 : .12; }); const p = b.box(1.0, .75, .04, b.G('#ff86b8', .35), 0, 1.25, .05); p.rotation.x = -.12; b.box(1.0, .25, .03, '#2a2d3f', .2, .3, .5); for (let k = 0; k < 4; k++) b.box(.18, .16, .02, b.G('#f1b646', .4), -.12 + k * .22, .3, .52); },
+    container: b => { [[-.55, .25, 0, '#ef5b5b'], [.55, .25, 0, '#82b8ff'], [0, .75, 0, '#f1b646']].forEach(([x, y, z, c]) => { b.box(1.05, .48, .55, c, x, y, z); for (let k = 0; k < 5; k++) b.box(.02, .4, .57, '#1b1d2b', x - .4 + k * .2, y, z); }); },
+    servers: b => { [.6, .9, 1.2, 1.5].forEach((h, k) => { b.box(.38, h, .55, k < 2 ? '#2b2f45' : b.M('#2b2f45', { transparent: true, opacity: .7 }), -.66 + k * .44, h / 2, 0); b.box(.26, .05, .02, b.G('#5ee39c', k < 3 ? .9 : .2), -.66 + k * .44, h - .15, .28); }); },
+    dispatcher: b => { b.cyl(.1, .1, .6, '#8a8fa8', 0, .3, 0); const d = b.cyl(.85, .85, .15, '#5d6386', 0, .65, 0); for (let k = 0; k < 6; k++) { const a = k / 6 * PI * 2; const c = new THREE.Mesh(new THREE.BoxGeometry(.22, .22, .22), b.G(['#5ee39c', '#82b8ff', '#f1b646'][k % 3], .5)); c.position.set(Math.cos(a) * .6, .18, Math.sin(a) * .6); d.add(c); } spin.push([d, 'y', .8]); },
+    crane: b => { b.box(.16, 2.3, .16, '#f1b646', -.7, 1.15, 0); b.box(1.9, .1, .1, '#f1b646', .15, 2.3, 0); b.cyl(.015, .015, .8, '#cccccc', .75, 1.9, 0); b.box(.42, .3, .42, '#82b8ff', .75, 1.35, 0); [[.4, .45], [.75, .55], [1.0, .42]].forEach(([x, r]) => b.sph(r * .6, '#e8eaf6', x - .2, .35, .4)); },
+    gate: b => { [-.9, .9].forEach(x => b.box(.2, 1.8, .2, '#6c7192', x, .9, 0)); b.box(2.0, .25, .25, '#5d6386', 0, 1.9, 0); b.sph(.12, b.G('#5ee39c', 1), -.3, 1.9, .15); b.sph(.12, b.G('#ef5b5b', .5), .3, 1.9, .15); const a = b.box(1.5, .08, .08, '#f1b646', .05, .7, .2); a.rotation.z = .15; },
+    window: b => { b.box(1.7, 1.5, .8, '#5d6386', 0, .75, -.15); b.box(1.1, .55, .02, b.G('#82b8ff', .45), 0, 1.0, .26); b.box(1.7, .08, .35, '#8a6f55', 0, .7, .4); },
+    shield: b => { b.cyl(.05, .05, 1.1, '#8a8fa8', 0, .55, 0); const s = b.cyl(.72, .72, .12, '#82b8ff', 0, 1.3, 0); s.rotation.x = PI / 2; const i = b.cyl(.4, .4, .14, b.G('#5ee39c', .5), 0, 1.3, .01); i.rotation.x = PI / 2; [-.9, .9].forEach(x => b.box(.08, .6, .08, '#ef5b5b', x, .3, .3)); b.box(1.9, .06, .06, '#ef5b5b', 0, .5, .3); },
+    draft: b => { b.box(2.2, .1, .5, '#2a2d3f', 0, .5, .45); legs(b, 2.1, .4, .48); b.box(.5, .55, .5, '#82b8ff', -.75, .28, -.35); b.box(.9, 1.3, .9, '#b07cff', .5, .65, -.35); for (let k = 0; k < 4; k++) b.box(.18, .18, .18, b.G(k < 3 ? '#5ee39c' : '#ef5b5b', .6), -.7 + k * .45, .65, .45); },
+    dome: b => { b.cyl(.9, .9, .7, '#a7abc4', 0, .35, 0); b.hemi(.9, '#d6d9ea', 0, .7, 0); const t = b.cyl(.13, .13, 1.0, '#5d6386', .35, 1.35, .35); t.rotation.z = -.7; t.rotation.x = .5; },
+    antenna: b => { b.cyl(.06, .06, 2.4, '#a7abc4', 0, 1.2, 0); const d = b.cyl(.55, .1, .15, '#d6d9ea', 0, 1.8, .2); d.rotation.x = .7; const l = b.sph(.09, b.G('#ef5b5b', 1), 0, 2.45, 0); blink.push(l); },
+  };
+
+  floors.push(...F.map(buildFloor));
+
+  // 엘리베이터 (오른쪽 뒤)
+  const top = (N - 1) * H + GAP + 1;
+  const shaft = new THREE.Mesh(new THREE.BoxGeometry(1.6, top, 1.6), new THREE.MeshStandardMaterial({ color: '#82b8ff', transparent: true, opacity: .1, depthWrite: false }));
+  shaft.position.set(FW / 2 + 1.1, top / 2, -FD / 2 + 1); scene.add(shaft);
+  const car = new THREE.Mesh(new THREE.BoxGeometry(1.3, 1.6, 1.3), new THREE.MeshStandardMaterial({ color: '#f1b646', emissive: '#f1b646', emissiveIntensity: .35 }));
+  car.position.set(FW / 2 + 1.1, .9, -FD / 2 + 1); scene.add(car);
+  if (MODE === 'floor') { shaft.material.opacity = .05; }
+
+  // 강조 고리
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.25, .07, 8, 40), new THREE.MeshBasicMaterial({ color: '#f1b646' }));
+  ring.rotation.x = PI / 2; ring.visible = false; scene.add(ring);
+  let hotK = -1;
+
+  // 토큰 알갱이 (1층 정문 → 층마다 컨베이어 → 위층)
+  const PN = RM ? 0 : 120;
+  const parts = new THREE.InstancedMesh(new THREE.SphereGeometry(.15, 10, 8), new THREE.MeshBasicMaterial({ color: '#ffffff' }), Math.max(PN, 1));
+  parts.instanceMatrix.setUsage(THREE.DynamicDrawUsage); parts.count = PN; scene.add(parts);
+  const tmp = new THREE.Matrix4(), col = new THREE.Color(), NL = N - 1;
+  const SEG = NL * 2 - 1; // 가로 NL개 + 세로 NL-1개
+  function partAt(u) { // u in [0, SEG)
+    const j = Math.floor(u), f = u - j, i = j >> 1;
+    const y0 = floors[i].y + .45;
+    const L = -FW / 2 + 1, R = FW / 2 - 1, z = 2.4;
+    if (j % 2 === 0) { const a = i % 2 ? R : L, b = i % 2 ? L : R; return [a + (b - a) * f, y0, z, i]; }
+    const x = i % 2 ? L : R, y1 = floors[i + 1].y + .45; return [x, y0 + (y1 - y0) * f, z, i + (f > .5 ? 1 : 0)];
+  }
+
+  // 라벨
+  const flLbl = floors.map(o => {
+    const e = document.createElement('div'); e.className = 'gf-lb fl'; e.style.setProperty('--c', o.f.col);
+    e.innerHTML = '<b>' + o.f.fl + '</b><span class="nm"> ' + esc(o.f.name) + '<small>' + (o.f.week ? o.f.week + '주차' : '부록') + '</small></span>';
+    e.addEventListener('click', () => { if (MODE === 'building') select(o.f.i === sel ? -1 : o.f.i); else location.href = '../index.html#f' + o.f.i; });
+    LBL.appendChild(e); return e;
+  });
+  const stLbl = floors.map(o => o.sts.map((s, k) => {
+    const e = document.createElement('div'), mine = MODE !== 'floor' || s.s.page === PAGE;
+    e.className = 'gf-lb st' + (mine ? '' : ' other'); e.style.setProperty('--c', o.f.col);
+    e.innerHTML = '<b>' + NUM[o.f.i][k] + '</b><span class="nm">' + esc(s.s.name) + '</span>';
+    e.title = s.s.name; e.style.display = 'none';
+    e.addEventListener('click', () => goStation(o.f.i, k)); e.addEventListener('mouseenter', () => setHot(k)); e.addEventListener('mouseleave', () => setHot(-1));
+    LBL.appendChild(e); return e;
+  }));
+
+  function goStation(i, k) {
+    const s = F[i].stations[k], h = href(s);
+    if (MODE === 'building' && i !== sel) { select(i); return; }
+    if (MODE === 'building') {
+      setHot(k);
+      say(F[i].fl + ' ' + NUM[i][k] + '번 <b>' + esc(s.name) + '</b> — ' + esc(s.desc) + (h ? ' <a href="' + esc(h) + '">그 칸 열기 →</a>' : ' <span style="color:#9d9bb8">(공사 중)</span>'));
+      const li = document.querySelector('#gf-info li[data-k="' + k + '"]'); if (li) li.scrollIntoView({ block: 'nearest', behavior: RM ? 'auto' : 'smooth' });
+      return;
+    }
+    if (h) location.href = h;
+  }
+  function setHot(k) {
+    hotK = k;
+    const fi = MODE === 'floor' ? D.focus : sel;
+    stLbl.forEach((arr, i) => arr.forEach((e, j) => e.classList.toggle('hot', i === fi && j === k)));
+    document.querySelectorAll('.gf-st li[data-k]').forEach(li => { const a = li.firstElementChild; a && a.classList.toggle('hot', +li.dataset.k === k); });
+  }
+
+  // 카메라 맞추기
+  const view = { t: new THREE.Vector3(), half: 20, zoom: 1 }, want = { t: new THREE.Vector3(), half: 20 };
+  const bY = i => i * H + ((sel >= 0 && i > sel) ? GAP : 0);
+  function fit() {
+    let y0, y1, xr = MODE === 'floor' ? 1.4 : 3.0, extra = MODE === 'floor' ? 0 : .3;
+    if (sel < 0) { y0 = -.6; y1 = (N - 1) * H + 2.6; }
+    else { y0 = bY(sel) - (MODE === 'floor' ? .9 : 1.2); y1 = bY(sel) + H + (MODE === 'floor' ? .9 : 1.6); }
+    cam.updateMatrixWorld();
+    const R = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 0), U = new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld, 1);
+    let a = Infinity, b = -Infinity, c = Infinity, d = -Infinity;
+    for (const x of [-FW / 2 - .4, FW / 2 + xr]) for (const y of [y0, y1]) for (const z of [-FD / 2, FD / 2 + .4]) {
+      const p = new THREE.Vector3(x, y, z); const dx = p.dot(R), dy = p.dot(U); a = Math.min(a, dx); b = Math.max(b, dx); c = Math.min(c, dy); d = Math.max(d, dy);
+    }
+    b += (b - a) * extra;
+    const w = host.clientWidth || 1, h = host.clientHeight || 1, asp = w / h;
+    const cx = (a + b) / 2, cy = (c + d) / 2;
+    want.half = Math.max((d - c) / 2, (b - a) / 2 / asp) * 1.06;
+    // 카메라 평면 위의 (cx, cy) 를 지나는 시선 위 한 점 = 목표
+    const fwd = new THREE.Vector3(); cam.getWorldDirection(fwd);
+    want.t.copy(R).multiplyScalar(cx).addScaledVector(U, cy);
+    const yy = (y0 + y1) / 2; const k = (yy - want.t.y) / (fwd.y || -1); want.t.addScaledVector(fwd, k);
+  }
+  function applyView() {
+    const w = host.clientWidth || 1, h = host.clientHeight || 1, asp = w / h;
+    cam.left = -view.half * asp; cam.right = view.half * asp; cam.top = view.half; cam.bottom = -view.half; cam.updateProjectionMatrix();
+  }
+  function resize() { const w = host.clientWidth, h = host.clientHeight; renderer.setSize(w, h, false); fit(); applyView(); }
+  new ResizeObserver(resize).observe(host);
+
+  // 처음 위치
+  floors.forEach(o => { o.y = (MODE === 'building' && !RM) ? bY(o.f.i) + 20 + o.f.i * 1.6 : bY(o.f.i); o.g.position.y = o.y; });
+  resize(); fit(); view.half = want.half; view.t.copy(want.t);
+  { const off = cam.position.clone().sub(controls.target); controls.target.copy(view.t); cam.position.copy(view.t).add(off); }
+  applyView();
+
+  // 고르기 · 누르기
+  const ray = new THREE.Raycaster(), pv = new THREE.Vector2(); let down = null;
+  function hit(ev) {
+    const r = renderer.domElement.getBoundingClientRect();
+    pv.set((ev.clientX - r.left) / r.width * 2 - 1, -(ev.clientY - r.top) / r.height * 2 + 1); ray.setFromCamera(pv, cam);
+    const hs = ray.intersectObjects(pick, false);
+    for (const h of hs) { const u = h.object.userData; if (MODE === 'floor' && u.fl !== D.focus) continue; return u; }
+    return null;
+  }
+  renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
+  renderer.domElement.addEventListener('pointerup', e => {
+    if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return; down = null;
+    const u = hit(e); if (!u) { if (MODE === 'building' && sel >= 0) select(-1); return; }
+    if (MODE === 'building' && u.fl !== sel) { select(u.fl); return; }
+    if (u.st != null) goStation(u.fl, u.st);
+  });
+  renderer.domElement.addEventListener('pointermove', e => {
+    if (e.buttons) return; const u = hit(e);
+    const fi = MODE === 'floor' ? D.focus : sel;
+    renderer.domElement.style.cursor = u ? 'pointer' : 'grab';
+    const k = u && u.fl === fi && u.st != null ? u.st : -1; if (k !== hotK) setHot(k);
+  });
+  renderer.domElement.addEventListener('pointerleave', () => setHot(-1));
+
+  // 보일 때만 그리기
+  let vis = true; new IntersectionObserver(es => es.forEach(x => vis = x.isIntersecting), { threshold: .01 }).observe(host);
+
+  const clock = new THREE.Clock(); let T = 0;
+  const v3 = new THREE.Vector3();
+  function frame() {
+    requestAnimationFrame(frame);
+    if (!vis || document.hidden) { clock.getDelta(); return; }
+    const dt = Math.min(clock.getDelta(), .05); T += dt;
+    const k = 1 - Math.exp(-dt * 6);
+    floors.forEach(o => {
+      if (T < o.delay) return;
+      o.y += (bY(o.f.i) - o.y) * (MODE === 'building' && T < 3 ? 1 - Math.exp(-dt * 4) : k); o.g.position.y = o.y;
+      const on = o.f.i === sel; o.outline.material.opacity += ((on ? .95 : 0) - o.outline.material.opacity) * k;
+    });
+    // 카메라
+    view.half += (want.half - view.half) * k;
+    v3.copy(want.t).sub(view.t).multiplyScalar(k); view.t.add(v3); controls.target.add(v3); cam.position.add(v3);
+    if (Math.abs(cam.zoom - view.zoom) > .001 && !dragging) { cam.zoom += (view.zoom - cam.zoom) * k; }
+    applyView(); controls.update();
+    sun.position.copy(controls.target).add(new THREE.Vector3(14, 26, 10)); sun.target.position.copy(controls.target);
+    // 엘리베이터
+    const cy = sel >= 0 ? floors[sel].y + .85 : floors[0].y + .85 + (Math.sin(T * .35) * .5 + .5) * (N - 1) * H;
+    car.position.y += (cy - car.position.y) * (sel >= 0 ? k : 1);
+    // 토큰
+    for (let p = 0; p < PN; p++) {
+      const u = ((T * .055 + p / PN) * SEG) % SEG, [x, y, z, fi] = partAt(u);
+      tmp.makeTranslation(x, y, z); parts.setMatrixAt(p, tmp);
+      const fo = F[Math.min(fi, N - 1)], dim = MODE === 'floor' && fo.i !== D.focus;
+      col.set(open(fo.st) ? SC[fo.st] : '#4a4e6a'); if (dim) col.multiplyScalar(.25); parts.setColorAt(p, col);
+    }
+    if (PN) { parts.instanceMatrix.needsUpdate = true; parts.instanceColor && (parts.instanceColor.needsUpdate = true); }
+    spin.forEach(([m, ax, s]) => m.rotation[ax] += dt * s);
+    blink.forEach(m => m.visible = (T % 1.4) < .9);
+    // 고리
+    const fi = MODE === 'floor' ? D.focus : sel;
+    if (fi >= 0 && hotK >= 0 && floors[fi].sts[hotK]) { const s = floors[fi].sts[hotK].g; ring.visible = true; ring.position.set(s.position.x, floors[fi].y + .06, s.position.z); ring.scale.setScalar(s.scale.x * (1 + Math.sin(T * 6) * .05)); }
+    else ring.visible = false;
+    renderer.render(scene, cam);
+    // 라벨 위치
+    const w = host.clientWidth, h = host.clientHeight;
+    const place = (e, x, y, z) => { v3.set(x, y, z).project(cam); const sx = (v3.x + 1) / 2 * w, sy = (1 - v3.y) / 2 * h; const ok = v3.z < 1 && sx > -40 && sx < w + 40 && sy > -10 && sy < h + 20; e.style.display = ok ? '' : 'none'; if (ok) { e.style.left = sx + 'px'; e.style.top = sy + 'px'; } };
+    floors.forEach((o, i) => {
+      const e = flLbl[i];
+      place(e, FW / 2 + 1.9, o.y + 1.3, -FD / 2 + .9);
+      e.classList.toggle('on', i === fi); e.classList.toggle('dim', fi >= 0 && i !== fi);
+      if (MODE === 'floor') e.style.display = 'none';
+      stLbl[i].forEach((le, j) => { if (i !== fi) { le.style.display = 'none'; return; } const s = o.sts[j]; place(le, s.g.position.x, o.y + s.top + .35, s.g.position.z); });
+    });
+  }
+  let dragging = false;
+  controls.addEventListener('start', () => { dragging = true; }); controls.addEventListener('end', () => { dragging = false; view.zoom = cam.zoom; });
+  frame();
+
+  return {
+    select(i) { view.zoom = 1; fit(); },
+    hot(k) { setHot(k); }
+  };
+}
+</script><!-- /gf:floor -->
 
 <!-- lab-cover -->
 <!-- lab-crew --><header class="cover fallback" id="cover" data-img="cover_03" role="img" aria-label="연구실 식구 여섯이 작은 실험대와 복도 끝 큰 창고 사이에서 블록 쟁반을 나르는 대체 표지"><div class="hex"></div><div class="bench"></div><div class="motif" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i><i class="a"></i></div><div class="line6"><img data-who6="fly" data-lx="fly" data-lxm="magnify" data-lxbig alt="" aria-hidden="true"><img data-who6="asst" data-lx="asst" data-lxm="firm" data-lxbig alt="" aria-hidden="true"><img data-who6="doc" data-lx="doc" data-lxm="think" data-lxbig alt="" aria-hidden="true"><img data-who6="sia" data-lx="sia" data-lxm="guide" data-lxbig alt="" aria-hidden="true"><img data-who6="moa" data-lx="moa" data-lxm="smile" data-lxbig alt="" aria-hidden="true"><img data-who6="robo" data-lx="robo" data-lxm="calc" data-lxbig alt="" aria-hidden="true"></div><span class="cover-chip">인퍼런스 스터디 북 · 3주차 · 논문</span></header><!-- /lab-crew -->
