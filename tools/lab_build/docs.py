@@ -132,6 +132,8 @@ open(os.path.join(ROOT, 'README.md'), 'w', encoding='utf-8').write('''# 인퍼�
 
 『Inference Engineering』(Philip Kiely, Baseten Books, 2026)을 10주 동안 주차마다 **교재 한 꼭지 + 논문 한 편**씩 읽고, 연구실 식구들(박사 · 조수(하루) · 초파리 연구원 · 주판봇 · 인턴 시아 · 인턴 모아, 그리고 방청석의 미공개 셋)이 진행하는 해설 페이지로 만든 스터디 북입니다.
 
+> **여기 포스팅은 스터디 멤버의 발표자료가 아닌 ahnboat.xyz 주인장 안상선이 직접 정리한 자료입니다.**
+
 - **표지·목차 (바로 읽기):** %s
 - 주차별 해설은 모두 이 저장소의 폴더 하나씩입니다. 예전 주차별 저장소(`inference_engineering_study_week_…`)는 그대로 남아 있지만, 이제 이 저장소의 폴더가 정식 주소입니다.
 
