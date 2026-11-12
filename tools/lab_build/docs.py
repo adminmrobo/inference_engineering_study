@@ -103,7 +103,8 @@ open(os.path.join(ROOT, 'IMG_00_index.md'), 'w', encoding='utf-8').write(
     '# 이미지 제작 명세서 — 00 스터디 북 목차\n\n| 키 | 판 | 내용 | 우선 | 상태 |\n|---|---|---|---|---|\n| `cover_index` | L | 열 개의 문이 이어진 복도와 여섯 식구 (`COVER_00_index.md`) | P1 | 필요 (지금은 대체 표지) |\n| `thumb_{폴더}` | I | 폴더마다 표지를 3:2로 자른 썸네일 | P2 | 표지를 받은 뒤 |\n| `og_index` | K | 공유 미리보기 1200×630 | P3 | 표지를 받은 뒤 |\n')
 
 # cover_manifest.json (18-16)
-items = [{'id': 'cover_index', 'role': 'cover', 'path': 'index.html#cover', 'size': [1600, 900], 'characters': ['doc', 'asst', 'fly', 'jupanbot', 'sia', 'moa'], 'robot': 'jupanbot-v2', 'prompt_en': prompt(idx), 'source_of': None, 'status': 'todo'}]
+items = [{'id': 'cover_factory', 'role': 'cover', 'path': 'cover_factory.jpg', 'size': [1600, 900], 'characters': [], 'robot': 'none', 'prompt_en': None, 'source_of': None, 'status': 'ok', 'note': '표지(목차) 첫 화면 3D 인퍼런스 공장을 찍은 그림 — 카드·공유 미리보기용'},
+         {'id': 'cover_index', 'role': 'hero', 'path': 'index.html#cover', 'size': [1600, 900], 'characters': ['doc', 'asst', 'fly', 'jupanbot', 'sia', 'moa'], 'robot': 'jupanbot-v2', 'prompt_en': prompt(idx), 'source_of': None, 'status': 'todo'}]
 ont = [{'path': 'index.html', 'kg': True, 'export': True}]
 for p in PAGES:
     items.append({'id': p['folder'] + '/' + p['key'], 'role': 'cover', 'path': p['folder'] + '/index.html#cover', 'size': [1600, 900], 'characters': ['doc', 'asst', 'fly', 'jupanbot', 'sia', 'moa'], 'robot': 'jupanbot-v2', 'prompt_en': prompt(p), 'source_of': None, 'status': 'todo'})

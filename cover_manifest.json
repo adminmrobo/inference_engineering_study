@@ -69,8 +69,23 @@
  ],
  "items": [
   {
-   "id": "cover_index",
+   "id": "cover_factory",
    "role": "cover",
+   "path": "cover_factory.jpg",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [],
+   "robot": "none",
+   "prompt_en": null,
+   "source_of": null,
+   "status": "ok",
+   "note": "표지(목차) 첫 화면 3D 인퍼런스 공장을 찍은 그림 — 카드·공유 미리보기용"
+  },
+  {
+   "id": "cover_index",
+   "role": "hero",
    "path": "index.html#cover",
    "size": [
     1600,

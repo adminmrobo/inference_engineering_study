@@ -150,10 +150,10 @@ def build(spec, out):
     J = lambda o: json.dumps(o, ensure_ascii=False).replace('</', '<\\/')
     head = ('<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
             '<title>%s</title><meta name="description" content="%s"><meta name="author" content="안상선">'
-            '<meta property="og:type" content="article"><meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:url" content="%s">'
+            '<meta property="og:type" content="article"><meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:url" content="%s">%s'
             '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
             '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">'
-            '<style>%s</style></head><body>') % (esc(meta['title']), esc(meta['description']), esc(meta['title']), esc(meta['description']), esc(meta.get('url', '')), css)
+            '<style>%s</style></head><body>') % (esc(meta['title']), esc(meta['description']), esc(meta['title']), esc(meta['description']), esc(meta.get('url', '')), ('<meta property="og:image" content="%s">' % esc(meta['image']) if meta.get('image') else ''), css)
     tail = ('<div id="tip" role="tooltip"></div><div id="study" aria-label="학습 도우미"><span id="stRead">읽은 곳 0%</span><span id="stQuiz">퀴즈 0/0</span><button class="bt" id="stMode">밑줄: 핵심</button></div>'
             '<script type="application/json" id="kg-raw">' + J(spec['kg']) + '</script>'
             '<script type="application/ld+json" id="kg-ld">' + J({'@context': {'skos': 'http://www.w3.org/2004/02/skos/core#', 'schema': 'https://schema.org/'}, '@type': 'schema:LearningResource', 'schema:name': meta['title'], 'schema:author': '안상선', 'schema:inLanguage': 'ko'}) + '</script>'

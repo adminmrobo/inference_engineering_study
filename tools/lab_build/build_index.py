@@ -114,9 +114,9 @@ REFS = [book_ref(),
         ref('white2025livebench', 'paper-conference', 'LiveBench: A Challenging, Contamination-Limited LLM Benchmark', ['Colin White', 'Samuel Dooley', 'Manley Roberts', 'Arka Pal', 'et al.'], 2025, 'ICLR 2025', 'https://arxiv.org/abs/2406.19314'),
         ref('vaswani2017attention', 'paper-conference', 'Attention Is All You Need', ['Ashish Vaswani', 'Noam Shazeer', 'Niki Parmar', 'et al.'], 2017, 'NeurIPS 2017', 'https://arxiv.org/abs/1706.03762'),
         ref('dao2022flashattention', 'paper-conference', 'FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness', ['Tri Dao', 'Daniel Y. Fu', 'Stefano Ermon', 'Atri Rudra', 'Christopher Ré'], 2022, 'NeurIPS 2022', 'https://arxiv.org/abs/2205.14135')]
-META = {'title': '인퍼런스 스터디 북 — 연구실 식구들과 읽는 『Inference Engineering』', 'description': '『Inference Engineering』 10주 스터디를 연구실 해설 페이지로 묶은 스터디 북 목차',
+META = {'title': '인퍼런스 스터디 북 — 연구실 식구들과 읽는 『Inference Engineering』', 'description': '『Inference Engineering』 10주 스터디를 연구실 해설 페이지로 묶은 스터디 북 — 표지는 한 층이 한 주차인 3D GPU 추론 공장',
         'series': '인퍼런스 스터디 북', 'number': '00', 'slug': 'index', 'version': '1.0', 'date': '2026-11-11', 'creator': ['안상선'], 'license': 'CC BY-NC 4.0 (캐릭터 제외)',
-        'url': BASE, 'kgStart': 'lab:concept/ie-ch0', 'citeKey': 'ahn2026inferencebook',
+        'url': BASE, 'image': BASE + 'cover_factory.jpg', 'kgStart': 'lab:concept/ie-ch0', 'citeKey': 'ahn2026inferencebook',
         'suggestedCitation': '안상선 (2026). 인퍼런스 스터디 북 — 연구실 식구들과 읽는 『Inference Engineering』. ' + BASE}
 JS = r'''
 var W=%s,COL={done:'#5ee39c',kept:'#82b8ff',wip:'#f1b646',plan:'#4a4e6a'},ST={done:'연구실판 완성',kept:'원본 그대로',wip:'다시 만드는 중',plan:'준비 중'};
