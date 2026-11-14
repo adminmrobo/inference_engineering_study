@@ -25,12 +25,12 @@ big = section('big', '0', '큰 그림 — 세 층', '''
 <div><h4>인프라 (Infrastructure)</h4><p>클러스터·지역·클라우드를 넘나들며 <b>규모를 키우고</b>, 고립된 칸(사일로) 없이 가동률을 지키는 층.</p></div>
 <div><h4>도구 (Tooling)</h4><p>엔지니어에게 <b>알맞은 추상화</b>를 줘서 통제력과 생산성의 균형을 잡는 층.</p></div></div>
 <figure class="fig"><div class="svgwrap"><svg viewBox="0 0 760 250" role="img" aria-label="그림 0.1을 다시 그린 세 층 도식: 아래부터 인프라, 런타임, 도구">
-<rect x="10" y="170" width="740" height="66" rx="10" fill="#1d2a3a" stroke="#82b8ff"/><text x="24" y="192" fill="#82b8ff" font-size="14" font-weight="700">인프라</text>
-<text x="24" y="218" fill="#eceaf3" font-size="13">GPU · 저장장치 · 네트워크 · 라우팅 · 로드 밸런싱 · 자동 확장 · 멀티 클라우드 용량 관리</text>
-<rect x="10" y="64" width="740" height="98" rx="10" fill="#2a1d33" stroke="#d672d6"/><text x="24" y="86" fill="#d672d6" font-size="14" font-weight="700">런타임</text>
-<text x="24" y="112" fill="#eceaf3" font-size="13">모델 성능 기법: 배칭 · 캐싱 · 양자화 · 추측 · 병렬화 · 분리</text>
-<text x="24" y="136" fill="#9d9bb8" font-size="13">추론 엔진 vLLM · SGLang · TensorRT-LLM → PyTorch → CUDA</text>
-<rect x="10" y="10" width="740" height="46" rx="10" fill="#1d3329" stroke="#5ee39c"/><text x="24" y="38" fill="#5ee39c" font-size="14" font-weight="700">도구</text><text x="80" y="38" fill="#eceaf3" font-size="13">엔지니어가 보는 추상화 (블랙박스 ↔ 기본 부품)</text></svg></div>
+<rect x="10" y="170" width="740" height="66" rx="10" fill="#e6eefb" stroke="#1e55c8"/><text x="24" y="192" fill="#1e55c8" font-size="14" font-weight="700">인프라</text>
+<text x="24" y="218" fill="#16212b" font-size="13">GPU · 저장장치 · 네트워크 · 라우팅 · 로드 밸런싱 · 자동 확장 · 멀티 클라우드 용량 관리</text>
+<rect x="10" y="64" width="740" height="98" rx="10" fill="#f6ecfa" stroke="#9b3fb5"/><text x="24" y="86" fill="#9b3fb5" font-size="14" font-weight="700">런타임</text>
+<text x="24" y="112" fill="#16212b" font-size="13">모델 성능 기법: 배칭 · 캐싱 · 양자화 · 추측 · 병렬화 · 분리</text>
+<text x="24" y="136" fill="#5b6874" font-size="13">추론 엔진 vLLM · SGLang · TensorRT-LLM → PyTorch → CUDA</text>
+<rect x="10" y="10" width="740" height="46" rx="10" fill="#e7f5ec" stroke="#13733a"/><text x="24" y="38" fill="#13733a" font-size="14" font-weight="700">도구</text><text x="80" y="38" fill="#16212b" font-size="13">엔지니어가 보는 추상화 (블랙박스 ↔ 기본 부품)</text></svg></div>
 <figcaption>교재 그림 0.1을 글자 위주로 다시 그린 도식. 원문 그림은 교재를 보세요.</figcaption></figure>
 ''' + say('sia', 'guide', '아래 다섯 칸은 이 세 층을 아래에서 위로가 아니라, 일이 생기는 순서대로 따라갑니다.'), tags=[('g', '그림 0.1')])
 

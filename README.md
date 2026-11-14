@@ -63,6 +63,8 @@
 - 한 주에 장이 바뀌면 장마다 따로 만든다(예: 3장, 5장, 7장). 큰 장은 범위로 나눈다(`_p1_p2`, `_p3_to_end`).
 - 3주차 교재편(`week_03_textbook_ch02_p3_to_end/`)은 먼저 완성된 원본을 내용 수정 없이 그대로 옮겼다(맨 앞의 공장 층 안내만 덧붙임).
 - 나머지 페이지는 연구실 해설 스킬(ai-lab-explainer v1.12, 캐릭터 팩 1.4) 규격으로 식구 전원이 나오도록 다시 적용했다.
+- 모든 페이지는 스킬 v1.14 "낮의 연구실"(흰 배경)이다. 생성기로 만드는 페이지(1·4주차, 목차)는 `light.css`를 바로 쓰고, 옮겨 온 2·3주차 페이지는 `daylight.py`로 흰 화면 색을 덧입혔다(그림 코드에 색이 박힌 그래프·도식은 어두운 모니터 화면으로 둠). 외국어판(`*.en.html` 등)은 이전 판 그대로다.
+- 4주차부터 페이지마다 30분 코스(핵심 칸 바로가기)와 강의자용 부록(퀴즈 정답·해설)을 둔다.
 - 페이지는 단일 HTML(외부 요청은 글꼴과, 첫 화면 공장 3D의 three.js뿐 — 불러오지 못해도 층·기계 목록 안내는 그대로 동작), 페이지마다 지식 색인(`#kg`)과 온톨로지·서지 꾸러미(`#export`)가 있다.
 - 글 표지는 지금 대체 표지(여섯 식구 표정 그림 줄 세우기)이고, 그림 지시문은 폴더마다 `COVER_*.md`에 있다.
 
@@ -71,11 +73,12 @@
 ```bash
 cd tools/lab_build
 python3 build_index.py ../..                    # 목차
-python3 pages/p_preface.py ../..                # 1주차 서문 (p_ch00, p_ch01, p_livebench 같은 방식)
+python3 pages/p_preface.py ../..                # 1주차 서문 (p_ch00, p_ch01, p_livebench, 4주차 p_ch03 · p_roofline 같은 방식)
 python3 run_retrofit.py <옛 저장소 사본 폴더> ../..  # 2·3주차 페이지에 식구 전원 더하기
 python3 factory.py ../..                        # 모든 해설 페이지 첫 화면에 공장 층 안내 (층·기계 정의는 factory.py)
 python3 build_index.py ../..                    # 목차 다시 (공장 3D 상태 반영)
 python3 docs.py ../..                           # README·표지 지시문·cover_manifest.json
+python3 daylight.py ../..                       # 2·3주차 옮겨 온 페이지와 목차를 흰 배경(낮의 연구실)으로 — 맨 마지막에
 ```
 
 캐릭터 그림은 `adminmrobo/ahnboat_lab_explainer`의 캐릭터 팩(`LAB_PACK` 환경 변수로 위치 지정)에서 읽습니다.

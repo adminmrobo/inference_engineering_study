@@ -138,8 +138,13 @@ def nav(items, home='../index.html', home_label='스터디 북'):
     links = ''.join('<a class="l" href="#%s">%s</a>' % (i, l) for i, l in items)
     return '<nav class="top" aria-label="이 페이지 바로가기"><a class="logo" href="%s"><i></i>%s</a>%s</nav>' % (home, home_label, links)
 
+DAY_JS = "Object.assign(L.C,{text:'#16212b',muted:'#5b6874',rule:'#d5dbe2',stain:'#9b3fb5',gfp:'#13733a',eye:'#c9302c',amber:'#a35c00',info:'#1e55c8',panel:'#f6f8fa',panel2:'#eef2f6',fly:'#c93030',robo:'#0b7a86',doc:'#7a3fd6',asst:'#c42a6e',sia:'#5a5a6e',moa:'#93651a'});\n"
+
 def build(spec, out):
+    light = open(os.path.join(HERE, 'light.css'), encoding='utf-8').read()  # v1.14 낮의 연구실 — 모든 페이지 흰 배경
     css = open(os.path.join(HERE, 'lab.css'), encoding='utf-8').read() + open(os.path.join(HERE, 'extra.css'), encoding='utf-8').read() + spec.get('css', '')
+    if light not in css:
+        css += light
     core = open(os.path.join(HERE, 'lab_core.js'), encoding='utf-8').read()
     body = spec['body']
     big = []
@@ -161,7 +166,7 @@ def build(spec, out):
             '<script type="application/json" id="page-meta">' + J(meta) + '</script>'
             '<script>var SPRITE=' + J(S) + ';var SPRITE_ALIAS=' + J(A) + ';var SPRITE_BIG=' + J(B) + ';'
             'var GL=' + J(spec.get('gl', {})) + ';var CORE=' + J(spec.get('core', [])) + ';var QUIZ=' + J(spec.get('quiz', {})) + ';</script>'
-            '<script>' + core + '</script><script>(function(){var L=window.LAB,$=L.$,$$=L.$$;' + spec.get('js', '') + '\nL.start();})();</script></body></html>')
+            '<script>' + core + '</script><script>(function(){var L=window.LAB,$=L.$,$$=L.$$;' + DAY_JS + spec.get('js', '') + '\nL.start();})();</script></body></html>')
     page = head + '<div id="prog" aria-hidden="true"></div>' + spec['nav'] + body + kg_section() + export_section() + spec['footer'] + tail
     try:  # 인퍼런스 공장 — 이 페이지가 맡은 층을 첫 화면에 (층이 없는 페이지는 그대로)
         import factory
@@ -200,7 +205,7 @@ def book_ref():
     return ref('kiely2026inference', 'book', 'Inference Engineering', ['Philip Kiely'], 2026, publisher='Baseten Books',
                url='https://www.baseten.co/inference-engineering/', role='primary')
 
-def footer(src_rows, demo_items, prev=None, nxt=None, extra='', ver='v1.12'):
+def footer(src_rows, demo_items, prev=None, nxt=None, extra='', ver='v1.14 (낮의 연구실)'):
     rows = ''.join('<tr><td>%s</td><td>%s</td></tr>' % r for r in src_rows)
     demos = ''.join('<li>%s</li>' % d for d in demo_items)
     links = ''

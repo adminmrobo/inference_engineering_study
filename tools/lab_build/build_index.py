@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """스터디 북 목차(index.html) 만들기. 사용: python3 build_index.py <저장소 루트>"""
-import json, os, sys
+import re, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lab import *
 from series import *
@@ -13,7 +13,7 @@ def status_of(it):
         return 'kept' if os.path.exists(f) else 'plan'
     if it['status'] == 'plan':
         return 'plan'
-    if os.path.exists(f) and 'ai-lab-explainer v1.12' in open(f, encoding='utf-8').read():
+    if os.path.exists(f) and re.search(r'ai-lab-explainer v1\.1\d', open(f, encoding='utf-8').read()):
         return 'done'
     return 'wip'
 
@@ -64,7 +64,7 @@ body = factory.index_section(ROOT) + '''
 <h1>인퍼런스 스터디 북</h1>
 <p class="q">AI 모델을 더 빠르고, 더 싸고, 더 안정적으로 돌리려면 무엇을 알아야 할까?</p>
 <p>『Inference Engineering』(Philip Kiely, 2026)을 주차마다 교재 한 꼭지와 논문 한 편씩 읽고, 연구실 식구들이 진행하는 해설 페이지로 만들었습니다. 이 페이지는 그 해설들을 한 권으로 묶은 <b>표지이자 목차</b>입니다.</p>
-<p class="notice" style="border-left:4px solid var(--amber,#f1b646);background:rgba(241,182,70,.10);border-radius:8px;padding:10px 14px;margin:12px 0;font-weight:600;font-size:15.5px;color:#f3e2bd">여기 포스팅은 스터디 멤버의 발표자료가 아닌 ahnboat.xyz 주인장 안상선이 직접 정리한 자료입니다.</p>
+<p class="notice" style="border-left:4px solid var(--amber,#f1b646);background:rgba(241,182,70,.10);border-radius:8px;padding:10px 14px;margin:12px 0;font-weight:600;font-size:15.5px;color:var(--amber,#a35c00)">여기 포스팅은 스터디 멤버의 발표자료가 아닌 ahnboat.xyz 주인장 안상선이 직접 정리한 자료입니다.</p>
 <div class="kpis" id="heroKpis"></div>
 <div class="dialog">''' + DIALOG + '''</div></div></div></header>
 ''' + crew({'doc': '해설·심판. 주차마다 핵심 한 줄을 정리', 'asst': '실험 진행·숫자 발표. 독자의 눈높이로 질문', 'fly': '의심하는 쪽. 한계와 다음 단계를 짚음', 'robo': '확신하는 쪽. 크고 많은 숫자를 좋아함',
@@ -94,7 +94,7 @@ body = factory.index_section(ROOT) + '''
 <li><code>week_{주차}_textbook_{장·범위}/</code> — 교재 해설 (예: <code>week_01_textbook_ch00/</code>)</li>
 <li><code>week_{주차}_article_{번호}/</code> — 논문 해설</li>
 <li><code>special_{번호}/</code> — 부록·특별편</li>
-<li><code>tools/lab_build/</code> — 페이지를 만드는 공용 틀 (연구실 해설 스킬 v1.12 규격)</li></ul></div>
+<li><code>tools/lab_build/</code> — 페이지를 만드는 공용 틀 (연구실 해설 스킬 v1.14 낮의 연구실 규격)</li></ul></div>
 </div></section>
 '''
 

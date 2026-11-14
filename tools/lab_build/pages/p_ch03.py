@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lab import *
 from parts import *
 from series import BASE
+from extras import short_course, teach_appendix, fill_defs
 
 SLUG = 'week_04_textbook_ch03'; P = 'ch03'; URL = BASE + SLUG + '/'
 BK = 'kiely2026inference'
@@ -39,7 +40,7 @@ NICK = [('계산 공방 (SM)', 'Streaming Multiprocessor', 'GPU 안의 작업장
 nick = '<h3>교재 속 용어 별명</h3><div class="nick">' + ''.join('<div class="card"><b>%s</b><div class="orig">%s</div><p style="margin:4px 0 0;font-size:14px">%s</p></div>' % n for n in NICK) + '</div>'
 cast = crew({'doc': '해설 · 대결 심판', 'asst': '교재 수치 발표', 'fly': '"메모리가 먼저"를 주장', 'robo': '"대역폭이 곧 속도"를 주장', 'sia': '교재 순서 안내 · 진행 신호', 'moa': '별명 카드 · 기록장',
              'x1': '방청석 질문 담당', 'x2': '방청석 질문 담당', 'x3': '방청석 질문 담당'},
-            extra=nick + '<h3>오늘의 순서</h3>' + route([('lv1', '1', '세 종류 · 세 자리'), ('lv2', '2', '연산'), ('lv3', '3', '메모리 · 캐시'), ('lv4', '4', '어느 숫자를 볼까'),
+            extra=nick + short_course('3장 핵심만', [('lv2', '2 연산', 'FLOPS는 텐서 코어 · 밀집 · 같은 정밀도로'), ('lv3', '3 메모리', '들어가는가: 무게 + 50% 여유'), ('lv4', '4 어느 숫자를 볼까', '프리필은 FLOPS, 디코드는 대역폭'), ('lv7', '7 인스턴스 · 여러 GPU', 'NVLink vs InfiniBand, 비트와 바이트'), ('duel', '대결', '들어가야 돌린다')]) + '<h3>오늘의 순서</h3>' + route([('lv1', '1', '세 종류 · 세 자리'), ('lv2', '2', '연산'), ('lv3', '3', '메모리 · 캐시'), ('lv4', '4', '어느 숫자를 볼까'),
                                                         ('lv5', '5', 'GPU 세대'), ('lv6', '6', 'Grace · Vera CPU'), ('lv7', '7', '인스턴스 · 여러 GPU'), ('lv8', '8', '칸막이 GPU'),
                                                         ('lv9', '9', '다른 가속기'), ('lv10', '10', '로컬 추론'), ('duel', '대결', '어느 책상이 빠를까')]))
 
@@ -53,7 +54,7 @@ lv1 = level(1, 'lv1', '세 종류의 GPU, 세 가지 자리', [('g', '교재: 3�
     explain=explain('풀이', ['데이터센터 GPU가 대규모 추론의 표준인 이유: 한 장 성능이 가장 높고, 무엇보다 <b>GPU끼리 잇는 고대역 연결</b>이 있고, 구성이 표준화돼 있고, 전 세계에 수백만 장이 깔려 있어서예요.',
                              '대부분의 추론 엔지니어는 <b>클라우드 GPU</b>를 씁니다. 하이퍼스케일러(AWS, GCP)나 네오클라우드(Coreweave, Nebius)에서 빌리죠.',
                              '대기업·정부는 온프레미스나 에어갭을 쓰지만, 빠르게 크는 AI 제품에는 클라우드의 유연성이 맞아요.'],
-                    limit='위 판단표는 교재의 세 정의를 단순한 조건으로 옮긴 설명용이에요. 실제 결정에는 비용 · 보안 규정 · 조달 기간이 함께 들어갑니다.'),
+                    limit='위 판단표와 "증설에 걸리는 시간"은 교재의 세 정의를 단순한 조건으로 옮긴 설명용 감이에요(교재에 없는 수치). 실제 결정에는 비용 · 보안 규정 · 조달 기간이 함께 들어갑니다.'),
     talk=say('fly', 'arms', '책상 밑에 B200 있는 사람? …없지. 그래서 다들 빌려 쓰는 거구나.') + xask('x1', '워크스테이션 GPU랑 개인용 GPU는 뭐가 달라요?', '교재 기준으로는 쓰임새예요. 워크스테이션은 전문 작업용 데스크톱 GPU(RTX Pro 6000), 개인용은 일상용 데스크톱 GPU(RTX 5090). 둘 다 "한 장짜리"라는 점이 데이터센터 GPU와 달라요.'))
 
 # ---------- 2 ----------
@@ -97,12 +98,12 @@ lv4 = level(4, 'lv4', '어느 숫자를 볼까 — 프리필은 FLOPS, 디코드
           'GPU에서는', '교재: <b>계산력</b>은 LLM 프리필 · 이미지·영상 생성의 병목, <b>메모리 대역폭</b>은 낮~중간 배치 LLM 디코드의 병목. H100과 H200은 FP8 계산력이 같지만(1,979 TF) 대역폭은 3.35 → 4.8 TB/s <span class="chip-src">원문</span>.'),
     panel=panel('두 일의 속도 상한 비교 (설명용 근사)', 'cBn', '네 GPU의 디코드 토큰 속도 상한과 프리필 시간 하한 막대.',
                 ctrl=btn_group('bM', '모델 (FP8 무게)', [('8', '8B'), ('70', '70B'), ('120', '120B')], 1) + slider('bT', '입력 길이', 1000, 32000, 1000, 8000, '토큰')
-                     + btn_group('bV', '보기', [('dec', '디코드: 초당 토큰 상한'), ('pre', '프리필: 걸리는 시간 하한')]), kp_id='bK', ins_id='bI', wide=True),
+                     + btn_group('bV', '보기', [('dec', '디코드: 초당 토큰 상한'), ('pre', '프리필: 걸리는 시간 하한')]) + btn_group('bQ', '디코드 배치', [('1', '1'), ('8', '8'), ('32', '32'), ('64', '64')]) + '<div class="group"><label class="glabel" for="bPr">GPU 한 장 시간당 임대료 (직접 입력, 달러)</label><input type="number" id="bPr" min="0" step="0.1" placeholder="예: 제공사 견적" style="width:130px;padding:4px 8px;border:1px solid var(--rule);border-radius:8px"></div>', kp_id='bK', ins_id='bI', wide=True),
     explain=explain('풀이', ['배치 1 디코드: 토큰 하나를 만들 때마다 모델 무게를 창고에서 한 번 다 읽어야 해요. 그래서 <b>초당 토큰 상한 ≈ 대역폭 ÷ 무게 바이트</b>.',
                              '프리필: 입력 토큰 N개를 한꺼번에 계산해요. 토큰 하나에 파라미터마다 곱하기·더하기 2번이라 <b>계산량 ≈ 2 × 파라미터 × N</b>, 시간 하한 ≈ 계산량 ÷ FLOPS.',
                              '그래서 H100 → H200: 디코드 상한은 약 <b>1.43배</b>(4.8 ÷ 3.35), 프리필 하한은 <b>그대로</b>(계산력이 같으니까).',
                              '이 두 줄을 그래프 하나로 그린 것이 이번 주 논문 <b>루프라인 모델</b>이에요.'],
-                    limit='효율 100%, 배치 1, KV 캐시 읽기 · 어텐션 · 통신은 무시한 상한 근사예요. 실제 속도는 이보다 낮고, 배치를 키우면 디코드도 계산 쪽으로 넘어갑니다(논문편 실험실).'),
+                    limit='효율 100%, KV 캐시 읽기 · 어텐션 · 통신은 무시한 상한 근사예요. 배치 B의 디코드 상한은 min(대역폭 × B ÷ 무게, FLOPS ÷ 2 × 파라미터)로 셌어요. 임대료는 교재에 없어 직접 넣게 했어요. 실제 속도는 이보다 낮고, 배치를 키우면 디코드도 계산 쪽으로 넘어갑니다(논문편 실험실).'),
     talk=say('fly', 'point', '어? H200이 계산력은 H100이랑 똑같네. 근데 토큰은 더 빨리 나온다고?') + say('robo', 'happy', '그러니까! 디코드는 대역폭 장사라니까.'))
 
 # ---------- 5 ----------
@@ -220,7 +221,7 @@ onepage = section('sum', '한 장', '한 장으로 — 교재 표 모음', '''
 <tr><td>B300</td><td>블랙웰</td><td class="n">~5 PF</td><td class="n">288 GB</td><td class="n">최대 8 TB/s</td></tr></table></div>
 <div class="tw"><table class="tb"><tr><th>연결</th><th>교재 수치</th></tr><tr><td>NVLink</td><td class="n">블랙웰 1,800 GB/s · 호퍼 900 GB/s</td></tr><tr><td>NVLink-C2C (Grace)</td><td class="n">최대 900 GB/s 양방향</td></tr><tr><td>InfiniBand</td><td class="n">NIC당 최대 400 Gb/s</td></tr><tr><td>이더넷</td><td class="n">NIC당 최대 100 Gb/s</td></tr><tr><td>노드</td><td class="n">GPU 8장 · NVL72는 블랙웰 72 + Grace 36</td></tr></table></div>
 <div class="notebook"><h4>모아의 기록장 — 읽을 때 주의할 점</h4><ul><li>사양표의 FLOPS는 밀집 값을 볼 것 (희소 값은 보통 2배)</li><li>Gb/s(비트)와 GB/s(바이트)는 8배 차이</li><li>새 아키텍처는 실측 벤치마크가 나올 때까지 판단 보류 (소프트웨어가 따라오는 데 약 1년)</li><li>교재 수치는 출간 시점 기준 — 실제 구매·임대 전에는 제공사 최신 사양 확인</li></ul></div>
-''' + say('moa', 'ok', '핵심 세 줄: 들어가는지(VRAM) · 무슨 일인지(FLOPS냐 대역폭이냐) · 어떻게 잇는지(NVLink · InfiniBand). 기록 완료!'), small='끝', tags=[('g', '요약')])
+''' + say('moa', 'ok', '핵심 세 줄: 들어가는지(VRAM) · 무슨 일인지(FLOPS냐 대역폭이냐) · 어떻게 잇는지(NVLink · InfiniBand). 기록 완료!'), small='끝', tags=[('g', '요약')]).replace('<div class="hexno">한 장<small>','<div class="hexno">요약<small>')
 
 outro = section('outro', '끝', '아웃트로', '<div class="outro"><div class="scene" data-img="sc_ch03_outro" role="img" aria-label="연구실 식구 여섯이 GPU 랙 앞에서 메모리 탑과 다리를 바라보는 장면"><img data-who="robo" data-mood="sigh" alt=""><img data-who="doc" data-mood="magic" alt=""><img data-who="asst" data-mood="proud" alt=""><img data-who="sia" data-mood="proud" alt=""><img data-who="moa" data-mood="sparkle" alt=""><img data-who="fly" data-mood="coffee" alt=""></div></div>'
     + say('doc', 'magic', '3장의 한 줄: GPU는 <b>계산 공방</b>과 <b>창고 통로</b>와 <b>다리</b>로 이루어진 기계다. 일에 맞는 숫자를 보면 고를 수 있다.')
@@ -311,7 +312,7 @@ KG = {'version': '1.0', 'page': P, 'nodes': [
     node('lab:sim/fit', 'Simulation', 'VRAM 계산기', 'VRAM fit calculator', '#lv3', P), node('lab:sim/flops', 'Simulation', '계산력 계기판', 'FLOPS gauge', '#lv2', P),
     node('lab:sim/bottleneck', 'Simulation', '프리필 · 디코드 상한 비교', 'prefill vs decode', '#lv4', P), node('lab:sim/net', 'Simulation', '연결별 전송 시간', 'interconnect timing', '#lv7', P),
     node('lab:sim/mig', 'Simulation', 'H100 칸막이 실험', 'MIG slicer', '#lv8', P), node('lab:sim/local', 'Simulation', '내 책상에 올려 보기', 'desktop fit', '#lv10', P),
-    node('lab:work/' + BK, 'Work', 'Kiely (2026) Inference Engineering 3장', 'Kiely 2026 ch.3', '#top', P), node('lab:work/williams2009roofline', 'Work', 'Williams 외 (2008/2009) Roofline', 'Roofline', '#reread', P)],
+    node('lab:work/' + BK, 'Work', 'Kiely (2026)', 'Kiely 2026 ch.3', '#top', P, '교재 Inference Engineering 3장 하드웨어'), node('lab:work/williams2009roofline', 'Work', 'Williams 외 (2009)', 'Roofline', '#reread', P, '루프라인 모형 논문 — 4주차 논문편')],
  'edges': [edge('lab:concept/sm', 'partOf', 'lab:concept/accelerator', '#lv2'), edge('lab:concept/tensor-core', 'partOf', 'lab:concept/sm', '#lv2'), edge('lab:concept/mma', 'relatedTo', 'lab:concept/tensor-core', '#lv2'),
            edge('lab:metric/flops', 'relatedTo', 'lab:concept/tensor-core', '#lv2'), edge('lab:concept/cache', 'partOf', 'lab:concept/sm', '#lv3'), edge('lab:concept/vram', 'prerequisiteOf', 'lab:concept/headroom', '#lv3'),
            edge('lab:concept/headroom', 'addressedBy', 'lab:limitation/oom', '#lv3'), edge('lab:metric/flops', 'prerequisiteOf', 'lab:concept/prefill-compute', '#lv4'), edge('lab:metric/bandwidth', 'prerequisiteOf', 'lab:concept/decode-memory', '#lv4'),
@@ -325,6 +326,55 @@ KG = {'version': '1.0', 'page': P, 'nodes': [
              edge('lab:analogy/factory', 'relatedTo', 'lab:concept/vram', '#lv3'), edge('lab:analogy/partition', 'relatedTo', 'lab:method/mig', '#lv8'),
              edge('lab:sim/fit', 'relatedTo', 'lab:concept/headroom', '#lv3'), edge('lab:sim/bottleneck', 'relatedTo', 'lab:concept/decode-memory', '#lv4'), edge('lab:sim/mig', 'relatedTo', 'lab:method/mig', '#lv8'),
              edge('lab:sim/net', 'relatedTo', 'lab:concept/interconnect', '#lv7'), edge('lab:sim/local', 'relatedTo', 'lab:concept/local', '#lv10'), edge('lab:sim/flops', 'relatedTo', 'lab:metric/flops', '#lv2')]}
+
+DEFS = {'lab:concept/gpu-types': '데이터센터(예: B200) · 워크스테이션(예: RTX Pro 6000) · 개인용(예: RTX 5090) GPU.',
+ 'lab:concept/deploy-modes': '데이터센터 GPU를 쓰는 세 자리: 빌리기(클라우드) · 사서 직접 통제(온프레미스) · 외부망 차단(에어갭).',
+ 'lab:concept/sm': 'GPU 안의 작업장. SM마다 여러 코어(CUDA · 텐서 · SFU)와 L1 캐시가 있다.',
+ 'lab:concept/mma': 'D = (A × B) + C. 곱한 결과를 바탕 행렬에 더하는 텐서 코어의 기본 동작(그림 3.1).',
+ 'lab:metric/flops': '초당 부동소수점 연산 수. 사양표의 밀집 값을 보고 같은 정밀도끼리 비교한다.',
+ 'lab:concept/vram': 'GPU에 붙은 큰 메모리(DRAM, HBM 형태). 모델 무게와 KV 캐시를 담는다.',
+ 'lab:concept/cache': '칩 안 SRAM 캐시. L0(텐서 코어 명령) · L1(SM마다, H100 256 KB) · L2(공유, H100 50 MB).',
+ 'lab:metric/bandwidth': 'VRAM에서 GPU 코어 쪽으로 1초에 옮길 수 있는 최대량. 디코드 속도의 상한을 정한다.',
+ 'lab:concept/headroom': '필요 VRAM ≈ 모델 무게 + 최소 50% 여유(KV 캐시). 긴 문맥 · 큰 배치 · 영상 모델은 더.',
+ 'lab:concept/prefill-compute': 'LLM 프리필, 이미지 · 영상 생성은 계산력(FLOPS)이 병목이다.',
+ 'lab:concept/decode-memory': '낮~중간 배치의 LLM 디코드는 메모리 대역폭이 병목이다.',
+ 'lab:concept/naming': 'GPU 이름의 글자는 아키텍처 세대(H, B), 숫자는 세대 안의 모델(100, 200).',
+ 'lab:concept/hopper': '2022년 H100으로 시작. FP8, 4세대 텐서 코어, 비동기 전송(FlashAttention 3).',
+ 'lab:concept/lovelace': '호퍼 6개월 뒤의 그래픽 쪽 세대(L4 · L40). FP8 지원, NVLink 없음.',
+ 'lab:concept/blackwell': '2024년 B200으로 시작. FP4와 마이크로스케일링 형식, FlashAttention 4.',
+ 'lab:concept/rubin': '2026년 예정. HBM4, 프리필용 CPX 칩, Vera CPU.',
+ 'lab:concept/grace': 'NVIDIA의 ARM CPU. NVLink-C2C로 GPU 메모리와 최대 900 GB/s(양방향) 연결.',
+ 'lab:concept/instance': '클라우드 GPU 할당의 최소 단위. GPU · CPU · 호스트 메모리 · 저장소 · 네트워크 · 인터커넥트.',
+ 'lab:concept/node': 'GPU 8장을 묶은 표준 단위(예: B200 노드).',
+ 'lab:concept/interconnect': 'NVLink(1:1) · NVSwitch(노드 안 전원 연결) · InfiniBand(노드 사이, NIC당 최대 400 Gb/s).',
+ 'lab:method/mig': '큰 GPU를 하드웨어 수준에서 최대 7조각으로 나눠 작은 모델을 효율적으로 돌리기.',
+ 'lab:concept/other-accel': 'AMD · AWS · Cerebras · Etched · Furiosa · Google · Groq · Qualcomm · Sambanova의 가속기.',
+ 'lab:concept/local': '사용자 기기(데스크톱 · 모바일)에서 직접 돌리는 추론. 지연 0 · 독립성 · 개인정보 · 비용 0.',
+ 'lab:concept/unified-memory': 'Apple M 시리즈처럼 CPU와 GPU가 같은 메모리를 함께 쓰는 구조. 크지만 느리다.',
+ 'lab:limitation/oom': '무게나 KV 캐시가 VRAM보다 크면 올리다 실패하거나 추론 중에 멈춘다.',
+ 'lab:limitation/no-nvlink': '러브레이스 GPU는 NVLink가 없어 파이프라인 병렬 같은 비효율적 방법으로만 묶는다.',
+ 'lab:limitation/too-big-gpu': '수십억 파라미터 이하의 작은 모델은 큰 GPU의 자원을 다 쓰지 못한다.',
+ 'lab:limitation/no-cuda': 'NVIDIA 밖 가속기는 CUDA 없이 추론 스택을 새로 지어야 한다.',
+ 'lab:limitation/local-hw': '로컬 기기는 성능 · 발열 · 기기 조합 · 배터리의 한계가 있다.',
+ 'lab:limitation/ib-slow': '노드 사이 연결(InfiniBand 50 GB/s)은 NVLink보다 한 자릿수 이상 느리다.',
+ 'lab:claim/h100-h200': 'H100 · H200은 FP8 계산력이 같고(1,979 TF) 메모리 80 → 141 GB, 대역폭 3.35 → 4.8 TB/s.',
+ 'lab:claim/b200': 'B200 · B300은 약 5 PF(FP8), 192 · 288 GB, 최대 8 TB/s.',
+ 'lab:claim/nvlink': 'NVLink 블랙웰 1,800 · 호퍼 900 GB/s, InfiniBand NIC당 최대 400 Gb/s, 이더넷 100 Gb/s.',
+ 'lab:claim/mig-h100': 'H100은 메모리 8조각 · 계산 7조각, SXM H100의 SM은 132개.',
+ 'lab:claim/desktop': 'RTX 5090 32 GB · 1,792 GB/s · $5,000 vs M3 Ultra 512 GB · 819 GB/s · $10,000.',
+ 'lab:analogy/factory': '계산 공방(SM) · 창고(VRAM) · 창고 통로(대역폭) · 다리(인터커넥트)로 GPU를 보는 비유.',
+ 'lab:analogy/partition': '초대형 프레스에 칸막이를 쳐 여러 작업이 나눠 쓰는 비유(MIG).',
+ 'lab:question/core': '같은 모델이 왜 어떤 GPU에선 빠르고 어떤 GPU에선 아예 안 올라갈까?',
+ 'lab:question/duel': '70B 4비트 모델을 혼자 쓸 때 RTX 5090과 M3 Ultra 중 어느 쪽이 빠를까?',
+ 'lab:question/new-arch': '새 아키텍처는 실측 벤치마크와 소프트웨어 지원이 나온 뒤(약 1년) 판단한다.',
+ 'lab:sim/fit': '모델 크기 · 숫자 크기 · GPU · 장 수로 VRAM에 들어가는지 보는 계산기.',
+ 'lab:sim/flops': '정밀도와 희소성에 따라 GPU별 계산력을 비교하는 계기판.',
+ 'lab:sim/bottleneck': '디코드 토큰 상한(배치 · 비용 포함)과 프리필 시간 하한을 GPU별로 비교하는 계기판.',
+ 'lab:sim/net': '데이터 크기와 연결 종류로 전송 시간을 비교하는 계기판(로그 눈금).',
+ 'lab:sim/mig': 'H100을 MIG 크기별로 나눠 보고 모델이 들어가는지 보는 계기판.',
+ 'lab:sim/local': 'RTX 5090과 M3 Ultra에 모델을 올려 메모리와 토큰 속도를 비교하는 계기판.'}
+_miss = fill_defs(KG, DEFS)
+assert not _miss, _miss
 REFS = [book_ref(), ref('williams2009roofline', 'article-journal', 'Roofline: An Insightful Visual Performance Model for Multicore Architectures', ['Samuel Williams', 'Andrew Waterman', 'David Patterson'], 2009, 'Communications of the ACM', 'https://doi.org/10.1145/1498765.1498785', role='background', note='기술 보고서 UCB/EECS-2008-134 (2008)')]
 
 JS = r'''
@@ -336,8 +386,8 @@ function hbars(x,W,rows,o){/* rows:[label,value,color,note] 가로 막대 */var 
     x.fillStyle=C.text;x.font='12px '+F;x.textAlign='right';x.fillText(r[0],L0-8,y+h/2+4);x.textAlign='left';x.fillText(r[3]!=null?r[3]:fmtN(r[1]),L0+w+6,y+h/2+4);});}
 L.kpis('#heroK',[['3 · 3','GPU 종류 · 자리','g'],['1,979 TF','H100 · H200 FP8 계산력','m'],['3.35 → 4.8','H100 → H200 대역폭 (TB/s)','i'],['8 · 7','노드의 GPU 수 · MIG 조각','a']]);
 /* 1 자리 */
-var m1=1,m2=0,m3=0;function updM(){var mode=m3?'에어갭':m2?'온프레미스':'클라우드',why=m3?'GPU를 내 데이터센터에 두고, 추론하려면 물리적으로 접근해야 하는 구성이에요.':m2?'GPU를 사서 직접 통제하는 데이터센터에 설치해요. 대기업 · 정부가 주로 써요.':'하이퍼스케일러(AWS · GCP)나 네오클라우드(Coreweave · Nebius)에서 빌려요. 대부분의 추론 엔지니어가 여기.';
-  L.kpis('#mK',[[mode,'추천 자리 (설명용 판단)',m3?'r':m2?'a':'g'],[m1?'중요':'보통','유연성 필요',m1?'g':'i']]);L.ins('#mI',[[m3?'r':m2?'a':'g',why],['i',m1&&(m2||m3)?'트래픽이 빠르게 늘면 직접 산 GPU는 증설이 느려요. 교재는 그래서 성장하는 제품엔 클라우드를 권해요.':'교재: 클라우드 GPU는 빠르게 크는 AI 제품에 필요한 유연성과 접근성을 줘요.']]);}
+var m1=1,m2=0,m3=0;function updM(){var mode=m3?'에어갭':m2?(m1?'온프레미스 + 클라우드 병행':'온프레미스'):'클라우드',why=m3?'GPU를 내 데이터센터에 두고, 추론하려면 물리적으로 접근해야 하는 구성이에요.'+(m1?' 트래픽이 빠르게 늘어도 외부망을 쓸 수 없으니, 증설 기간(구매 · 설치)을 미리 계획해야 해요.':''):m2?(m1?'핵심 데이터는 직접 통제하는 온프레미스에 두고, 갑자기 늘어나는 트래픽은 클라우드로 받는 병행 구성을 생각해 볼 수 있어요.':'GPU를 사서 직접 통제하는 데이터센터에 설치해요. 대기업 · 정부가 주로 써요.'):(m1?'하이퍼스케일러(AWS · GCP)나 네오클라우드(Coreweave · Nebius)에서 빌려요. 대부분의 추론 엔지니어가 여기.':'트래픽이 안정적이면 클라우드에서 장기 예약으로 빌리거나, 규모가 크면 직접 사는 쪽도 비교해 볼 수 있어요.');
+  L.kpis('#mK',[[mode,'추천 자리 (설명용 판단)',m3?'r':m2?'a':'g'],[m1?'중요':'보통','유연성 필요',m1?'g':'i'],[m3?'몇 달':m2?'몇 주~몇 달':'몇 분~며칠','증설에 걸리는 시간 (설명용 감)',m3?'r':m2?'a':'g']]);L.ins('#mI',[[m3?'r':m2?'a':'g',why],['i',m1&&(m2||m3)?'트래픽이 빠르게 늘면 직접 산 GPU는 증설이 느려요. 교재는 그래서 성장하는 제품엔 클라우드를 권해요.':'교재: 클라우드 GPU는 빠르게 크는 AI 제품에 필요한 유연성과 접근성을 줘요.']]);}
 L.bindSeg('#m1',function(v){m1=+v;updM()});L.bindSeg('#m2',function(v){m2=+v;updM()});L.bindSeg('#m3',function(v){m3=+v;updM()});updM();
 /* 2 MMA */
 var MA,MB,MC,mk=0;function newMM(){var r=L.rng(Math.floor(Math.random()*999)+1);function m(){return [0,1,2,3].map(function(){return 1+Math.floor(r()*4)})}MA=m();MB=m();MC=m();mk=0;drawMM();}
@@ -353,7 +403,7 @@ function flops(g,p,s){var b=G[g].fp8,v=p==='8'?b:p==='16'?b/2:(G[g].fp4?b*2:0);r
 function drawF(){var W=fit(cF,200),x=cF.getContext('2d');x.clearRect(0,0,W,200);grid(x,W,200);var mx=Math.max.apply(0,ORD.map(function(g){return flops(g,'4',1)}));
   hbars(x,W,ORD.map(function(g){var v=flops(g,fp,fs);return [g+' ('+G[g].arch+')',v,G[g].arch==='블랙웰'?C.gfp:G[g].arch==='호퍼'?C.info:C.amber,v?fmtN(v,0)+' TF':'지원 안 함'];}),{L0:130,max:mx,h:20,gap:8});
   stamp(x,W,fp==='8'&&!fs?'교재 표 값':'교재 규칙으로 계산');}
-function updF(){var h=flops('H100',fp,fs),b=flops('B200',fp,fs);L.kpis('#fK',[[h?fmtN(h,0):'—','H100 (TF)','i'],[fmtN(b,0),'B200 (TF)','g'],[fs?'희소':'밀집',fs?'2:4 희소 — 추론 기본값 아님':'추론 기본값',fs?'r':'g']]);
+function updF(){var h=flops('H100',fp,fs),b=flops('B200',fp,fs);L.kpis('#fK',[[h?fmtN(h,0):'—','H100 (TF)','i'],['~'+fmtN(b,0),'B200 (TF, 교재 "약")','g'],[fs?'희소':'밀집',fs?'2:4 희소 — 추론 기본값 아님':'추론 기본값',fs?'r':'g']]);
   L.ins('#fI',[[fp==='4'?'a':'g',fp==='4'?'FP4는 블랙웰부터예요. 호퍼 · 러브레이스는 막대가 없어요.':fp==='16'?'FP16은 FP8의 절반 — 정밀도를 반으로 줄이면 FLOPS가 두 배라는 규칙을 거꾸로 본 거예요.':'교재 표의 FP8 밀집 값이에요. GPU 비교는 이렇게 같은 정밀도 · 같은 밀집끼리.'],[fs?'r':'i',fs?'희소 값은 0이 절반인 특수 구조일 때만 나와요. 사양표의 큰 숫자에 속지 마세요.':'이미지 · 영상 생성, LLM 프리필이 많다면 이 막대가 긴 GPU를 고르세요.']]);drawF();}
 L.bindSeg('#fP',function(v){fp=v;updF()});L.bindSeg('#fS',function(v){fs=+v;updF()});L.addMod(cF,function(dt){if(dt===0)drawF()});updF();
 /* 3 SM 그림 */
@@ -372,17 +422,21 @@ function updV(){var w=vp*vb,need=w*1.5,cap=G[vg].mem*vn,st=need<=cap?['여유 �
   L.ins('#vI',[[st[1],need<=cap?'올라가고 KV 캐시 자리도 있어요. 긴 문맥 · 큰 배치라면 더 넉넉히.':'경험칙대로라면 '+vg+' 최소 '+minN+'장'+(minN>8?' — 노드 하나(8장)를 넘어요. 노드 사이 연결(7칸)이 필요해요.':'이 필요해요.')],['i','숫자 크기를 줄이면(양자화, 6주차 5.1) 무게가 줄어요. 16 → 8비트면 절반.']]);drawV();}
 $('#vP').addEventListener('input',function(){vp=+this.value;updV()});L.bindSeg('#vB',function(v){vb=+v;updV()});L.bindSeg('#vG',function(v){vg=v;updV()});L.bindSeg('#vN',function(v){vn=+v;updV()});L.addMod(cV,function(dt){if(dt===0)drawV()});updV();
 /* 4 병목 */
-var cB=$('#cBn'),bm=70,bt=8000,bv='dec',BG=['L40','H100','H200','B200'];
-function dec(g){var w=bm;return w>G[g].mem?0:G[g].bw*1000/w}
+var cB=$('#cBn'),bm=70,bt=8000,bv='dec',bq=1,BG=['L40','H100','H200','B200'];
+function dec(g){var w=bm;if(w>G[g].mem)return 0;return Math.min(G[g].bw*1000*bq/w,G[g].fp8*1e12/(2*bm*1e9))}
+function fitTxt(g){var w=bm;return w>G[g].mem?'안 들어감':w*1.5>G[g].mem?'여유 부족':''}
 function pre(g){return 2*bm*1e9*bt/(G[g].fp8*1e12)}
 function drawB(){var W=fit(cB,170),x=cB.getContext('2d');x.clearRect(0,0,W,170);grid(x,W,170);
-  if(bv==='dec')hbars(x,W,BG.map(function(g){var v=dec(g);return [g,v,g==='H200'?C.gfp:C.info,v?fmtN(v,0)+' 토큰/초':'안 들어감 ('+bm+' GB > '+G[g].mem+' GB)']}),{h:24,gap:12});
+  if(bv==='dec')hbars(x,W,BG.map(function(g){var v=dec(g),ft=fitTxt(g);return [g,v,!v?C.eye:ft?C.amber:g==='H200'?C.gfp:C.info,v?fmtN(v,0)+' 토큰/초'+(ft?' · '+ft+' ('+fmtN(bm*1.5,0)+' GB 권장 > '+G[g].mem+' GB)':''):'안 들어감 ('+bm+' GB > '+G[g].mem+' GB)']}),{h:24,gap:12,R:250});
   else hbars(x,W,BG.map(function(g){var v=pre(g);return [g,v,C.stain,(v*1000<1000?fmtN(v*1000,0)+' ms':fmtN(v,2)+' 초')]}),{h:24,gap:12});
-  stamp(x,W,'설명용 상한 근사 (효율 100%, 배치 1)');}
-function updB(){L.setTxt('#bTV',fmtN(bt,0)+'토큰');var r1=dec('H200')/dec('H100'),r2=pre('H100')/pre('H200');
-  L.kpis('#bK',[[isFinite(r1)&&dec('H100')?r1.toFixed(2)+'배':'—','H200/H100 디코드','g'],[r2.toFixed(2)+'배','H200/H100 프리필','i'],[fmtN(bm,0)+' GB','FP8 무게','m']]);
-  L.ins('#bI',[[bv==='dec'?'g':'i',bv==='dec'?'디코드 막대는 대역폭 순서 그대로예요(L40 0.864 < H100 3.35 < H200 4.8 < B200 8 TB/s).':'프리필 막대는 FLOPS 순서예요. H100과 H200은 같은 길이 — 계산력이 같으니까요.'],['a',bm>G['H100'].mem?'이 모델은 H100 한 장(80 GB)에 안 들어가요. 실제론 여러 장으로 나눠야 해요(5.4 병렬화).':'토큰을 더 빨리 뽑고 싶다 → 대역폭, 긴 입력을 빨리 읽고 싶다 → FLOPS.']]);drawB();}
-L.bindSeg('#bM',function(v){bm=+v;updB()});$('#bT').addEventListener('input',function(){bt=+this.value;updB()});L.bindSeg('#bV',function(v){bv=v;updB()});L.addMod(cB,function(dt){if(dt===0)drawB()});updB();
+  stamp(x,W,'설명용 상한 근사 (효율 100%, KV 캐시 무시)');}
+function updB(){L.setTxt('#bTV',fmtN(bt,0)+'토큰');var r1=dec('H200')/dec('H100'),r2=pre('H100')/pre('H200'),pr=parseFloat(($('#bPr')||{}).value),kp=[[isFinite(r1)&&dec('H100')?r1.toFixed(2)+'배':'—','H200/H100 디코드','g'],[r2.toFixed(2)+'배','H200/H100 프리필','i'],[fmtN(bm,0)+' GB','FP8 무게','m']];
+  if(pr>0){var t=dec('H100');kp.push([t?'$'+fmtN(pr/3600/t*1e6,2):'—','H100 100만 토큰당 비용 하한 (배치 '+bq+')','a']);}
+  L.kpis('#bK',kp);var warn=BG.filter(function(g){return fitTxt(g)}).join(' · ');
+  L.ins('#bI',[[bv==='dec'?'g':'i',bv==='dec'?'디코드 막대는 대역폭 순서예요(L40 0.864 < H100 3.35 < H200 4.8 < B200 8 TB/s). 배치를 키우면 같은 무게 읽기로 손님 여럿의 토큰을 만들어 합계가 늘어요.':'프리필 막대는 FLOPS 순서예요. H100과 H200은 같은 길이 — 계산력이 같으니까요.'],
+    [warn?'r':'g',warn?warn+': 3칸 경험칙(무게 × 1.5)에 못 미치거나 아예 안 들어가요. 실제 서빙은 여러 장으로 나눠야 해요(5.4 병렬화).':'네 GPU 모두 3칸 경험칙(무게 × 1.5)을 만족해요.'],
+    ['i',pr>0?'비용 하한 = 시간당 임대료 ÷ (초당 토큰 상한 × 3,600). 실제 효율은 100%가 아니라 이보다 비싸요.':'임대료 칸에 제공사 견적을 넣으면 100만 토큰당 비용 하한이 나와요(기본값은 비워 둠).']]);drawB();}
+L.bindSeg('#bM',function(v){bm=+v;updB()});$('#bT').addEventListener('input',function(){bt=+this.value;updB()});L.bindSeg('#bV',function(v){bv=v;updB()});L.bindSeg('#bQ',function(v){bq=+v;updB()});$('#bPr').addEventListener('input',updB);L.addMod(cB,function(dt){if(dt===0)drawB()});updB();
 /* 5 세대 연표 */
 var cG=$('#cGen'),ga='hopper',ARCH=__ARCH__;
 function drawG(){var W=fit(cG,150),x=cG.getContext('2d');x.clearRect(0,0,W,150);grid(x,W,150);var L0=30,R=W-30,y=78;function px(yr){return L0+(R-L0)*(yr-2016)/(2029-2016)}
@@ -466,11 +520,11 @@ def spec():
                      'kgStart': 'lab:concept/vram', 'citeKey': 'ahn2026ch03hardware', 'domain': 'ai',
                      'suggestedCitation': '안상선 (2026). GPU 기계실 — 3장 하드웨어. 인퍼런스 스터디 북 4주차 교재 해설. ' + URL},
             'kg': KG, 'refs': REFS, 'gl': GL, 'core': CORE, 'quiz': QUIZ, 'js': JS, 'css': LIGHT,
-            'nav': nav([('cast', '식구'), ('lv1', '1 자리'), ('lv2', '2 연산'), ('lv3', '3 메모리'), ('lv4', '4 숫자'), ('lv5', '5 세대'), ('lv6', '6 CPU'), ('lv7', '7 인스턴스'), ('lv8', '8 MIG'), ('lv9', '9 가속기'), ('lv10', '10 로컬'), ('duel', '대결'), ('reread', '다시 읽기'), ('sum', '한 장'), ('kg', '색인'), ('export', '꾸러미')]),
+            'nav': nav([('cast', '식구'), ('lv1', '1 자리'), ('lv2', '2 연산'), ('lv3', '3 메모리'), ('lv4', '4 숫자'), ('lv5', '5 세대'), ('lv6', '6 CPU'), ('lv7', '7 인스턴스'), ('lv8', '8 MIG'), ('lv9', '9 가속기'), ('lv10', '10 로컬'), ('duel', '대결'), ('reread', '다시 읽기'), ('sum', '한 장'), ('teach', '강의자'), ('kg', '색인'), ('export', '꾸러미')]),
             'body': cover('cover_ch03', '인퍼런스 스터디 북 · 4주차 · 교재 3장', '연구실 식구 여섯이 GPU 랙과 메모리 탑이 있는 기계실에 모인 대체 표지',
                           motif=''.join('<i class="%s"></i>' % c for c in ['on', 'on', 'on', 'on', 'm', 'm', 'a', 'on', 'on', 'on', 'on', 'on']),
                           moods={'doc': 'board', 'asst': 'report', 'fly': 'magnify', 'robo': 'calc', 'sia': 'explain', 'moa': 'report'})
-                    + hero + cast + lv1 + lv2 + lv3 + lv4 + lv5 + lv6 + lv7 + lv8 + lv9 + lv10 + duel_sec + reread + onepage + outro,
+                    + hero + cast + lv1 + lv2 + lv3 + lv4 + lv5 + lv6 + lv7 + lv8 + lv9 + lv10 + duel_sec + reread + onepage + outro + teach_appendix(QUIZ, {k: '%s칸' % k[2:] for k in QUIZ}),
             'footer': footer([('교재', 'Kiely, P. (2026). Inference Engineering. Baseten Books. Chapter 3 Hardware (3.1–3.5)'), ('GPU 표', '교재 3.2.1–3.2.3 표 (원문 그대로)'), ('데스크톱 표', '교재 3.5.1 RTX 5090 vs M3 Ultra (원문 그대로)'),
                               ('가속기 표', '교재 3.4 표'), ('교재 밖 참고값', 'PCIe 5.0 x16 양방향 약 128 GB/s(6칸), NVIDIA H100 MIG 프로필 표(8칸)')],
                              ['1칸 자리 판단표', '2칸 FP16 · FP4 · 희소 막대(교재 규칙 계산)', '4 · 10칸 토큰 속도 상한과 프리필 시간 하한(효율 100% 근사)', '7칸 전송 시간(크기 ÷ 대역폭)', '대결 판정 공식'],

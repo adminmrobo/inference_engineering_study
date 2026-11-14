@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lab import *
 from parts import *
 from series import BASE
+from extras import short_course, teach_appendix, fill_defs
 
 SLUG = 'week_04_article_01'; P = 'roofline'; URL = BASE + SLUG + '/'
 SRC = 'williams2008roofline'
@@ -38,7 +39,7 @@ NICK = [('작업 강도', 'operational intensity', 'DRAM에서 가져온 1바이
 nick = '<h3>논문 속 용어 별명</h3><div class="nick">' + ''.join('<div class="card"><b>%s</b><div class="orig">%s</div><p style="margin:4px 0 0;font-size:14px">%s</p></div>' % n for n in NICK) + '</div>'
 cast = crew({'doc': '해설 · 대결 심판', 'asst': '원문 수치 발표', 'fly': '"그림 하나로는 부족해"를 의심', 'robo': '"대역폭이 곧 속도"를 믿는 쪽', 'sia': '논문 순서 안내 · 진행 신호', 'moa': '별명 카드 · 기록장',
              'x1': '방청석 질문 담당', 'x2': '방청석 질문 담당', 'x3': '방청석 질문 담당'},
-            extra=nick + '<h3>오늘의 순서</h3>' + route([('q', '1', '질문'), ('method', '2', '지붕 그리기'), ('r1', '결과 ①', '능선점'), ('r2', '결과 ②', '천장'), ('r3', '결과 ③', '네 컴퓨터 × 네 커널'),
+            extra=nick + short_course('루프라인 핵심만', [('method', '2 지붕 그리기', '식 한 줄과 그래프 읽는 법'), ('r2', '결과 ② 천장', '무엇을 어떤 순서로 최적화할까'), ('r3', '결과 ③ 표 4', '16개 실측 점이 모두 지붕 아래'), ('lab', '실험실', '오늘의 GPU와 배치 · KV 캐시'), ('duel', '대결', 'H100 → H200')]) + '<h3>오늘의 순서</h3>' + route([('q', '1', '질문'), ('method', '2', '지붕 그리기'), ('r1', '결과 ①', '능선점'), ('r2', '결과 ②', '천장'), ('r3', '결과 ③', '네 컴퓨터 × 네 커널'),
                                                         ('r4', '결과 ④', '작업 강도 옮기기 · 오해'), ('lab', '실험실', '오늘의 GPU로'), ('duel', '대결', 'H100 → H200'), ('reread', '다시 읽기', '추론 엔지니어에게')]))
 
 q = section('q', 1, '질문 — 제각각인 멀티코어, 무엇을 고쳐야 빨라지나', '''
@@ -49,8 +50,8 @@ q = section('q', 1, '질문 — 제각각인 멀티코어, 무엇을 고쳐야 �
 
 method = section('method', 2, '지붕 그리기 — 식 한 줄, 그래프 한 장', '''
 <div class="eq">도달 가능한 성능 (GFlops/s) = min( <b>최대 계산력</b>, <em>최대 메모리 대역폭</em> × <i>작업 강도</i> )</div>
-<p>로그-로그 그래프에서 세로축은 GFlops/s, 가로축은 Flops/byte. 대역폭(바이트/초) = (Flops/초) ÷ (Flops/바이트)이므로 <b>대역폭은 45도 비스듬한 선</b>이 됩니다. 지붕은 <b>컴퓨터마다 한 번</b> 그리면 되고, 커널은 가로축의 한 점(세로 점선)으로 올려 봅니다. 점선이 지붕의 비스듬한 쪽에 닿으면 <b>메모리 한계</b>, 평평한 쪽에 닿으면 <b>계산 한계</b>.</p>''' + panel('지붕선 그리기 — 컴퓨터와 커널을 바꿔 보기', 'cRoof', '로그-로그 축 위의 지붕선. 평평한 지붕은 최대 계산력, 비스듬한 지붕은 대역폭 × 작업 강도. 세로 점선은 커널의 작업 강도.',
-    ctrl=btn_group('rP', '본보기', [('x2', 'Opteron X2 (그림 1a)'), ('custom', '직접 정하기')]) + slider('rF', '최대 계산력', 1, 200, 0.1, 17.6, ' GFlops/s') + slider('rB', '최대 대역폭', 1, 100, 0.1, 15, ' GB/s') + slider('rO', '커널 작업 강도 (log₂)', -3, 5, 0.25, 0, ''), kp_id='rK', ins_id='rI', wide=True)
+<div class="explain" style="margin:10px 0"><h4>그래프 읽는 법 — 로그 눈금</h4><p style="margin:0">이 페이지의 그래프는 가로·세로 모두 <b>로그 눈금</b>이에요. 눈금 한 칸을 갈 때마다 값이 <b>10배</b>(1 → 10 → 100)씩 커져요. 그래서 1/8부터 32까지, 0.5부터 256까지 아주 넓은 범위를 한 장에 담을 수 있고, "두 배"는 어디서나 같은 길이로 보여요. 비스듬한 지붕이 직선으로 보이는 것도 이 덕분이에요.</p></div><p>로그-로그 그래프에서 세로축은 GFlops/s, 가로축은 Flops/byte. 대역폭(바이트/초) = (Flops/초) ÷ (Flops/바이트)이므로 <b>대역폭은 45도 비스듬한 선</b>이 됩니다. 지붕은 <b>컴퓨터마다 한 번</b> 그리면 되고, 커널은 가로축의 한 점(세로 점선)으로 올려 봅니다. 점선이 지붕의 비스듬한 쪽에 닿으면 <b>메모리 한계</b>, 평평한 쪽에 닿으면 <b>계산 한계</b>.</p>''' + panel('지붕선 그리기 — 컴퓨터와 커널을 바꿔 보기', 'cRoof', '로그-로그 축 위의 지붕선. 평평한 지붕은 최대 계산력, 비스듬한 지붕은 대역폭 × 작업 강도. 세로 점선은 커널의 작업 강도.',
+    ctrl=btn_group('rP', '본보기', [('x2', 'Opteron X2 (그림 1a)'), ('custom', '직접 정하기')]) + slider('rF', '최대 계산력', 1, 200, 0.1, 17.6, ' GFlops/s') + slider('rB', '최대 대역폭', 1, 100, 0.1, 15, ' GB/s') + slider('rO', '커널 작업 강도 (1/8 ~ 32)', -3, 5, 0.25, 0, ''), kp_id='rK', ins_id='rI', wide=True)
     + explain('풀이', ['<b>작업 강도</b>는 캐시를 <b>거친 뒤</b> DRAM과 오간 바이트로 셉니다(프로세서 ↔ 캐시가 아니라 캐시 ↔ DRAM). 그래서 캐시 최적화의 효과가 이 숫자에 들어가요. "산술 강도"라는 기존 말 대신 쓴 이유이기도 해요.',
                       '최대 계산력은 사양표나 작은 측정 프로그램으로, 최대 대역폭은 저자들이 직접 단계별로 최적화한 측정 프로그램(STREAM보다 정확)으로 구했어요. 칩 핀의 대역폭이 아니라 <b>실제로 꾸준히 낼 수 있는</b> 대역폭.',
                       '그림 1a의 Opteron X2(2.2 GHz, 2소켓): 최대 17.6 GFlops/s, 대역폭 15 GB/s. 작업 강도 2인 커널은 계산 한계, 1인 커널은 메모리 한계예요 <span class="chip-src">원문</span>.'],
@@ -59,27 +60,27 @@ method = section('method', 2, '지붕 그리기 — 식 한 줄, 그래프 한 �
 
 r1 = level('①', 'r1', '결과 ① — 능선점이 오른쪽에 있을수록 최대 성능 내기가 어렵다', [('g', '모델: 능선점'), ('p', '논문: 3장, 그림 1b')],
     pair=('연구실에서는', '실험대(계산)를 네 배 넓혀도 시약 창고 문(대역폭)이 그대로면, 시약을 아주 아껴 쓰는 실험만 빨라져요.',
-          '논문에서는', 'Opteron X4는 X2와 같은 소켓 · 같은 DRAM 채널(같은 대역폭)인데 최대 계산력은 네 배 남짓. 능선점이 <b>1.0 → 4.4</b>로 오른쪽으로 갔어요. X4에서 이득을 보려면 작업 강도가 <b>1보다 커야</b> 해요 <span class="chip-src">원문</span>.'),
+          '논문에서는', 'Opteron X4는 X2와 같은 소켓 · 같은 DRAM 채널(대역폭은 같고 프리페치만 더 좋음)인데 최대 계산력은 네 배 남짓. 능선점이 <b>1.0 → 4.4</b>로 오른쪽으로 갔어요. X4에서 이득을 보려면 작업 강도가 <b>1보다 커야</b> 해요 <span class="chip-src">원문</span>.'),
     panel=panel('X2 vs X4 — 같은 커널, 몇 배 빨라질까', 'cRidge', '두 컴퓨터의 지붕선을 겹친 로그-로그 그래프와 커널 작업 강도 점선.',
-                ctrl=slider('kO', '커널 작업 강도 (log₂)', -3, 4, 0.25, -1, ''), kp_id='kK', ins_id='kI', wide=True),
+                ctrl=slider('kO', '커널 작업 강도 (1/8 ~ 16)', -3, 4, 0.25, -1, ''), kp_id='kK', ins_id='kI', wide=True),
     explain=explain('풀이', ['능선점의 x좌표 = 최대 성능을 내는 데 필요한 <b>최소 작업 강도</b>.',
                              '능선점이 멀리 오른쪽이면 작업 강도가 아주 높은 커널만 최대 성능에 닿아요. 왼쪽이면 거의 모든 커널이 닿을 수 있죠.',
                              '그래서 능선점은 프로그래머 · 컴파일러가 최대 성능을 내기가 <b>얼마나 어려운지</b>를 보여 줘요(결과 ③에서 확인).'],
-                    limit='X4 지붕은 "같은 대역폭 15 GB/s, 능선점 4.4"로 거꾸로 계산해 그렸어요(정점 약 66 GFlops/s). 논문 본문은 X2 능선점을 1.0이라 적었지만 17.6 ÷ 15로 계산하면 약 1.17이에요.'),
+                    limit='X2는 그림 1a 값(17.6 GFlops/s · 15 GB/s), X4는 <b>표 1</b> 값(74 GFlops/s · Stream 16.6 GB/s → 능선점 4.46 ≈ 논문의 4.4)으로 그렸어요. 이 페이지의 X4 지붕은 결과 ③ · ④에서도 정점 74를 쓰지만, 그 두 칸은 표 4의 실측 점이 지붕을 넘지 않도록 표 4의 "Stream BW" 천장 17.6 GB/s를 써요(논문 안의 두 값). 논문 본문은 X2 능선점을 1.0이라 적었지만 17.6 ÷ 15로 계산하면 약 1.17이에요.'),
     talk=say('robo', 'calc', '작업 강도 0.5짜리 커널이면… X4로 바꿔도 1.0배. 비싼 칩 사 놓고 그대로라니!'))
 
 r2 = level('②', 'r2', '결과 ② — 천장: 무엇을 어떤 순서로 최적화할까', [('g', '모델: 천장'), ('p', '논문: 4장, 그림 2')],
     pair=('연구실에서는', '실험실 천장이 여러 겹이라 상상해 봐요. 한 겹은 "장비를 동시에 돌리기", 다른 겹은 "시약을 미리 꺼내 두기". 해당 정리를 해야만 그 겹을 뚫고 올라가요.',
           '논문에서는', '지붕 아래에 최적화별 <b>천장</b>을 그어요. Opteron X2의 계산 천장: 균형 없으면 <b>8.8</b>, ILP · SIMD까지 없으면 <b>2.2</b> GFlops/s. 메모리 천장: 소프트웨어 프리페치 없으면 <b>11</b>, 메모리 친화성도 없으면 <b>4.8</b>, 단위 보폭만이면 <b>2.7</b> GB/s <span class="chip-src">원문</span>.'),
     panel=panel('천장 뚫기 — 최적화를 하나씩 켜 보기 (Opteron X2)', 'cCeil', '지붕선 아래 계산 천장(가로선)과 메모리 천장(비스듬한 선). 켠 최적화까지의 천장이 지금의 상한.',
-                ctrl=btn_group('cC', '계산 최적화', [('0', '없음 (스레드 병렬만)'), ('1', '+ ① ILP · SIMD'), ('2', '+ ② 곱셈·덧셈 균형')]) + btn_group('cM', '메모리 최적화', [('0', '③ 단위 보폭만'), ('1', '다음 천장 (그림 2b)'), ('2', '+ ④ 메모리 친화성'), ('3', '+ ⑤ 소프트웨어 프리페치')])
-                     + slider('cO', '커널 작업 강도 (log₂)', -3, 4, 0.25, 0, ''), kp_id='qK', ins_id='qI', wide=True),
+                ctrl=btn_group('cC', '계산 최적화', [('0', '없음 (스레드 병렬만)'), ('1', '+ ① ILP · SIMD'), ('2', '+ ② 곱셈·덧셈 균형')]) + btn_group('cM', '메모리 최적화 (그림 2b의 선 이름)', [('0', '③ 단위 보폭만 · 2.7'), ('1', '+ ④ 메모리 친화성 · 4.8'), ('2', '+ ⑤ 소프트웨어 프리페치 · 11'), ('3', '지붕 · 15')])
+                     + slider('cO', '커널 작업 강도 (1/8 ~ 16)', -3, 4, 0.25, 0, ''), kp_id='qK', ins_id='qI', wide=True),
     explain=explain('풀이', ['계산 쪽 최적화 둘: ① 명령어 수준 병렬성(ILP)을 높이고 SIMD 쓰기(루프 펼치기 등), ② 부동소수점 곱셈·덧셈을 같은 수로 맞추기(곱셈-덧셈 명령, 같은 수의 덧셈기·곱셈기).',
                              '메모리 쪽 최적화 셋: ③ 단위 보폭 접근으로 루프 재구성(하드웨어 프리페치가 켜짐), ④ 메모리 친화성(데이터와 스레드를 같은 칩-메모리 쌍에), ⑤ 소프트웨어 프리페치(메모리 요청을 미리 많이 띄워 두기).',
                              '천장 사이 높이 = 그 최적화의 <b>기대 보상</b>. 그림 2에선 ①(ILP · SIMD)과 ④(친화성)의 보상이 커요.',
                              '천장은 아래서부터 <b>쉬운 것</b>(컴파일러가 해 주거나 품이 덜 드는 것) → <b>어려운 것</b> 순서로 쌓아요. 위 천장을 뚫으려면 아래 천장부터 뚫어야 해요.',
                              '커널의 작업 강도가 <b>어느 구역</b>에 있느냐가 할 일을 정해요: 왼쪽 아래(노랑) → 메모리 최적화만, 오른쪽(파랑) → 계산 최적화만, 가운데(초록) → 둘 다.'],
-                    limit='"다음 천장" 단계의 4.8은 논문 그림 2b의 값이며 논문 문장만으로는 어떤 최적화 조합인지 딱 떨어지지 않아 이름 없이 뒀어요. 구역 판정(노랑 · 초록 · 파랑)은 가장 낮은 · 가장 높은 천장으로 단순화한 설명용이에요. 곱셈·덧셈 균형은 커널에 따라 쉬움 · 어려움이 달라 천장 순서가 바뀌기도 해요(SpMV는 맨 아래).'),
+                    limit='메모리 천장 단추 이름은 <b>그림 2b의 선 이름</b>(3. unit stride accesses only · 4. memory affinity · 5. software prefetching)을 따랐어요. 본문 문장("프리페치 없으면 11, 친화성도 없으면 4.8, 단위 보폭만이면 2.7")은 선과 최적화를 한 칸씩 다르게 짝지은 것처럼 읽혀, 원문 안에서도 표기가 엇갈려요. 숫자(2.7 · 4.8 · 11 · 15)는 둘이 같아요. 구역 판정(노랑 · 초록 · 파랑)은 가장 낮은 · 가장 높은 천장으로 단순화한 설명용이에요. 곱셈·덧셈 균형은 커널에 따라 쉬움 · 어려움이 달라 천장 순서가 바뀌기도 해요(SpMV는 맨 아래).'),
     talk=say('fly', 'point', '천장 높이가 곧 보상이라니, 어디부터 손댈지 순서가 그림에 다 나와 있네. 이건 인정.') + xask('x1', '왜 천장마다 "아래 것부터 뚫어야" 해요?', '아래 천장일수록 거의 모든 코드에 기본으로 필요한 최적화예요. 예를 들어 SIMD를 안 쓰면 곱셈·덧셈 균형을 맞춰도 그 효과가 위로 드러나지 않아요. 논문은 그래서 쉬운 것부터 쌓았어요.'))
 
 T4 = {'xeon': {'n': 'Intel Xeon (Clovertown)', 'peak': 75, 'bw': 11.2, 'ridge': 6.7, 'k': [['SpMV', 0.25, 2.8, 'M'], ['LBMHD', 1.07, 5.6, 'M'], ['Stencil', 0.50, 2.5, 'M'], ['3-D FFT', 1.64, 9.7, 'M']]},
@@ -95,7 +96,7 @@ r3 = level('③', 'r3', '결과 ③ — 네 컴퓨터 × 네 커널, 16개 모�
                              'Xeon은 최대 계산력이 가장 높지만 능선점 6.7 — 8바이트 피연산자 하나당 55 Flops를 해야 균형. 전면 버스가 일관성 통신까지 실어 대역폭이 반쯤 깎이기 때문이에요.',
                              'T2+는 대역폭이 가장 커서 능선점이 0.33으로 가장 낮아요. 프로그래밍이 <b>가장 쉬웠고</b>, 능선점이 가장 높은 Xeon은 최적화 전 성능이 가장 나빴어요. Cell은 성능이 가장 높았지만 SIMD 컴파일 · 로컬 저장소(DMA) 때문에 품이 들었어요.',
                              'Xeon · X4에서는 거의 다 메모리 한계, T2+ · Cell에서는 메모리 · 계산이 반반이에요.'],
-                    limit='지붕은 표 1의 최대 계산력과 표 4의 "Stream BW" 천장으로 그렸어요. 그래서 이 그림의 능선점(계산값)이 논문이 적은 능선점과 조금 달라요(KPI에 둘 다 표시). 점은 표 4의 실측 GFlop/s와 작업 강도(3-D FFT는 128³) 그대로.'),
+                    limit='지붕은 표 1의 최대 계산력과 표 4의 "Stream BW" 천장(X4는 17.6, 표 1의 Stream은 16.6 — 논문 안의 두 값)으로 그렸어요. 그래서 이 그림의 능선점(계산값)이 논문이 적은 능선점과 조금 달라요(KPI에 둘 다 표시). 점은 표 4의 실측 GFlop/s와 작업 강도(3-D FFT는 128³) 그대로.'),
     talk=say('asst', 'report', '표 4: Cell의 SpMV는 11.8 GFlop/s · 47.1 GB/s, 작업 강도 0.25 — 비스듬한 지붕에 거의 붙었어요. 메모리를 거의 다 쓴 거예요.'))
 
 FALL = [('모형이 캐시 · 프리페치를 무시한다', '작업 강도를 캐시 ↔ DRAM 왕래로 세니 캐시가 들어가 있고, 대역폭 측정에도 프리페치 등 메모리 최적화가 들어가 있다.'),
@@ -116,7 +117,7 @@ r4 = level('④', 'r4', '결과 ④ — 작업 강도는 옮길 수 있다, 그�
     explain=explain('풀이', ['충돌 미스는 배열 덧대기(padding)로 캐시 줄 주소를 바꿔 줄여요.',
                              '캐시 우회 쓰기(no-allocate store)는 어차피 덮어쓸 데이터를 캐시에 올리지 않아 트래픽을 줄이고, 쓸모 있는 데이터를 밀어내지도 않아요.',
                              '아래 카드는 논문 7장 "오해"예요. 눌러서 저자의 답을 보세요.'],
-                    limit='지붕 위에 그린 높이는 X4의 지붕선 상한이며 실측값이 아니에요. LBMHD 0.70은 T2+에서만 남은 값(다른 셋은 1.07)이에요.'),
+                    limit='지붕 위에 그린 높이는 X4의 지붕선(표 1 정점 74 · 표 4 Stream 천장 17.6) 상한이며 실측값이 아니에요. LBMHD 0.70은 T2+에서만 남은 값(다른 셋은 1.07)이에요.'),
     bridge=bridge(gen=('LLM 추론에서 작업 강도를 오른쪽으로 옮기는 대표 방법은 <b>배치 키우기</b>(한 번 읽은 무게로 여러 손님 토큰 계산)와 FlashAttention처럼 <b>왕복 줄이기</b>예요.', '배치를 키우면 손님 한 명의 지연시간이 늘 수 있어요(1장 지연 · 처리량 맞바꿈).'),
                   field=('공장 자재 창고를 기계 옆 선반으로 옮겨 한 번 가져온 자재로 여러 부품을 찍는 것과 같아요.', '선반 크기(캐시)는 한정돼 있어요.')),
     talk='<div class="flipcards" id="flip">' + ''.join('<button aria-expanded="false"><b>오해 %d</b>%s<span class="a">→ %s</span></button>' % (i + 1, f[0], f[1]) for i, f in enumerate(FALL)) + '</div>'
@@ -124,9 +125,9 @@ r4 = level('④', 'r4', '결과 ④ — 작업 강도는 옮길 수 있다, 그�
 
 lab = section('lab', '실험실', '실험실 — 오늘의 GPU로 지붕 다시 그리기', '''
 <p>논문 결론: "루프라인은 GPU 같은 다른 시스템에도 통찰을 줄 것". 교재 3장 표의 숫자(FP8 밀집 계산력, HBM 대역폭)로 지붕을 그리고, LLM 디코드 · 프리필을 점으로 올려 봅니다. 무게가 FP8(1바이트/파라미터)이면 토큰 하나에 파라미터마다 연산 2번 → <b>작업 강도 ≈ 2 × (함께 처리하는 토큰 수)</b>.</p>''' + panel('LLM 지붕선 실험실', 'cLab', '선택한 GPU의 지붕선 위에 배치 크기에 따른 디코드 점과 프리필 점.',
-    ctrl=btn_group('gG', 'GPU (교재 3장 표)', [('H100', 'H100'), ('H200', 'H200'), ('B200', 'B200'), ('L4', 'L4')]) + slider('gBt', '디코드 배치 (log₂)', 0, 10, 1, 0, '') + slider('gN', '프리필 입력 토큰 (log₂)', 6, 14, 1, 11, '')
+    ctrl=btn_group('gG', 'GPU (교재 3장 표)', [('H100', 'H100'), ('H200', 'H200'), ('B200', 'B200'), ('L4', 'L4')]) + slider('gBt', '디코드 배치 (1 ~ 1024)', 0, 10, 1, 0, '') + slider('gN', '프리필 입력 토큰 (64 ~ 16384)', 6, 14, 1, 11, '') + slider('gC', '문맥 길이 (KV 캐시)', 0, 32768, 1024, 8192, '토큰') + btn_group('gK2', 'KV 캐시 읽기', [('0', '빼고 보기 (논문식 단순화)'), ('1', '넣어 보기')])
          + btn_group('gP', '모델 (FP8)', [('8', '8B'), ('70', '70B')], 1), kp_id='gK', ins_id='gI', wide=True)
-    + say('moa', 'think', '배치를 1에서 늘리면 디코드 점이 비스듬한 지붕을 타고 올라가요. H100은 배치 약 300에서 능선점을 지나네요!') + '<div class="quiz" data-quiz="lab"></div>', small='모형', tags=[('g', '설명용 근사 · 교재 3장 수치')])
+    + '<p class="muted" style="font-size:14px">KV 캐시 크기는 교재 밖 가정이에요: 문맥 토큰 하나당 8B 모델 64 KB, 70B 모델 160 KB(Llama 계열 구조, KV를 8비트로 저장). 디코드 계산량에는 어텐션 계산을 넣지 않았어요.</p>' + say('moa', 'think', '배치를 1에서 늘리면 디코드 점이 비스듬한 지붕을 타고 올라가요. KV 캐시를 빼면 H100은 배치 약 300에서 능선점을 지나요. KV를 넣으면… 문맥 8천 토큰에선 거기까지 못 가네요!') + '<div class="quiz" data-quiz="lab"></div>', small='모형', tags=[('g', '설명용 근사 · 교재 3장 수치')]).replace('<div class="hexno">실험실<small>','<div class="hexno">실<small>')
 
 duel_sec = section('duel', 'VS', '대결 — H100을 H200으로 바꾸면 배치 1 디코드가 빨라질까?', say('doc', 'think', '초파리는 "계산력이 똑같으니 그대로", 주판봇은 "대역폭만큼 빨라진다"고 해요. 루프라인으로 판정합니다.') + duel(
     'H100 → H200 (교재: FP8 계산력 둘 다 1,979 TF, 대역폭 3.35 → 4.8 TB/s), 70B · FP8 · 배치 1 디코드의 속도 상한은 몇 배?', '1.0배 — 그대로다', 'FLOPS가 같잖아. 계산기가 같으면 속도도 같지.', '약 1.43배 빨라진다', '배치 1이면 작업 강도 2야. 비스듬한 지붕 위라고! 대역폭만큼 간다.')
@@ -149,7 +150,7 @@ onepage = section('sum', '한 장', '한 장으로', '''
 <tr><td>능선점 (6장)</td><td class="n">Xeon 6.7 · X4 4.4 · T2+ 0.33 · Cell 0.65</td></tr>
 <tr><td>16개 조합 작업 강도</td><td class="n">0.25 ~ 1.64, 중앙값 0.60 — 모두 지붕 아래</td></tr></table></div>
 <div class="notebook"><h4>모아의 기록장 — 읽을 때 주의할 점</h4><ul><li>2008년 CPU(멀티코어) 대상 논문 — GPU는 결론에서 "확장 가능"으로만 언급</li><li>지붕은 예측값이 아니라 상한</li><li>능선점 수치는 그림 · 본문 기준, 표 값으로 다시 계산하면 조금 다를 수 있음</li><li>실험실의 GPU 지붕은 교재 3장 수치와 단순화한 작업 강도(2 × 토큰 수)로 그린 설명용</li></ul></div>
-''' + say('moa', 'ok', '핵심 세 줄: 지붕 두 개 중 낮은 쪽 · 능선점이 난이도 · 천장 높이가 보상. 기록 완료!'), small='끝', tags=[('g', '요약')])
+''' + say('moa', 'ok', '핵심 세 줄: 지붕 두 개 중 낮은 쪽 · 능선점이 난이도 · 천장 높이가 보상. 기록 완료!'), small='끝', tags=[('g', '요약')]).replace('<div class="hexno">한 장<small>','<div class="hexno">요약<small>')
 
 outro = section('outro', '끝', '아웃트로', '<div class="outro"><div class="scene" data-img="sc_roofline_outro" role="img" aria-label="연구실 식구 여섯이 벽에 그린 지붕선 그래프 앞에 모인 장면"><img data-who="robo" data-mood="happy" alt=""><img data-who="doc" data-mood="magic" alt=""><img data-who="asst" data-mood="spark" alt=""><img data-who="sia" data-mood="proud" alt=""><img data-who="moa" data-mood="sparkle" alt=""><img data-who="fly" data-mood="coffee" alt=""></div></div>'
     + say('doc', 'magic', '논문의 한 줄: 성능은 <b>두 지붕 중 낮은 쪽</b>을 넘지 못한다. 어느 지붕 아래 있는지 알면 무엇을 고칠지 보인다.')
@@ -213,7 +214,7 @@ KG = {'version': '1.0', 'page': P, 'nodes': [
     node('lab:sim/roof', 'Simulation', '지붕선 그리기', 'roofline drawer', '#method', P), node('lab:sim/ridge', 'Simulation', 'X2 vs X4', 'ridge comparison', '#r1', P),
     node('lab:sim/ceil', 'Simulation', '천장 뚫기', 'ceiling breaker', '#r2', P), node('lab:sim/four', 'Simulation', '표 4 점 찍기', 'Table 4 plot', '#r3', P),
     node('lab:sim/shift', 'Simulation', '작업 강도 옮기기', 'OI shift', '#r4', P), node('lab:sim/llm', 'Simulation', 'LLM 지붕선 실험실', 'LLM roofline lab', '#lab', P),
-    node('lab:work/' + SRC, 'Work', 'Williams · Waterman · Patterson (2008) Roofline', 'Williams et al. 2008', '#top', P), node('lab:work/kiely2026inference', 'Work', 'Kiely (2026) Inference Engineering 3장', 'Kiely 2026', '#lab', P)],
+    node('lab:work/' + SRC, 'Work', 'Williams 외 (2008)', 'Williams et al. 2008', '#top', P, 'Roofline 원 논문 (UCB/EECS-2008-134)'), node('lab:work/kiely2026inference', 'Work', 'Kiely (2026)', 'Kiely 2026', '#lab', P, '교재 Inference Engineering 3장 하드웨어')],
  'edges': [edge('lab:metric/operational-intensity', 'prerequisiteOf', 'lab:method/roofline', '#method'), edge('lab:concept/ridge-point', 'partOf', 'lab:method/roofline', '#r1'), edge('lab:concept/ceiling', 'partOf', 'lab:method/roofline', '#r2'),
            edge('lab:concept/bound-bottleneck', 'prerequisiteOf', 'lab:method/roofline', '#q'), edge('lab:method/roofline', 'hasLimitation', 'lab:limitation/not-prediction', '#method'), edge('lab:concept/ridge-point', 'hasLimitation', 'lab:limitation/high-ridge', '#r1'),
            edge('lab:method/roofline', 'hasLimitation', 'lab:limitation/dram-only', '#r4'), edge('lab:method/roofline', 'hasLimitation', 'lab:limitation/cpu-era', '#sum'), edge('lab:concept/3c', 'relatedTo', 'lab:metric/operational-intensity', '#r4'),
@@ -224,6 +225,41 @@ KG = {'version': '1.0', 'page': P, 'nodes': [
              edge('lab:analogy/roof', 'relatedTo', 'lab:method/roofline', '#method'), edge('lab:analogy/ceilings', 'relatedTo', 'lab:concept/ceiling', '#r2'), edge('lab:limitation/dram-only', 'addressedBy', 'lab:question/hierarchy', '#reread'),
              edge('lab:sim/llm', 'relatedTo', 'lab:work/kiely2026inference', '#lab'), edge('lab:sim/ceil', 'relatedTo', 'lab:concept/ceiling', '#r2'), edge('lab:sim/four', 'relatedTo', 'lab:claim/all-bounded', '#r3'),
              edge('lab:sim/shift', 'relatedTo', 'lab:concept/3c', '#r4'), edge('lab:sim/roof', 'relatedTo', 'lab:method/roofline', '#method'), edge('lab:sim/ridge', 'relatedTo', 'lab:concept/ridge-point', '#r1')]}
+
+DEFS = {'lab:concept/ceiling': '특정 최적화를 하기 전에는 넘을 수 없는, 지붕 아래의 가로선(계산) 또는 비스듬한 선(메모리).',
+ 'lab:concept/compute-bound': '커널의 작업 강도가 능선점보다 커서 평평한 지붕(최대 계산력)에 막힌 상태.',
+ 'lab:concept/memory-bound': '커널의 작업 강도가 능선점보다 작아 비스듬한 지붕(대역폭 × 작업 강도)에 막힌 상태.',
+ 'lab:concept/bound-bottleneck': '성능을 예측하는 대신 무엇이 성능을 막는지(한계)를 드러내는 분석. 암달의 법칙이 대표 예.',
+ 'lab:concept/3c': '캐시 미스의 세 종류(필수 · 용량 · 충돌). 필수 미스가 작업 강도의 최대치를 정한다.',
+ 'lab:method/ilp-simd': '최적화 ①: 명령어 수준 병렬성을 높이고(루프 펼치기) SIMD 명령을 쓴다.',
+ 'lab:method/fp-balance': '최적화 ②: 부동소수점 곱셈과 덧셈 수를 맞춰 곱셈-덧셈 장치를 다 쓴다.',
+ 'lab:method/unit-stride': '최적화 ③: 메모리를 연속으로 읽게 루프를 바꿔 하드웨어 프리페치를 켠다.',
+ 'lab:method/affinity': '최적화 ④: 데이터와 그 데이터를 쓰는 스레드를 같은 칩-메모리 쌍에 둔다.',
+ 'lab:method/sw-prefetch': '최적화 ⑤: 소프트웨어로 메모리 요청을 미리 많이 띄워 지연시간을 숨긴다.',
+ 'lab:task/four-kernels': '일곱 난쟁이에서 고른 SpMV · LBMHD · Stencil · 3-D FFT (표 2).',
+ 'lab:dataset/four-machines': '2소켓 멀티코어 넷: Intel Xeon, AMD Opteron X4, Sun UltraSPARC T2+, IBM Cell (표 1).',
+ 'lab:limitation/not-prediction': '루프라인은 넘을 수 없는 상한이지 실제 성능의 예측값이 아니다.',
+ 'lab:limitation/high-ridge': '능선점이 오른쪽일수록 작업 강도가 아주 높은 커널만 최대 성능에 닿는다.',
+ 'lab:limitation/dram-only': '이 논문의 기본 그림은 DRAM 한 층의 대역폭만 본다(L2 등으로 바꿔 그릴 수는 있음).',
+ 'lab:limitation/cpu-era': '2008년 멀티코어 CPU로 검증했고 GPU는 결론에서 확장 가능성만 언급했다.',
+ 'lab:claim/x2-x4': '같은 대역폭에 계산력만 네 배 남짓 늘자 능선점이 1.0에서 4.4로 이동(그림 1b).',
+ 'lab:claim/ceilings': 'Opteron X2 천장: 계산 8.8 · 2.2 GFlops/s, 메모리 11 · 4.8 · 2.7 GB/s(그림 2).',
+ 'lab:claim/all-bounded': '네 컴퓨터 × 네 커널 16개 조합의 실측 성능이 모두 지붕과 천장 사이에 놓였다(표 4).',
+ 'lab:claim/median-oi': '16개 조합의 작업 강도는 0.25~1.64, 중앙값 0.60 — x86 능선점(4.4 · 6.7)보다 한참 왼쪽.',
+ 'lab:claim/t2-easiest': '능선점이 가장 낮은 T2+가 프로그래밍이 가장 쉬웠고, 가장 높은 Xeon이 가장 어려웠다.',
+ 'lab:analogy/roof': '작업 강도라는 기둥을 세우면 평평한 지붕이나 비스듬한 지붕 중 한 곳에 닿는다는 논문의 비유.',
+ 'lab:analogy/ceilings': '실험실 천장이 여러 겹이라 정리(최적화)를 해야 한 겹씩 뚫고 올라간다는 비유.',
+ 'lab:question/core': '이 프로그램을 빠르게 하려면 계산을 고칠까, 메모리 통로를 고칠까?',
+ 'lab:question/duel': 'H100을 H200으로 바꾸면 배치 1 디코드 속도 상한은 몇 배가 될까?',
+ 'lab:question/hierarchy': 'SRAM · L2 · NVLink처럼 여러 층의 대역폭을 한 그림에 어떻게 함께 그릴까?',
+ 'lab:sim/roof': '최대 계산력 · 대역폭 · 작업 강도를 바꿔 지붕과 점을 그려 보는 계기판.',
+ 'lab:sim/ridge': 'Opteron X2와 X4의 지붕을 겹쳐 같은 커널의 속도 비를 보는 계기판.',
+ 'lab:sim/ceil': '그림 2의 천장을 최적화 단추로 하나씩 뚫어 보는 계기판.',
+ 'lab:sim/four': '표 4의 실측 성능을 컴퓨터별 지붕 위에 찍는 계기판.',
+ 'lab:sim/shift': '최적화 전후 작업 강도가 오른쪽으로 옮겨 가는 모습을 보는 계기판.',
+ 'lab:sim/llm': '교재 3장 GPU 수치로 LLM 디코드 · 프리필을 지붕 위에 올리는 실험실(KV 캐시 선택).'}
+_miss = fill_defs(KG, DEFS)
+assert not _miss, _miss
 REFS = [ref(SRC, 'report', 'Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures', ['Samuel Williams', 'Andrew Waterman', 'David Patterson'], 2008, 'Technical Report UCB/EECS-2008-134, EECS Department, University of California, Berkeley', 'http://www.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-134.html', publisher='University of California, Berkeley', note='2008-10-17. CACM 52(4), 2009 게재판의 바탕'),
         book_ref()]
 REFS[1]['lab']['role'] = 'background'
@@ -243,9 +279,9 @@ function roof(cv,H,o){var W=fit(cv,H),x=cv.getContext('2d');x.clearRect(0,0,W,H)
   x.save();x.beginPath();x.rect(L0,T,R-L0,B-T);x.clip();
   if(o.region)o.region(x,px,py,L0,R,T,B);
   (o.lines||[]).forEach(function(l){x.strokeStyle=l.c;x.lineWidth=l.w||2.5;x.setLineDash(l.dash||[]);x.beginPath();var n=80;for(var i=0;i<=n;i++){var xv=Math.pow(10,lx0+(lx1-lx0)*i/n),yv=Math.min(l.p,l.b*xv);i?x.lineTo(px(xv),py(yv)):x.moveTo(px(xv),py(yv));}x.stroke();x.setLineDash([]);
-    if(l.lab){x.fillStyle=l.c;x.font='12px '+F;x.textAlign='right';x.fillText(l.lab,R-4,py(l.p)-6);}});
+    if(l.lab&&W>=520){x.fillStyle=l.c;x.font='12px '+F;x.textAlign='right';x.fillText(l.lab,R-4,py(l.p)-6);}});
   (o.v||[]).forEach(function(v){x.strokeStyle=v.c||C.stain;x.lineWidth=1.5;x.setLineDash([5,4]);x.beginPath();x.moveTo(px(v.x),T);x.lineTo(px(v.x),B);x.stroke();x.setLineDash([]);});
-  (o.pts||[]).forEach(function(p){x.fillStyle=p.c;x.beginPath();x.arc(px(p.x),py(p.y),p.r||6,0,7);x.fill();x.strokeStyle='#fff';x.lineWidth=1.5;x.stroke();if(p.lab){x.fillStyle=C.text;x.font='12px '+F;x.textAlign='left';x.fillText(p.lab,px(p.x)+9,py(p.y)+(p.dy||-6));}});
+  (o.pts||[]).forEach(function(p){x.fillStyle=p.c;x.beginPath();x.arc(px(p.x),py(p.y),p.r||6,0,7);x.fill();x.strokeStyle='#fff';x.lineWidth=1.5;x.stroke();if(p.lab){x.font='12px '+F;x.textAlign='left';var tw=x.measureText(p.lab).width,lx=px(p.x)+9,ly=py(p.y)+(p.dy||-6);if(lx+tw>R-2)lx=px(p.x)-9-tw;x.fillStyle='rgba(255,255,255,.88)';x.fillRect(lx-3,ly-12,tw+6,16);x.fillStyle=C.text;x.fillText(p.lab,lx,ly);}});
   x.restore();x.lineWidth=1;return {x:x,W:W,px:px,py:py};}
 L.kpis('#heroK',[['min(·,·)','지붕 두 개 중 낮은 쪽','g'],['4 × 4','컴퓨터 × 커널','i'],['16/16','모두 지붕 아래','m'],['0.60','작업 강도 중앙값','a']]);
 /* 방법 */
@@ -258,20 +294,20 @@ function syncR(){$('#rF').value=rf;$('#rB').value=rb;}
 L.bindSeg('#rP',function(v){if(v==='x2'){rf=17.6;rb=15;syncR();}updR();});$('#rF').addEventListener('input',function(){rf=+this.value;updR()});$('#rB').addEventListener('input',function(){rb=+this.value;updR()});
 $('#rO').addEventListener('input',function(){ro=Math.pow(2,+this.value);updR()});L.addMod(cR,function(dt){if(dt===0)drawR()});updR();
 /* ① 능선점 */
-var cK=$('#cRidge'),ko=0.5,X2={p:17.6,b:15},X4={p:66,b:15};
-function drawK(){var g=roof(cK,300,{x0:1/8,x1:16,y0:1,y1:128,lines:[{p:X4.p,b:X4.b,c:C.info,lab:'Opteron X4 (능선점 4.4)'},{p:X2.p,b:X2.b,c:C.gfp,lab:'Opteron X2'}],v:[{x:ko}],
-  pts:[{x:ko,y:Math.min(X2.p,X2.b*ko),c:C.gfp},{x:ko,y:Math.min(X4.p,X4.b*ko),c:C.info,lab:'×'+f(Math.min(X4.p,X4.b*ko)/Math.min(X2.p,X2.b*ko),2)}]});stamp(g.x,g.W,'X4 지붕은 능선점 4.4로 역산');}
+var cK=$('#cRidge'),ko=0.5,X2={p:17.6,b:15},X4={p:74,b:16.6};
+function drawK(){var g=roof(cK,300,{x0:1/8,x1:16,y0:1,y1:128,lines:[{p:X4.p,b:X4.b,c:C.info,lab:'Opteron X4 (표 1)'},{p:X2.p,b:X2.b,c:C.gfp,lab:'Opteron X2'}],v:[{x:ko}],
+  pts:[{x:ko,y:Math.min(X2.p,X2.b*ko),c:C.gfp},{x:ko,y:Math.min(X4.p,X4.b*ko),c:C.info,lab:'×'+f(Math.min(X4.p,X4.b*ko)/Math.min(X2.p,X2.b*ko),2)}]});stamp(g.x,g.W,'그림 1a · 표 1 값');}
 function updK(){L.setTxt('#kOV',oiTxt(ko)+' Flops/B');var a=Math.min(X2.p,X2.b*ko),b=Math.min(X4.p,X4.b*ko),r=b/a;
   L.kpis('#kK',[[f(a,1),'X2 상한 (GFlops/s)','g'],[f(b,1),'X4 상한 (GFlops/s)','i'],['×'+f(r,2),'X4 ÷ X2',r>1.05?'g':'r']]);
   L.ins('#kI',[[r>1.05?'g':'r',r>1.05?'작업 강도가 X2의 능선점보다 커서 X4의 넓은 실험대를 써먹어요.':'둘 다 같은 대역폭의 비스듬한 지붕 아래 — 계산력이 네 배여도 그대로예요.'],['i','논문: X4에서 이득을 보려면 작업 강도가 1보다 커야 한다.']]);drawK();}
 $('#kO').addEventListener('input',function(){ko=Math.pow(2,+this.value);updK()});L.addMod(cK,function(dt){if(dt===0)drawK()});updK();
 /* ② 천장 */
-var cQ=$('#cCeil'),cc=0,cm=0,co=1,CC=[2.2,8.8,17.6],CM=[2.7,4.8,11,15],CCN=['스레드 병렬만','+ ILP · SIMD','+ 곱셈·덧셈 균형 (지붕)'],CMN=['단위 보폭만','다음 천장 (그림 2b)','+ 메모리 친화성','+ 소프트웨어 프리페치 (지붕)'];
+var cQ=$('#cCeil'),cc=0,cm=0,co=1,CC=[2.2,8.8,17.6],CM=[2.7,4.8,11,15],CCN=['스레드 병렬만','+ ILP · SIMD','+ 곱셈·덧셈 균형 (지붕)'],CMN=['③ 단위 보폭만','④ 메모리 친화성 천장','⑤ 소프트웨어 프리페치 천장','측정 대역폭 지붕'];
 function region(o){return CM[3]*o<=CC[0]?'mem':CM[0]*o>=CC[2]?'comp':'both'}
 function drawQ(){var lines=[];CM.forEach(function(b,i){lines.push({p:1e9,b:b,c:i<=cm?C.amber:'rgba(163,92,0,.3)',w:i===3?2.5:1.5,dash:i===3?[]:[6,4]})});
   CC.forEach(function(p,i){lines.push({p:p,b:1e9,c:i<=cc?C.info:'rgba(30,85,200,.3)',w:i===2?2.5:1.5,dash:i===2?[]:[6,4],lab:f(p,1)})});
   var a=Math.min(CC[cc],CM[cm]*co);
-  var g=roof(cQ,330,{x0:1/8,x1:16,y0:0.5,y1:32,lines:lines,v:[{x:co}],region:function(x,px,py,L0,R,T,B){var xa=CC[0]/CM[3],xb=CC[2]/CM[0];x.fillStyle='rgba(163,92,0,.07)';x.fillRect(L0,T,px(xa)-L0,B-T);x.fillStyle='rgba(19,115,58,.07)';x.fillRect(px(xa),T,px(xb)-px(xa),B-T);x.fillStyle='rgba(30,85,200,.07)';x.fillRect(px(xb),T,R-px(xb),B-T);},
+  var g=roof(cQ,330,{x0:1/8,x1:16,y0:0.5,y1:32,lines:lines,v:[{x:co}],region:function(x,px,py,L0,R,T,B){var xa=CC[0]/CM[3],xb=CC[2]/CM[0];x.fillStyle='rgba(163,92,0,.16)';x.fillRect(L0,T,px(xa)-L0,B-T);x.fillStyle='rgba(19,115,58,.14)';x.fillRect(px(xa),T,px(xb)-px(xa),B-T);x.fillStyle='rgba(30,85,200,.14)';x.fillRect(px(xb),T,R-px(xb),B-T);x.font='700 12px '+F;x.textAlign='center';x.fillStyle=C.amber;x.textAlign='left';x.fillText('메모리만',L0+3,B-8);x.textAlign='center';x.fillStyle=C.gfp;x.fillText('둘 다',(px(xa)+px(xb))/2,B-8);x.fillStyle=C.info;x.fillText('계산만',(px(xb)+R)/2,B-8);},
     pts:[{x:co,y:a,c:C.stain,lab:'지금 상한 '+f(a,1)}]});stamp(g.x,g.W,'그림 2 값 · 구역은 단순화');}
 function updQ(){L.setTxt('#cOV',oiTxt(co)+' Flops/B');var a=Math.min(CC[cc],CM[cm]*co),bind=CM[cm]*co<CC[cc]?'mem':'comp',rg=region(co),
   nxt=bind==='mem'?(cm<3?Math.min(CC[cc],CM[cm+1]*co):a):(cc<2?Math.min(CC[cc+1],CM[cm]*co):a);
@@ -296,15 +332,20 @@ function updS(){var s=SHIFT[sk],r=Math.min(XP,XB*s[2])/Math.min(XP,XB*s[1]);L.kp
 L.bindSeg('#sK2',function(v){sk=v;updS()});L.bindSeg('#sA',function(v){sa=+v;updS()});L.addMod(cS,function(dt){if(dt===0)drawS()});updS();
 $$('#flip button').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true')})});
 /* 실험실 */
-var cL=$('#cLab'),gg='H100',gb=1,gn=2048,gp=70,GPU={H100:[1979,3.35],H200:[1979,4.8],B200:[5000,8],L4:[242,0.3]};
-function drawL(){var g=GPU[gg],P=g[0],B=g[1],od=2*gb,op=2*gn,ad=Math.min(P,B*od),ap=Math.min(P,B*op);
+var cL=$('#cLab'),gg='H100',gb=1,gn=2048,gp=70,gc=8192,gk=0,GPU={H100:[1979,3.35,80],H200:[1979,4.8,141],B200:[5000,8,192],L4:[242,0.3,24]},KVB={8:65536,70:163840};
+function dstep(){var W=gp*1e9,kv=gk?gb*gc*KVB[gp]:0,fl=2*gp*1e9*gb;return {oi:fl/(W+kv),kvGB:gb*gc*KVB[gp]/1e9}}
+function drawL(){var g=GPU[gg],P=g[0],B=g[1],d=dstep(),od=d.oi,op=2*gn,ad=Math.min(P,B*od),ap=Math.min(P,B*op);
   var r=roof(cL,330,{x0:1,x1:16384,y0:0.5,y1:20000,yl:'TFLOPS (로그)',lines:[{p:P,b:B,c:C.text,lab:gg+' FP8 '+f(P,0)+' TF'}],
-    pts:[{x:od,y:ad,c:C.amber,lab:'디코드 (배치 '+gb+')'},{x:op,y:ap,c:C.info,lab:'프리필 ('+gn+'토큰)',dy:18},{x:P/B,y:P,c:C.stain,r:5,lab:'능선점 '+f(P/B,0),dy:-10}]});stamp(r.x,r.W,'설명용: 작업 강도 ≈ 2 × 토큰 수, KV 캐시 무시');}
-function updL(){L.setTxt('#gBtV',String(gb));L.setTxt('#gNV',String(gn));var g=GPU[gg],P=g[0],B=g[1],ad=Math.min(P,B*2*gb),tps=ad*1e12/(2*gp*1e9);
-  L.kpis('#gK',[[f(P/B,0),'능선점 (Flops/byte)','m'],[B*2*gb<P?'메모리':'계산','디코드가 닿는 지붕',B*2*gb<P?'a':'i'],[f(tps,0),'디코드 합계 토큰/초 상한','g'],[f(tps/gb,0),'손님 1명당 토큰/초 상한','i']]);
-  L.ins('#gI',[[B*2*gb<P?'a':'i',B*2*gb<P?'배치 '+gb+'에서는 메모리 한계 — 배치를 키우면 같은 무게 읽기로 더 많은 손님을 처리해 합계 처리량이 거의 비례해 늘어요.':'능선점을 넘었어요. 이제 배치를 더 키워도 합계 처리량은 늘지 않고 손님당 속도만 줄어요.'],
+    pts:[{x:od,y:ad,c:C.amber,lab:'디코드 (배치 '+gb+(gk?', KV 포함':'')+')',dy:-12},{x:op,y:ap,c:C.info,lab:'프리필 ('+gn+'토큰)',dy:20},{x:P/B,y:P,c:C.stain,r:5,lab:'능선점 '+f(P/B,0),dy:-14}]});stamp(r.x,r.W,gk?'설명용: KV 캐시 = Llama 계열 구조 가정':'설명용: 작업 강도 ≈ 2 × 토큰 수, KV 캐시 무시');}
+function updL(){L.setTxt('#gBtV',String(gb));L.setTxt('#gNV',String(gn));L.setTxt('#gCV',f(gc,0)+'토큰');var g=GPU[gg],P=g[0],B=g[1],d=dstep(),ad=Math.min(P,B*d.oi),tps=ad*1e12/(2*gp*1e9),w=gp,need=w*1.5,oom=w+d.kvGB>g[2];
+  L.kpis('#gK',[[f(P/B,0),'능선점 (Flops/byte)','m'],[B*d.oi<P?'메모리':'계산','디코드가 닿는 지붕',B*d.oi<P?'a':'i'],[f(tps,0),'디코드 합계 토큰/초 상한','g'],[f(tps/gb,0),'손님 1명당 토큰/초 상한','i'],
+    [oom?'OOM':need>g[2]?'여유 부족':'여유 있음',gg+' 한 장 메모리 ('+g[2]+' GB) · 무게 '+w+' GB'+(gk?' + KV '+f(d.kvGB,1)+' GB':''),oom?'r':need>g[2]?'a':'g']]);
+  L.ins('#gI',[[B*d.oi<P?'a':'i',B*d.oi<P?'배치 '+gb+'에서는 메모리 한계 — 배치를 키우면 같은 무게 읽기로 더 많은 손님을 처리해 합계 처리량이 늘어요.':'능선점을 넘었어요. 이제 배치를 더 키워도 합계 처리량은 늘지 않고 손님당 속도만 줄어요.'],
+    [gk?'r':'i',gk?'KV 캐시를 넣으면 손님마다 문맥 '+f(gc,0)+'토큰의 KV('+f(d.kvGB/gb,2)+' GB)를 매 토큰 읽어요. 배치를 키워도 작업 강도가 '+f(d.oi,0)+'에서 멈춰 능선점에 잘 못 닿아요 — 긴 문맥 서빙이 메모리 한계에 머무는 이유예요.':'"KV 캐시 읽기: 넣어 보기"를 누르면 긴 문맥에서 능선점이 얼마나 멀어지는지 보여요.'],
+    [oom||need>g[2]?'r':'g',oom?'이 GPU 한 장에는 무게와 KV 캐시가 다 안 들어가요(OOM). 실제로는 여러 장으로 나눠야 해요(교재 5.4).':need>g[2]?'무게는 들어가지만 교재 경험칙(무게 × 1.5 = '+f(need,0)+' GB)에 못 미쳐요. 실제 서빙은 2장 이상을 권해요.':'교재 경험칙(무게 × 1.5)도 만족해요.'],
     ['g','프리필('+gn+'토큰)은 작업 강도 '+f(2*gn,0)+'로 '+(2*gn>P/B?'평평한 지붕 — 계산 한계(교재 3.1.1과 같은 결론).':'아직 비스듬한 지붕 — 입력이 짧으면 프리필도 메모리 한계일 수 있어요.')]]);drawL();}
-L.bindSeg('#gG',function(v){gg=v;updL()});$('#gBt').addEventListener('input',function(){gb=Math.pow(2,+this.value);updL()});$('#gN').addEventListener('input',function(){gn=Math.pow(2,+this.value);updL()});L.bindSeg('#gP',function(v){gp=+v;updL()});L.addMod(cL,function(dt){if(dt===0)drawL()});updL();
+L.bindSeg('#gG',function(v){gg=v;updL()});$('#gBt').addEventListener('input',function(){gb=Math.pow(2,+this.value);updL()});$('#gN').addEventListener('input',function(){gn=Math.pow(2,+this.value);updL()});
+$('#gC').addEventListener('input',function(){gc=Math.max(1,+this.value);updL()});L.bindSeg('#gK2',function(v){gk=+v;updL()});L.bindSeg('#gP',function(v){gp=+v;updL()});L.addMod(cL,function(dt){if(dt===0)drawL()});updL();
 /* 대결 */
 L.Duel({fmt:function(v){return v.toFixed(2)+'배'},run:function(){var h1=Math.min(1979,3.35*2),h2=Math.min(1979,4.8*2),r=h2/h1;
   return {fly:1,robo:r,res:'R',bars:[['f','초파리 (FLOPS 비율)',1],['r','주판봇 (루프라인 계산)',r]],asst:'배치 1이면 작업 강도 2, 능선점 591 · 412보다 한참 왼쪽이에요. 둘 다 비스듬한 지붕이라 상한 비율 = 4.8 ÷ 3.35 ≈ '+r.toFixed(2)+'배.',
@@ -317,11 +358,11 @@ def spec():
                      'kgStart': 'lab:method/roofline', 'citeKey': 'ahn2026roofline', 'domain': 'ai',
                      'suggestedCitation': '안상선 (2026). 루프라인 — 지붕 두 개로 성능의 상한을 그린다. 인퍼런스 스터디 북 4주차 논문 해설. ' + URL},
             'kg': KG, 'refs': REFS, 'gl': GL, 'core': CORE, 'quiz': QUIZ, 'js': JS, 'css': LIGHT,
-            'nav': nav([('cast', '식구'), ('q', '1 질문'), ('method', '2 지붕'), ('r1', '결과①'), ('r2', '결과②'), ('r3', '결과③'), ('r4', '결과④'), ('lab', '실험실'), ('duel', '대결'), ('reread', '다시 읽기'), ('sum', '한 장'), ('kg', '색인'), ('export', '꾸러미')]),
+            'nav': nav([('cast', '식구'), ('q', '1 질문'), ('method', '2 지붕'), ('r1', '결과①'), ('r2', '결과②'), ('r3', '결과③'), ('r4', '결과④'), ('lab', '실험실'), ('duel', '대결'), ('reread', '다시 읽기'), ('sum', '한 장'), ('teach', '강의자'), ('kg', '색인'), ('export', '꾸러미')]),
             'body': cover('cover_roofline', '인퍼런스 스터디 북 · 4주차 · 논문', '연구실 식구 여섯이 벽에 그려진 지붕 모양 그래프 앞에 모인 대체 표지',
                           motif=''.join('<i class="%s"></i>' % c for c in ['a', 'a', 'm', 'on', 'on', 'on', 'a', 'm', 'on', 'on', 'on', 'on']),
                           moods={'doc': 'board', 'asst': 'report', 'fly': 'arms', 'robo': 'chart', 'sia': 'explain', 'moa': 'report'})
-                    + hero + cast + q + method + r1 + r2 + r3 + r4 + lab + duel_sec + reread + onepage + outro,
+                    + hero + cast + q + method + r1 + r2 + r3 + r4 + lab + duel_sec + reread + onepage + outro + teach_appendix(QUIZ, {'q': '1 질문', 'method': '2 지붕', 'r1': '결과 ①', 'r2': '결과 ②', 'r3': '결과 ③', 'r4': '결과 ④', 'lab': '실험실'}),
             'footer': footer([('논문', 'Williams, S., Waterman, A., & Patterson, D. (2008). Roofline: An Insightful Visual Performance Model for Floating-Point Programs and Multicore Architectures. Tech. Rep. UCB/EECS-2008-134, UC Berkeley'),
                               ('그림 1 · 2', '논문 3 · 4장 Opteron X2 · X4 수치 (원문 그대로)'), ('표 1 · 4', '논문 6장 네 멀티코어 사양과 실측 성능 (원문 그대로)'), ('실험실 GPU 수치', 'Kiely (2026) Inference Engineering 3장 표')],
                              ['결과 ① X4 지붕(능선점 4.4로 역산)', '결과 ② 구역 판정(가장 낮은 · 높은 천장으로 단순화)', '실험실 작업 강도 ≈ 2 × 토큰 수(KV 캐시 · 어텐션 무시)', '대결의 비율(효율 100% 상한)'],

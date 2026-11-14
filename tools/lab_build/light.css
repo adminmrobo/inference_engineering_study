@@ -83,3 +83,9 @@ body .gf .gf-mini .bar i.on{color:#fff;box-shadow:none}
 body .gf .gf-stage .gf-bt{background:rgba(28,30,45,.92);color:#eceaf3}
 body .gf .gf-stage .gf-hint{background:rgba(19,20,31,.7)}
 .reflist .ref{overflow-wrap:anywhere;word-break:break-all}
+/* 휴대폰: 넓은 그래프도 화면 폭에 맞춘다 */
+@media (max-width:700px){.cwrap canvas.wide{min-width:0}}
+#course ol li{margin:2px 0}
+body .gf .gf-lead{color:var(--gf-m)}
+body .gf .gf-lift button{background:#fff}
+body .gf .gf-lift button:hover,body .gf .gf-lift button[aria-pressed=true]{background:var(--gf-p2)}
