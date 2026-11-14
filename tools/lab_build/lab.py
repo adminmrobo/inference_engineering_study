@@ -200,7 +200,7 @@ def book_ref():
     return ref('kiely2026inference', 'book', 'Inference Engineering', ['Philip Kiely'], 2026, publisher='Baseten Books',
                url='https://www.baseten.co/inference-engineering/', role='primary')
 
-def footer(src_rows, demo_items, prev=None, nxt=None, extra=''):
+def footer(src_rows, demo_items, prev=None, nxt=None, extra='', ver='v1.12'):
     rows = ''.join('<tr><td>%s</td><td>%s</td></tr>' % r for r in src_rows)
     demos = ''.join('<li>%s</li>' % d for d in demo_items)
     links = ''
@@ -210,4 +210,4 @@ def footer(src_rows, demo_items, prev=None, nxt=None, extra=''):
     return ('<footer><div class="wrap"><h3>출처</h3><div class="tw"><table class="tb"><tr><th>항목</th><th>출처</th></tr>%s</table></div>'
             '<h3>예시값·설명용 모형인 것</h3><ul>%s</ul>%s<p>%s</p>'
             '<p>글 · 안상선 ((주)M-Robo 대표) · 캐릭터: 박사 · 조수(하루) · 초파리 연구원 · 주판봇 · 인턴 시아 · 인턴 모아 (설정·그림 저작권 안상선, 허락 없이 사용 금지) · '
-            '형식: ai-lab-explainer v1.12 · 이 해설은 교재·논문의 요약·해설이며 원문을 대신하지 않습니다.</p></div></footer>') % (rows, demos, extra, links)
+            '형식: ai-lab-explainer %s · 이 해설은 교재·논문의 요약·해설이며 원문을 대신하지 않습니다.</p></div></footer>') % (rows, demos, extra, links, ver)

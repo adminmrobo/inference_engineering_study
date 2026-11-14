@@ -46,6 +46,16 @@
     "export": true
    },
    {
+    "path": "week_04_textbook_ch03/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_04_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
     "path": "week_03_textbook_ch02_p3_to_end/index.html",
     "kg": true,
     "export": true
@@ -58,7 +68,7 @@
    "ko"
   ],
   "pages": {
-   "ko": 9
+   "ko": 11
   },
   "readme_langs": [
    "ko"
@@ -250,7 +260,49 @@
    "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: night lab, indigo-violet background, purple light, teal monitor glow, a small bright lab bench in front and a huge dim storage room at the end of a corridor.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, watching with arms crossed;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, carrying a tray of blocks;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, writing two lines in a notebook;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, standing at the storage room door with an abacus;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, stacking empty trays neatly;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, sweeping the corridor with a duster.\nVisual metaphor of the topic: trays of tiles carried from the storage room to a small bench, only one tile glowing green on the bench.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
    "source_of": null,
    "status": "todo"
+  },
+  {
+   "id": "week_04_textbook_ch03/cover_ch03",
+   "role": "cover",
+   "path": "week_04_textbook_ch03/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents, a sunlit machine room inside the lab with a tall server rack of glowing GPU boards, a tower of stacked memory chips and glowing cables bridging two racks.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the memory tower;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, reading a spec clipboard;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, standing next to a large-memory desktop computer, arms crossed;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, holding a small fast graphics card up high;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, holding a floor map of the rack room;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, writing in a notebook near the cable bridge.\nVisual metaphor of the topic: a GPU rack with a memory tower beside it and a bright bridge of cables between two racks, one small desk computer in the corner.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_04_article_01/cover_roofline",
+   "role": "cover",
+   "path": "week_04_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents, a bright lab wall with a giant chart drawn as a house roof: a slanted line rising from the lower left that meets a flat horizontal line, several thinner ceiling lines below.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, tracing the slanted roof line with a pointer;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, placing a glowing dot under the roof;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, looking up at the thin ceiling lines with a magnifier;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, pointing at the slanted line with its abacus;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, holding a ruler at the ridge point;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, holding a small ladder under the ceiling lines.\nVisual metaphor of the topic: a roofline shaped like a house roof on the wall, small glowing dots under the roof, one dot touching the slanted part.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
+   "source_of": null,
+   "status": "todo"
   }
  ],
- "updated": "2026-11-11"
+ "updated": "2026-11-14"
 }

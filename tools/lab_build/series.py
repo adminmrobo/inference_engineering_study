@@ -31,8 +31,8 @@ WEEKS = [
         {'kind': 'textbook', 'folder': 'week_03_textbook_ch02_p3_to_end', 'label': '2장 후반', 'title': '병목을 찾아라', 'range': 'Chapter 2 Models 2.3–2.5', 'status': 'kept', 'old': 'week_03_textbook_ch02_p3_to_end'},
         {'kind': 'article', 'folder': 'week_03_article_01', 'label': '논문 1', 'title': '번개 어텐션 — 창고를 덜 오가면 빨라진다', 'range': 'Dao et al. (2022) FlashAttention', 'status': 'done', 'old': 'week_03_article_01'}]},
     {'no': 4, 'title': 'GPU 구조와 추론 실행 환경', 'items': [
-        {'kind': 'textbook', 'folder': 'week_04_textbook_ch03', 'label': '3장', 'title': '하드웨어', 'range': 'Chapter 3 Hardware 3.1–3.5', 'status': 'plan'},
-        {'kind': 'article', 'folder': 'week_04_article_01', 'label': '논문 1', 'title': '루프라인 모델 (예정)', 'range': 'Williams et al. (2008) Roofline', 'status': 'plan'}]},
+        {'kind': 'textbook', 'folder': 'week_04_textbook_ch03', 'label': '3장', 'title': 'GPU 기계실 — 하드웨어', 'range': 'Chapter 3 Hardware 3.1–3.5', 'status': 'done'},
+        {'kind': 'article', 'folder': 'week_04_article_01', 'label': '논문 1', 'title': '루프라인 — 지붕 두 개로 성능의 상한을 그린다', 'range': 'Williams, Waterman & Patterson (2008) Roofline', 'status': 'done'}]},
     {'no': 5, 'title': '추론 소프트웨어와 성능 측정', 'items': [
         {'kind': 'textbook', 'folder': 'week_05_textbook_ch04', 'label': '4장', 'title': '소프트웨어', 'range': 'Chapter 4 Software 4.1–4.5', 'status': 'plan'},
         {'kind': 'article', 'folder': 'week_05_article_01', 'label': '논문 1', 'title': '페이지드 어텐션 · vLLM (예정)', 'range': 'Kwon et al. (2023) PagedAttention', 'status': 'plan'}]},

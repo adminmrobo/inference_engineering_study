@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """폴더별 README·표지 지시문·이미지 명세서와 저장소 맨 위 README·cover_manifest.json을 쓴다. 사용: python3 docs.py <스터디 북 루트>"""
-import json, os, sys
+import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from series import *
 
@@ -42,26 +42,37 @@ PAGES = [
       scene='a small bright lab bench in front and a huge dim storage room at the end of a corridor', metaphor='trays of tiles carried from the storage room to a small bench, only one tile glowing green on the bench',
       poses={'doc': 'center back, watching with arms crossed', 'asst': 'carrying a tray of blocks', 'fly': 'on the left facing right, writing two lines in a notebook', 'robo': 'on the right facing left, standing at the storage room door with an abacus', 'sia': 'stacking empty trays neatly', 'moa': 'sweeping the corridor with a duster'},
       ko_alt='연구실 식구 여섯이 작은 실험대와 복도 끝 창고 사이에서 쟁반을 나르는 표지', duel='(원본 대결 그대로)', outro=None, retro=True),
+    dict(folder='week_04_textbook_ch03', key='cover_ch03', n='04-3', title='GPU 기계실 — 3장 하드웨어', kind='교재', src='Kiely (2026) Inference Engineering, Chapter 3 Hardware', day=True,
+      scene='a sunlit machine room inside the lab with a tall server rack of glowing GPU boards, a tower of stacked memory chips and glowing cables bridging two racks', metaphor='a GPU rack with a memory tower beside it and a bright bridge of cables between two racks, one small desk computer in the corner',
+      poses={'doc': 'center back, pointing at the memory tower', 'asst': 'reading a spec clipboard', 'fly': 'on the left facing right, standing next to a large-memory desktop computer, arms crossed', 'robo': 'on the right facing left, holding a small fast graphics card up high', 'sia': 'holding a floor map of the rack room', 'moa': 'writing in a notebook near the cable bridge'},
+      ko_alt='연구실 식구 여섯이 GPU 랙과 메모리 탑이 있는 기계실에 모인 표지', duel='70B 4비트, 어느 책상이 빠를까 (F 초파리 승)', outro='sc_ch03_outro'),
+    dict(folder='week_04_article_01', key='cover_roofline', n='04-A1', title='루프라인 — 지붕 두 개로 성능의 상한을 그린다', kind='논문', src='Williams, Waterman & Patterson (2008) Roofline, UCB/EECS-2008-134', day=True,
+      scene='a bright lab wall with a giant chart drawn as a house roof: a slanted line rising from the lower left that meets a flat horizontal line, several thinner ceiling lines below', metaphor='a roofline shaped like a house roof on the wall, small glowing dots under the roof, one dot touching the slanted part',
+      poses={'doc': 'center back, tracing the slanted roof line with a pointer', 'asst': 'placing a glowing dot under the roof', 'fly': 'on the left facing right, looking up at the thin ceiling lines with a magnifier', 'robo': 'on the right facing left, pointing at the slanted line with its abacus', 'sia': 'holding a ruler at the ridge point', 'moa': 'holding a small ladder under the ceiling lines'},
+      ko_alt='연구실 식구 여섯이 벽에 그려진 지붕 모양 그래프 앞에 모인 표지', duel='H100 → H200 배치 1 디코드 (R 주판봇 승)', outro='sc_roofline_outro'),
 ]
+
+NIGHT = 'night lab, indigo-violet background, purple light, teal monitor glow'
+DAY = 'bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents'
 
 def prompt(p):
     chars = ';\n  '.join('%s, %s' % (DESC[w], p['poses'][w]) for w in ['doc', 'asst', 'fly', 'robo', 'sia', 'moa'])
     return ('Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n'
             '  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\n'
-            'Scene: night lab, indigo-violet background, purple light, teal monitor glow, %s.\nAll six characters together:\n  %s.\n'
+            'Scene: %s, %s.\nAll six characters together:\n  %s.\n'
             'Visual metaphor of the topic: %s.\nComposition: keep every face and hand inside the central safe area (12%% margin left and right, 10%% top, 18%% bottom);\n'
-            '  keep the bottom-left corner dark and simple.\nMood: curious, friendly rivalry, the moment before the result.\n'
-            'No text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.') % (p['scene'], chars, p['metaphor'])
+            '  keep the bottom-left corner %s and simple.\nMood: curious, friendly rivalry, the moment before the result.\n'
+            'No text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.') % ((DAY if p.get('day') else NIGHT), p['scene'], chars, p['metaphor'], ('plain, bright' if p.get('day') else 'dark'))
 
 def cover_md(p):
-    return ('# 표지 지시문 — %s %s\n\n| 항목 | 내용 |\n|---|---|\n| 키 · 판 | %s · L (16:9, 1920 이상) |\n| 장소 (앵커) | 밤의 연구실 |\n| 주제 은유 | %s |\n'
+    return ('# 표지 지시문 — %s %s\n\n| 항목 | 내용 |\n|---|---|\n| 키 · 판 | %s · L (16:9, 1920 이상) |\n| 장소 (앵커) | %s |\n| 주제 은유 | %s |\n'
             '| 여섯 식구 포즈 | %s |\n| 대체 글 (alt) | %s |\n| 앞 표지와 다른 점 | 스터디 북 안의 다른 표지와 장소 소품·포즈가 겹치지 않게 정함 |\n\n'
             '**참고 이미지 (함께 올리기):** 여섯 식구 기본 그림 (기준: GitHub `adminmrobo/fruitfly-lab-expressions`, 시아·모아는 `specs/sia`, `specs/moa`).\n\n'
             '**지금 페이지에는** 그림이 없을 때 쓰는 대체 표지(여섯 식구 표정 그림을 한 줄로 세운 것)가 들어가 있습니다. 그림을 받으면 `assets/img/%s.webp`(1600×900, 220 KB 이하)로 넣고 표지 블록을 바꿉니다.\n\n'
             '**Genspark에 붙여 넣기 ↓**\n```\n웹페이지 맨 위에 거는 표지 그림 1장을 만들어 줘.\n- 비율 16:9, 가로 1920px 이상\n- 첨부한 참고 이미지의 여섯 캐릭터(박사, 조수, 초파리 연구원, 주판봇, 인턴 시아, 인턴 모아)를 같은 그림체·같은 외형으로, 여섯 모두 등장\n'
-            '- 그림 안에 글자·숫자·로고를 넣지 말 것\n- 얼굴과 손은 가장자리에서 떨어진 가운데 영역에, 왼쪽 아래 구석은 어둡고 단순하게\n아래 영어 프롬프트를 그대로 써 줘.\n\n%s\n```\n\n'
+            '- 그림 안에 글자·숫자·로고를 넣지 말 것\n- 얼굴과 손은 가장자리에서 떨어진 가운데 영역에, 왼쪽 아래 구석은 %s 단순하게\n아래 영어 프롬프트를 그대로 써 줘.\n\n%s\n```\n\n'
             '**고칠 때 (같은 대화에서):** `Same six characters, same art style and composition. Change only: {고칠 점}. Still no text.`\n') % (
-        p['n'], p['title'], p['key'], p['metaphor'], ' / '.join('%s %s' % (k, v) for k, v in p['poses'].items()), p['ko_alt'], p['key'], prompt(p))
+        p['n'], p['title'], p['key'], ('낮의 연구실' if p.get('day') else '밤의 연구실'), p['metaphor'], ' / '.join('%s %s' % (k, v) for k, v in p['poses'].items()), p['ko_alt'], p['key'], ('밝고' if p.get('day') else '어둡고'), prompt(p))
 
 def img_md(p):
     rows = '| `%s` | L | 글 표지 (여섯 식구) | 페이지 맨 위 | 대체 표지 (표정 그림 줄 세우기) | P1 | 필요 |\n' % p['key']
@@ -111,7 +122,7 @@ for p in PAGES:
     ont.append({'path': p['folder'] + '/index.html', 'kg': True, 'export': True})
 ont.append({'path': 'week_03_textbook_ch02_p3_to_end/index.html', 'kg': True, 'export': True})
 man = {'series_ko': '인퍼런스 스터디 북', 'title_ko': '인퍼런스 스터디 북 — 『Inference Engineering』 10주 연구실 해설', 'site_title': '인퍼런스 스터디 북', 'site_url': BASE,
-       'ontology': {'pages': ont, 'files': []}, 'i18n': {'langs': ['ko'], 'pages': {'ko': len(ont)}, 'readme_langs': ['ko']}, 'languages': ['ko'], 'items': items, 'updated': '2026-11-11'}
+       'ontology': {'pages': ont, 'files': []}, 'i18n': {'langs': ['ko'], 'pages': {'ko': len(ont)}, 'readme_langs': ['ko']}, 'languages': ['ko'], 'items': items, 'updated': '2026-11-14'}
 open(os.path.join(ROOT, 'cover_manifest.json'), 'w', encoding='utf-8').write(json.dumps(man, ensure_ascii=False, indent=1))
 
 # 저장소 README
@@ -119,7 +130,7 @@ rows = ''
 for w in WEEKS:
     for it in w['items']:
         f = os.path.join(ROOT, it['folder'], 'index.html')
-        st = '준비 중' if it['status'] == 'plan' else '원본 그대로' if it['status'] == 'kept' else ('연구실판 완성' if os.path.exists(f) and 'ai-lab-explainer v1.12' in open(f, encoding='utf-8').read() else '다시 만드는 중')
+        st = '준비 중' if it['status'] == 'plan' else '원본 그대로' if it['status'] == 'kept' else ('연구실판 완성' if os.path.exists(f) and re.search(r'ai-lab-explainer v1\.1\d', open(f, encoding='utf-8').read()) else '다시 만드는 중')
         link = '[%s](%s/)' % (it['folder'], it['folder']) if it['status'] != 'plan' else '`%s/` (예정)' % it['folder']
         rows += '| %d주차 | %s · %s | %s | %s | %s |\n' % (w['no'], '교재' if it['kind'] == 'textbook' else '논문', it['label'], it['title'], link, st)
 for s in SPECIALS:
