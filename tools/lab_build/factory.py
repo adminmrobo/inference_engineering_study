@@ -11,7 +11,7 @@
 """
 import base64, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from series import WEEKS, SPECIALS, STATUS_KO
+from series import WEEKS, SPECIALS, STATUS_KO, FLOW, DIALS, CARDS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 THREE_VER = '0.170.0'
@@ -175,6 +175,31 @@ def floor_of(folder):
     return None
 
 
+def control_box(folder=None):
+    """추론 공정 제어판. folder가 있으면 그 편이 맡은 단계·다이얼에 불을 켠다."""
+    c = CARDS.get(folder) if folder else None
+    nums = '①②③④⑤'
+    flow = ''.join('<li class="%s"><b>%s %s</b>%s</li>' % ('on' if (c is None or k in c['flow']) else '', nums[i], n, d)
+                   for i, (k, n, d) in enumerate(FLOW))
+    dl = []
+    for k, n, what, eff in DIALS:
+        why = (c or {}).get('dials', {}).get(k)
+        on = c is None or bool(why)
+        dl.append('<li class="%s"><b>%s</b>%s<span class="w">%s</span></li>'
+                  % ('on' if on else '', n, '<span class="k">이 편</span>' if why else '', why or (what + ' — ' + eff)))
+    if c:
+        head = '<h3>그래서 이 편에서 돌리는 다이얼은?</h3><p class="so">%s</p>' % c['so']
+        note = '불이 켜진 단계와 다이얼이 이 편이 맡은 자리입니다. 회색은 다른 편에서 다룹니다.'
+    else:
+        head = ('<h3>그래서, GPU로 LLM을 어떻게 돌리나 — 추론 공정 제어판</h3>'
+                '<p class="so">책 한 권을 한 장으로 줄이면 이 순서입니다. 목표를 정하고, 모델의 성질을 보고, 기계를 맞춘 뒤, '
+                '다섯 개의 다이얼을 돌리고, 재서 막힌 곳을 찾아 다시 돌립니다. 다이얼마다 <b>모델이 어떻게 일하는지</b> 알아야 '
+                '어느 쪽으로 돌릴지 정할 수 있어요. 해설 페이지마다 첫 화면에 이 제어판이 다시 나와, 그 편이 맡은 단계와 다이얼에 불이 켜집니다.</p>')
+        note = '업계 말로는 추론 최적화 · 서빙 최적화(inference optimization)라고 부릅니다. 다이얼 다섯은 설명을 위해 묶은 것이며 책의 공식 분류는 아닙니다.'
+    return ('<div class="gf-ctl" id="ctl"><div class="box">%s<ol class="flow" aria-label="추론 공정 다섯 단계">%s</ol>'
+            '<ul class="dials" aria-label="다섯 다이얼">%s</ul><p class="note">%s</p></div></div>' % (head, flow, ''.join(dl), note))
+
+
 def _guide_img():
     try:
         import lab
@@ -210,9 +235,9 @@ def index_section(root):
             '<aside class="gf-side"><div class="gf-guide"><img alt="" aria-hidden="true" src="%s"><div><b>인턴 시아 · 층 안내</b><p id="gf-say">어서 오세요. 엘리베이터 버튼으로 층을 고르면 그 층에서 일어나는 공정과 해설을 안내해 드려요. 불이 켜진 층은 지금 읽을 수 있는 층이고, 회색 층은 공사 중이에요.</p></div></div>'
             '<div class="gf-lift" id="gf-lift" role="group" aria-label="층 고르기 (엘리베이터)"></div><div class="gf-info" id="gf-info" aria-live="polite"></div>'
             '<div class="gf-legend"><span><i style="background:#5ee39c"></i>연구실판 완성</span><span><i style="background:#82b8ff"></i>원본 그대로</span><span><i style="background:#f1b646"></i>다시 만드는 중</span><span><i style="background:#4a4e6a"></i>공사 중(준비 중)</span></div>'
-            '</aside></div>'
+            '</aside></div>%s'
             '<p class="gf-note">설명용 가상 공장입니다. 층과 기계는 책의 장·절과 해설 칸을 공정에 빗댄 것이며 실제 설비 배치가 아닙니다.</p>'
-            '</section>' % img) + _scripts(cfg)
+            '</section>' % (img, control_box())) + _scripts(cfg)
 
 
 def floor_block(root, folder):
@@ -234,9 +259,9 @@ def floor_block(root, folder):
             '<div class="gf-tools"><a class="gf-bt" href="../index.html#f%d">건물 전체 보기 ↗</a><span class="gf-hint" id="gf-hint">끌어서 돌리기 · 휠로 확대</span></div></div>'
             '<aside class="gf-side"><p class="gf-eye">INFERENCE FACTORY · %s · %s</p><h2 class="gf-h2">%s %s</h2><p class="gf-proc">%s</p>'
             '<div class="gf-guide"><img alt="" aria-hidden="true" src="%s"><div><b>인턴 시아 · 공정 안내</b><p id="gf-say">%s</p></div></div>'
-            '<ol class="gf-st" id="gf-st"></ol><div class="gf-mini" id="gf-mini" aria-label="건물 속 위치"></div></aside></div>'
+            '<ol class="gf-st" id="gf-st"></ol><div class="gf-mini" id="gf-mini" aria-label="건물 속 위치"></div></aside></div>%s'
             '</section>'
-            % (f['fl'], f['name'], i, ('%d주차' % f['week']) if f['week'] else '부록', f['chap'], f['fl'], f['name'], f['process'], img, lead)) + _scripts(cfg) + END
+            % (f['fl'], f['name'], i, ('%d주차' % f['week']) if f['week'] else '부록', f['chap'], f['fl'], f['name'], f['process'], img, lead, control_box(folder) if folder in CARDS else '')) + _scripts(cfg) + END
 
 
 def apply(page_html, root, folder):

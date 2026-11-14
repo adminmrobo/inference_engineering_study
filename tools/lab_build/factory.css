@@ -72,3 +72,19 @@ a.gf-pg:hover{border-color:var(--gf-g)}
 @media (max-width:600px){.gf-lb.fl .nm{display:none}}
 @media (max-width:860px){.gf-grid{grid-template-columns:1fr}.gf-building .gf-stage{height:62vh}.gf-floor .gf-stage{aspect-ratio:4/3.4;max-height:none;position:relative;top:auto}.gf-building .gf-side{max-height:none}}
 @media (prefers-reduced-motion:reduce){.gf-bt{transition:none}}
+/* 추론 공정 제어판 — "그래서 이 편에서 돌리는 다이얼은?" */
+.gf-ctl{max-width:1180px;margin:14px auto 0;padding:0 20px}
+.gf-ctl .box{border:1px solid var(--gf-r);border-radius:14px;background:var(--gf-p);padding:14px 16px}
+.gf-ctl h3{margin:0 0 4px;font-size:18px}
+.gf-ctl .so{margin:0 0 10px;font-size:15px;line-height:1.6}
+.gf-ctl .flow{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;padding:0;list-style:none;counter-reset:f}
+.gf-ctl .flow li{flex:1 1 150px;border:1px solid var(--gf-r);border-radius:10px;padding:6px 9px;font-size:13px;line-height:1.4;color:var(--gf-m);background:var(--gf-p2);opacity:.75}
+.gf-ctl .flow li b{display:block;font-size:14px;color:var(--gf-t)}
+.gf-ctl .flow li.on{opacity:1;border-color:var(--gf-g);background:var(--gf-bg);box-shadow:inset 0 3px 0 var(--gf-g)}
+.gf-ctl .dials{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.gf-ctl .dials li{border:1px dashed var(--gf-r);border-radius:10px;padding:8px 10px;font-size:13.5px;line-height:1.5;color:var(--gf-m)}
+.gf-ctl .dials li b{color:var(--gf-t);font-size:14.5px}
+.gf-ctl .dials li.on{border-style:solid;border-color:var(--gf-a);background:var(--gf-bg);color:var(--gf-t)}
+.gf-ctl .dials li .k{display:inline-block;font-size:11.5px;font-weight:700;color:var(--gf-a);margin-left:6px}
+.gf-ctl .dials li .w{display:block;margin-top:3px}
+.gf-ctl .note{margin:8px 0 0;font-size:12.5px;color:var(--gf-m)}
