@@ -19,11 +19,11 @@
 | 읽기용 해설 | 아홉 걸음 인터랙티브 해설 (블로그) | https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end/ |
 | 본 발표 슬라이드 | 본편 46장 + 부록 17장, 공장 비유·GPU 10종 대시보드 | https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end_slide/ |
 | 쉬운 가이드 | 도입 12장 + 핵심만 쉽게 17장(흰 배경, 초보자용) | https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end_slide/easy_guide.html |
-| "캐릭터 춤춰" GPU 시뮬레이터 | 춤 영상이 만들어지는 동안 GPU의 열·전력·시간·데드락·병목을 직접 일으켜 보는 5쪽 시뮬레이터, 연구실 캐릭터 튜토리얼 13단계, GitHub 아이디로 겨루는 명예의 전당, 3시간을 넘기면 폭발하는 조수의 인내심 게이지 | https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end_slide/gpu_dance_simulator.html |
+| "캐릭터 춤춰" GPU 시뮬레이터 | 춤 영상이 만들어지는 동안 GPU의 열·전력·시간·데드락·병목을 직접 일으켜 보는 5쪽 시뮬레이터, 연구실 캐릭터 튜토리얼 13단계, GitHub 아이디로 겨루는 명예의 전당, 3시간을 넘기면 폭발하는 조수의 인내심 게이지 | https://adminmrobo.github.io/inference_engineering_study/week_03_textbook_ch02_p3_to_end/gpu_dance_simulator.html (쉬운 해설판 v14) · 원본 v13: https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end_slide/gpu_dance_simulator.html |
 
 ## "캐릭터 춤춰" GPU 시뮬레이터 미리보기
 
-생성형 AI에 "캐릭터 춤춰"라고 했을 때 GPU 안에서 무슨 일이 일어나는지 값을 직접 바꾸며 보는 실험실입니다. ▶ https://adminmrobo.github.io/inference_engineering_study_week_02_textbook_ch02_p3_to_end_slide/gpu_dance_simulator.html
+생성형 AI에 "캐릭터 춤춰"라고 했을 때 GPU 안에서 무슨 일이 일어나는지 값을 직접 바꾸며 보는 실험실입니다. ▶ https://adminmrobo.github.io/inference_engineering_study/week_03_textbook_ch02_p3_to_end/gpu_dance_simulator.html (쉬운 해설판: 처음 오신 분께 3줄 · 공장 단어장 · 사건마다 "숫자로 보면" · 계산 방법 풀이. 구성은 원본 v13과 같음)
 
 ![춤 이벤트 6칸: 프롬프트부터 완성 영상까지](images/sim_dance.webp)
 **① 춤 이벤트 6칸.** 프롬프트 → 텍스트 인코더 → 동작 생성(막대 인형) → 포즈 맵(관절 13개) → 포즈 기반 생성(잡음이 걷힘) → 영상. 고른 GPU의 속도대로 칸이 하나씩 켜집니다.

@@ -276,6 +276,7 @@ def run(root, slug, warn):
         open(f, 'w', encoding='utf-8').write(page)
         return
     m = load(slug)
+    page = fix_terms(page, getattr(m, 'TERM_PRE', ()), getattr(m, 'KAN_TO_JARI', False))   # 원문 표현을 먼저 맞춘 뒤 문장 바꾸기
     for a, b in getattr(m, 'REPL', []):
         if a in page:
             page = page.replace(a, b)
