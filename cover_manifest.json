@@ -59,6 +59,16 @@
     "path": "week_03_textbook_ch02_p3_to_end/index.html",
     "kg": true,
     "export": true
+   },
+   {
+    "path": "week_05_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_05_textbook_ch04/index.html",
+    "kg": true,
+    "export": true
    }
   ],
   "files": []
@@ -68,7 +78,7 @@
    "ko"
   ],
   "pages": {
-   "ko": 11
+   "ko": 13
   },
   "readme_langs": [
    "ko"
@@ -302,7 +312,55 @@
    "prompt_en": "Website top cover illustration, wide 16:9.\nMatch the art style, proportions and colors of the attached reference images exactly\n  (if there are no reference images: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights).\nScene: bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents, a bright lab wall with a giant chart drawn as a house roof: a slanted line rising from the lower left that meets a flat horizontal line, several thinner ceiling lines below.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, tracing the slanted roof line with a pointer;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, placing a glowing dot under the roof;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, looking up at the thin ceiling lines with a magnifier;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, pointing at the slanted line with its abacus;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, no headdress, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, holding a ruler at the ridge point;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, holding a small ladder under the ceiling lines.\nVisual metaphor of the topic: a roofline shaped like a house roof on the wall, small glowing dots under the roof, one dot touching the slanted part.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom);\n  keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no cigarettes, no alcohol, no blood, no real brands.",
    "source_of": null,
    "status": "todo"
+  },
+  {
+   "id": "week_05_article_01/cover_paged",
+   "role": "cover",
+   "path": "week_05_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa",
+    "x1",
+    "x2",
+    "x3"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nArt style: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights; match the attached reference images exactly.\nBackground: pure white or very light, bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents.\nScene: a bright lab wall covered by a huge cabinet of many small identical glowing drawers, some drawers pulled out and holding glowing note cards, a ledger book on a stand listing drawer numbers.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the ledger book;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, holding a glowing note card about to put it into a drawer;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, peering into a half-empty drawer with a magnifier;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, raising its abacus proudly, counting drawers;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, writing drawer numbers in the ledger;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, opening a drawer and smiling;\n  plus three small mysterious silhouette audience members sitting in the front row: one with a pink ribbon (X1), one wearing a beret and teal glasses (X2), one with cat ears and yellow bells (X3); all pure black silhouettes with tiny cute faces.\nVisual metaphor of the topic: many equal-sized small drawers filled one by one on demand, scattered across the cabinet, linked to a ledger (block table), versus one giant mostly-empty long shelf on the side.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_05_textbook_ch04/cover_ch04",
+   "role": "cover",
+   "path": "week_05_textbook_ch04/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa",
+    "x1",
+    "x2",
+    "x3"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9.\nArt style: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights; match the attached reference images exactly.\nBackground: pure white or very light, bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents.\nScene: a bright engine control room inside the lab with a tall four-tier control console: bottom tier a glowing circuit breaker panel, second tier a tool wall, third tier three different engine turbines, top tier a dispatch hub with cables to many machines; a stopwatch test bench on the side.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the third tier with three engines;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, checking a clipboard next to the tool wall;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, arms crossed beside the stopwatch test bench;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, pressing many buttons at once on the console;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, holding a floor map of the four tiers;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, writing notes in a notebook;\n  plus three small mysterious silhouette audience members sitting in the front row: one with a pink ribbon (X1), one wearing a beret and teal glasses (X2), one with cat ears and yellow bells (X3); all pure black silhouettes with tiny cute faces.\nVisual metaphor of the topic: four stacked glowing tiers of a control console from hardware at the bottom to a dispatch hub at the top, plus a measuring bench with a stopwatch and dot chart.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no real brands.",
+   "source_of": null,
+   "status": "todo"
   }
  ],
- "updated": "2026-11-14"
+ "updated": "2026-11-21"
 }

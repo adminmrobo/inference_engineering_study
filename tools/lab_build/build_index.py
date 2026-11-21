@@ -85,7 +85,7 @@ body = factory.index_section(ROOT) + '''
 ''' + say('robo', 'calc', '장은 0부터 7까지 여덟 개. 장을 펼치면 절 제목이 나와. 원문은 출판사 누리집에서 무료로 읽을 수 있어.') + chap_html + '''
 <p class="muted">원문: Kiely, P. (2026). <i>Inference Engineering</i>. Baseten Books. <a href="https://www.baseten.co/inference-engineering/">출판사 누리집</a></p></div></section>
 <section class="level" id="how"><div class="wrap"><div class="lvhead"><div class="hexno">5<small>사용법</small></div><div><h2>스터디 북 읽는 법</h2></div></div>
-<div class="steps"><div><h4>① 교재편 먼저</h4><p>교재 해설은 개념 사다리를 한 칸씩 올라가요. 칸마다 직접 만지는 시뮬레이션과 확인 퀴즈가 있어요.</p></div>
+<div class="steps"><div><h4>① 교재편 먼저</h4><p>교재 해설은 개념정리를 한 단계씩 쌓아 가요. 단계마다 직접 만지는 시뮬레이션과 확인 퀴즈가 있어요.</p></div>
 <div><h4>② 논문편으로 확인</h4><p>같은 주차의 논문 해설은 교재 개념이 실제 연구에서 어떻게 쓰였는지 보여 줘요. 원문 수치에는 <span class="chip-src">원문</span> 칩이 붙어요.</p></div>
 <div><h4>③ 끝에서 정리</h4><p>페이지 끝의 지식 색인에서 개념을 찾고, 온톨로지·서지 꾸러미를 ZIP으로 받을 수 있어요.</p></div></div>
 ''' + say('moa', 'report', '정확성 표시도 기억해 주세요. 노란 도장이 찍힌 그림은 설명용 모형이고, 파란 <span class="chip-src">원문</span> 칩은 교재·논문 수치 그대로예요.') + '''
@@ -123,7 +123,7 @@ JS = r'''
 var W=%s,COL={done:'#5ee39c',kept:'#82b8ff',wip:'#f1b646',plan:'#4a4e6a'},ST={done:'연구실판 완성',kept:'원본 그대로',wip:'다시 만드는 중',plan:'준비 중'};
 var all=[];W.forEach(function(w){w.items.forEach(function(i){all.push(i)})});
 var ok=all.filter(function(i){return i.st==='done'||i.st==='kept'}).length;
-L.kpis('#heroKpis',[[10,'주차','g'],[all.length,'해설 칸 (교재·논문)','m'],[ok,'지금 열 수 있는 해설','i'],['2~3','부록 예정','a']]);
+L.kpis('#heroKpis',[[10,'주차','g'],[all.length,'해설 편 (교재·논문)','m'],[ok,'지금 열 수 있는 해설','i'],['2~3','부록 예정','a']]);
 var sel=0,c=$('#cMap'),t=0;
 $('#wkBtns').innerHTML=W.map(function(w,i){return '<button class="bt" data-w="'+i+'" aria-pressed="'+(i===0)+'">'+w.no+'주차</button>'}).join('');
 $$('#wkBtns [data-w]').forEach(function(b){b.addEventListener('click',function(){pick(+b.dataset.w)})});
@@ -152,7 +152,7 @@ spec = {'meta': META, 'kg': KG, 'refs': REFS, 'body': body, 'css': CSS, 'js': JS
         'gl': {'추론': ['추론 (inference)', '개념', '이미 학습을 마친 모델에 입력을 넣어 결과를 얻는 일. 학습(training)과 구분한다.'],
                '지연시간': ['지연시간 (latency)', '지표', '요청 하나가 답을 받기까지 걸리는 시간.'],
                '처리량': ['처리량 (throughput)', '지표', '일정 시간 동안 처리하는 요청·토큰의 양.'],
-               '지식 색인': ['지식 색인', '페이지 구성', '페이지에 나온 개념·방법·주장을 검색하고 관계를 보는 칸.'],
+               '지식 색인': ['지식 색인', '페이지 구성', '페이지에 나온 개념·방법·주장을 검색하고 관계를 보는 자리.'],
                '시뮬레이션': ['시뮬레이션', '페이지 구성', '숫자를 바꿔 결과가 어떻게 달라지는지 직접 보는 장치. 노란 도장은 설명용 모형.'],
                '온톨로지': ['온톨로지 (ontology)', '용어', '개념과 개념 사이의 관계를 기계가 읽을 수 있게 정리한 것.']},
         'core': ['추론', '지연시간', '처리량', '지식 색인', '시뮬레이션', '온톨로지'],

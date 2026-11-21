@@ -34,8 +34,8 @@ WEEKS = [
         {'kind': 'textbook', 'folder': 'week_04_textbook_ch03', 'label': '3장', 'title': 'GPU 기계실 — 하드웨어', 'range': 'Chapter 3 Hardware 3.1–3.5', 'status': 'done'},
         {'kind': 'article', 'folder': 'week_04_article_01', 'label': '논문 1', 'title': '루프라인 — 지붕 두 개로 성능의 상한을 그린다', 'range': 'Williams, Waterman & Patterson (2008) Roofline', 'status': 'done'}]},
     {'no': 5, 'title': '추론 소프트웨어와 성능 측정', 'items': [
-        {'kind': 'textbook', 'folder': 'week_05_textbook_ch04', 'label': '4장', 'title': '소프트웨어', 'range': 'Chapter 4 Software 4.1–4.5', 'status': 'plan'},
-        {'kind': 'article', 'folder': 'week_05_article_01', 'label': '논문 1', 'title': '페이지드 어텐션 · vLLM (예정)', 'range': 'Kwon et al. (2023) PagedAttention', 'status': 'plan'}]},
+        {'kind': 'textbook', 'folder': 'week_05_textbook_ch04', 'label': '4장', 'title': '엔진 제어실 — 추론 소프트웨어 네 층', 'range': 'Chapter 4 Software 4.1–4.5', 'status': 'done'},
+        {'kind': 'article', 'folder': 'week_05_article_01', 'label': '논문 1', 'title': '페이지드 어텐션 — KV 캐시를 서랍처럼 나눠 담는다', 'range': 'Kwon et al. (2023) PagedAttention · vLLM (SOSP 2023)', 'status': 'done'}]},
     {'no': 6, 'title': '양자화와 추측 디코딩', 'items': [
         {'kind': 'textbook', 'folder': 'week_06_textbook_ch05_p1_p2', 'label': '5장 전반', 'title': '최적화 기법 ① 양자화·추측 디코딩', 'range': 'Chapter 5 Techniques 5.1–5.2', 'status': 'plan'},
         {'kind': 'article', 'folder': 'week_06_article_01', 'label': '논문 1', 'title': '추측 디코딩 논문 (예정)', 'range': 'DFlash (2026)', 'status': 'plan'}]},
@@ -116,4 +116,14 @@ CARDS = {
         flow=['measure'], dials={'batch': '작업 강도를 올려 경사 지붕(메모리) 구간에서 평평한 지붕(계산) 쪽으로 옮깁니다.',
                                  'kernel': '최적화 하나마다 천장이 한 칸씩 뚫립니다 — 남은 다이얼이 무엇인지 보여 줘요.'},
         so='제어판의 계기판입니다. 지금 점이 지붕 어디에 있는지 보면 다음에 돌릴 다이얼이 정해집니다.'),
+    'week_05_textbook_ch04': dict(chap='4장', card='이 편을 읽으면 CUDA부터 추론 엔진 · Dynamo까지 추론 소프트웨어 네 층을 구분하고, 우리 일에 맞는 엔진과 측정 방법을 고를 수 있습니다.',
+        flow=['dial', 'measure'], dials={'kernel': '커널 고르기와 커널 합치기(퓨전) — 같은 답을 메모리 왕복을 줄여 계산합니다.',
+                                         'batch': '추론 엔진은 연속 배치(요청을 토큰 단위로 넣고 빼기)를 기본으로 돌립니다.',
+                                         'split': '엔진의 병렬 설정(예: 텐서 병렬 8)과 Dynamo의 분리 · 여러 노드가 나눠 싣기 다이얼입니다.',
+                                         'kv': 'Dynamo는 KV 캐시를 요청 사이에 다시 쓰고, 앞부분이 같은 요청을 같은 곳으로 보냅니다.'},
+        so='다이얼은 손으로 돌리지 않아요. 추론 엔진의 설정값으로 돌리고, 돌린 결과는 벤치마크로 확인합니다.'),
+    'week_05_article_01': dict(chap='4장', paper='PagedAttention', card='이 편을 읽으면 KV 캐시를 작은 블록으로 나눠 담아 메모리 낭비를 줄이고, 같은 GPU로 동시에 더 많은 요청을 받는 원리를 설명할 수 있습니다.',
+        flow=['dial'], dials={'kv': 'KV 캐시를 16토큰짜리 블록으로 나눠 필요할 때만 꺼내 씁니다. 낭비가 4% 안쪽으로 줄어요.',
+                              'batch': '메모리에 자리가 남으니 한 번에 묶는 요청 수가 2~4배 늘어 처리량이 오릅니다.'},
+        so='KV 캐시 다이얼을 "어떻게 쌓을까"까지 내려가 본 편입니다. 같은 GPU, 같은 모델로 동시에 받는 손님 수가 늘어요.'),
 }

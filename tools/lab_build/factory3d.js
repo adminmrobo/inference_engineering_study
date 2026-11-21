@@ -69,7 +69,7 @@ function renderInfo() {
       '<small>' + esc(p.range) + (p.range ? ' · ' : '') + esc(KO[p.st]) + (open(p.st) ? ' · 해설 열기 →' : '') + '</small>' + (open(p.st) ? '</a>' : '</div>')).join('') +
     '</div><p style="margin-bottom:0"><b>이 층의 기계</b> <span style="color:#9d9bb8;font-size:12px">번호 = 3D 위 번호</span></p><ol class="gf-st">' + stationItems(f) + '</ol>';
   bindHot(I);
-  say(f.fl + ' <b>' + esc(f.name) + '</b>입니다. ' + esc(f.process) + '. ' + (open(f.st) ? '불이 켜진 해설 ' + f.pages.filter(p => open(p.st)).length + '편을 지금 열 수 있어요. 기계를 누르면 그 칸으로 바로 갑니다.' : '아직 공사 중인 층이에요. 해설이 완성되면 불이 켜집니다.'));
+  say(f.fl + ' <b>' + esc(f.name) + '</b>입니다. ' + esc(f.process) + '. ' + (open(f.st) ? '불이 켜진 해설 ' + f.pages.filter(p => open(p.st)).length + '편을 지금 열 수 있어요. 기계를 누르면 그 단계로 바로 갑니다.' : '아직 공사 중인 층이에요. 해설이 완성되면 불이 켜집니다.'));
 }
 function select(i) {
   sel = i;
@@ -290,7 +290,7 @@ async function initThree() {
     if (MODE === 'building' && i !== sel) { select(i); return; }
     if (MODE === 'building') {
       setHot(k);
-      say(F[i].fl + ' ' + NUM[i][k] + '번 <b>' + esc(s.name) + '</b> — ' + esc(s.desc) + (h ? ' <a href="' + esc(h) + '">그 칸 열기 →</a>' : ' <span style="color:#9d9bb8">(공사 중)</span>'));
+      say(F[i].fl + ' ' + NUM[i][k] + '번 <b>' + esc(s.name) + '</b> — ' + esc(s.desc) + (h ? ' <a href="' + esc(h) + '">그 단계 열기 →</a>' : ' <span style="color:#9d9bb8">(공사 중)</span>'));
       const li = document.querySelector('#gf-info li[data-k="' + k + '"]'); if (li) li.scrollIntoView({ block: 'nearest', behavior: RM ? 'auto' : 'smooth' });
       return;
     }

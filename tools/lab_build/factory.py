@@ -63,20 +63,20 @@ FLOORS = [
      'st': [('rack', 'GPU 랙', '3.1 GPU 구조 — 연산 장치가 어떻게 모여 있나.', 'week_04_textbook_ch03', 'lv2'),
             ('tower', '메모리 탑 (HBM)', '3.1 — 모델 무게를 담는 고대역폭 메모리.', 'week_04_textbook_ch03', 'lv3'),
             ('shelf', '세대별 진열장', '3.2 GPU 세대 — 세대가 바뀌면 무엇이 달라지나.', 'week_04_textbook_ch03', 'lv5'),
-            ('cells', '인스턴스 칸막이', '3.3 인스턴스 — 빌려 쓰는 단위와 묶음.', 'week_04_textbook_ch03', 'lv7'),
+            ('cells', '인스턴스 구획', '3.3 인스턴스 — 빌려 쓰는 단위와 묶음.', 'week_04_textbook_ch03', 'lv7'),
             ('chip', '다른 가속기 코너', '3.4 GPU 말고 다른 데이터센터 가속기.', 'week_04_textbook_ch03', 'lv9'),
             ('laptop', '로컬 추론 책상', '3.5 내 컴퓨터에서 돌리는 추론.', 'week_04_textbook_ch03', 'lv10'),
             ('roofline', '루프라인 측정대', '논문 — 계산과 메모리 통로, 두 지붕 중 낮은 쪽이 성능의 상한입니다.', 'week_04_article_01', 'method'),
-            ('layers', '천장 사다리', '논문 — 최적화 하나를 할 때마다 한 칸씩 뚫리는 천장.', 'week_04_article_01', 'r2')]},
+            ('layers', '천장 겹겹', '논문 — 최적화 하나를 할 때마다 한 겹씩 뚫리는 천장.', 'week_04_article_01', 'r2')]},
     {'week': 5, 'fl': '5F', 'name': '엔진 제어실', 'chap': 'c4',
      'process': '기계를 움직이는 소프트웨어 — CUDA부터 추론 엔진, 부하 시험까지',
-     'desc': 'GPU를 부리는 CUDA, 딥러닝 프레임워크, 추론 엔진과 Dynamo, 성능 측정과 부하 시험을 다룹니다. 짝 논문은 페이지드 어텐션 · vLLM(예정)입니다.',
-     'st': [('panel', 'CUDA 배전반', '4.1 — GPU에 일을 시키는 가장 아래 층.', 'week_05_textbook_ch04', None),
-            ('wall', '프레임워크 공구벽', '4.2 딥러닝 프레임워크와 라이브러리.', 'week_05_textbook_ch04', None),
-            ('turbine', '추론 엔진', '4.3 요청을 받아 모델을 돌리는 엔진.', 'week_05_textbook_ch04', None),
-            ('hub', '분배기 (Dynamo)', '4.4 여러 GPU에 일을 나눠 주는 분배기.', 'week_05_textbook_ch04', None),
-            ('load', '부하 시험대', '4.5 성능 측정과 부하 시험.', 'week_05_textbook_ch04', None),
-            ('drawers', '페이지 서랍장', '논문 — KV 캐시를 서랍(페이지)처럼 나눠 담기 (예정).', 'week_05_article_01', None)]},
+     'desc': 'GPU를 부리는 CUDA, 딥러닝 프레임워크, 추론 엔진과 Dynamo, 성능 측정과 부하 시험을 다룹니다. 짝 논문은 페이지드 어텐션 · vLLM입니다.',
+     'st': [('panel', 'CUDA 배전반', '4.1 — GPU에 일을 시키는 가장 아래 층.', 'week_05_textbook_ch04', 'cuda'),
+            ('wall', '프레임워크 공구벽', '4.2 딥러닝 프레임워크와 라이브러리.', 'week_05_textbook_ch04', 'torch'),
+            ('turbine', '추론 엔진', '4.3 요청을 받아 모델을 돌리는 엔진.', 'week_05_textbook_ch04', 'engines'),
+            ('hub', '분배기 (Dynamo)', '4.4 여러 GPU에 일을 나눠 주는 분배기.', 'week_05_textbook_ch04', 'dynamo'),
+            ('load', '부하 시험대', '4.5 성능 측정과 부하 시험.', 'week_05_textbook_ch04', 'bench'),
+            ('drawers', '페이지 서랍장', '논문 — KV 캐시를 서랍(블록)처럼 나눠 담아 낭비를 줄입니다.', 'week_05_article_01', 'idea')]},
     {'week': 6, 'fl': '6F', 'name': '튜닝 공방 ①', 'chap': 'c5',
      'process': '같은 기계로 더 빨리 — 숫자를 줄이고, 초안을 먼저 쓰고 검수한다',
      'desc': '양자화로 숫자 크기를 줄이고, 작은 모델이 초안을 쓰면 큰 모델이 검수하는 추측 디코딩을 봅니다. 짝 논문은 추측 디코딩 논문(예정)입니다.',
@@ -236,7 +236,7 @@ def index_section(root):
             '<div class="gf-lift" id="gf-lift" role="group" aria-label="층 고르기 (엘리베이터)"></div><div class="gf-info" id="gf-info" aria-live="polite"></div>'
             '<div class="gf-legend"><span><i style="background:#5ee39c"></i>연구실판 완성</span><span><i style="background:#82b8ff"></i>원본 그대로</span><span><i style="background:#f1b646"></i>다시 만드는 중</span><span><i style="background:#4a4e6a"></i>공사 중(준비 중)</span></div>'
             '</aside></div>%s'
-            '<p class="gf-note">설명용 가상 공장입니다. 층과 기계는 책의 장·절과 해설 칸을 공정에 빗댄 것이며 실제 설비 배치가 아닙니다.</p>'
+            '<p class="gf-note">설명용 가상 공장입니다. 층과 기계는 책의 장·절과 해설 단계를 공정에 빗댄 것이며 실제 설비 배치가 아닙니다.</p>'
             '</section>' % (img, control_box())) + _scripts(cfg)
 
 
@@ -250,11 +250,11 @@ def floor_block(root, folder):
     cfg = {'mode': 'floor', 'focus': i, 'page': folder, 'base': '../', **W}
     me = [s for s in f['stations'] if s['page'] == folder]
     img = _guide_img()
-    lead = ('여기는 <b>%s %s</b>이에요. %s. 이 해설은 이 층의 기계 %d대를 맡았어요. 번호를 누르면 그 칸으로 내려갑니다.'
+    lead = ('여기는 <b>%s %s</b>이에요. %s. 이 해설은 이 층의 기계 %d대를 맡았어요. 번호를 누르면 그 단계로 내려갑니다.'
             % (f['fl'], f['name'], f['process'].split(' — ')[-1].rstrip('.'), len(me)))
     return (START + '<style>' + _asset('factory.css') + '</style>'
             '<section class="gf gf-floor" id="factory" aria-label="인퍼런스 공장 — 이 페이지의 층">'
-            '<div class="gf-grid"><div class="gf-stage"><div class="gf-cv" id="gf-cv" role="img" aria-label="%s %s 3D. 번호 붙은 기계가 이 페이지의 칸입니다."></div><div class="gf-labels" id="gf-labels" aria-hidden="true"></div>'
+            '<div class="gf-grid"><div class="gf-stage"><div class="gf-cv" id="gf-cv" role="img" aria-label="%s %s 3D. 번호 붙은 기계가 이 페이지의 단계입니다."></div><div class="gf-labels" id="gf-labels" aria-hidden="true"></div>'
             '<div class="gf-err" id="gf-err">3D 층을 불러오지 못했습니다. 오른쪽 기계 목록으로 그대로 안내받을 수 있어요.</div>'
             '<div class="gf-tools"><a class="gf-bt" href="../index.html#f%d">건물 전체 보기 ↗</a><span class="gf-hint" id="gf-hint">끌어서 돌리기 · 휠로 확대</span></div></div>'
             '<aside class="gf-side"><p class="gf-eye">INFERENCE FACTORY · %s · %s</p><h2 class="gf-h2">%s %s</h2><p class="gf-proc">%s</p>'
