@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""사다리 칸·섹션 조각 (SKILL 4-3 블록 순서)."""
+"""개념정리 단계·섹션 조각 (SKILL 4-3 블록 순서)."""
 from lab import say
 
-def level(no, sid, title, tags, pair=None, panel='', explain='', bridge='', talk='', quiz=True, small='칸', extra_top=''):
+def level(no, sid, title, tags, pair=None, panel='', explain='', bridge='', talk='', quiz=True, small='단계', extra_top=''):
     tg = ''.join('<span class="lvtag %s">%s</span>' % (c, t) for c, t in tags)
     pr = ''
     if pair:
@@ -25,7 +25,7 @@ def act(title, canvas_id, label, note=''):
 
 def explain(title, items, limit=None, ordered=True):
     tag = 'ol' if ordered else 'ul'
-    lim = '<p class="lim"><b>이 칸의 한계:</b> %s</p>' % limit if limit else ''
+    lim = '<p class="lim"><b>이 단계의 한계:</b> %s</p>' % limit if limit else ''
     return '<div class="explain"><h4>%s</h4><%s>%s</%s>%s</div>' % (title, tag, ''.join('<li>%s</li>' % i for i in items), tag, lim)
 
 def bridge(gen=None, field=None):
