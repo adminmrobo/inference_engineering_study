@@ -29,7 +29,7 @@ from abbr import ABBR                         # noqa: E402
 TARGETS = ['week_01_textbook_preface', 'week_01_textbook_ch00', 'week_01_textbook_ch01', 'week_01_article_01',
            'week_02_textbook_ch02_p1_p2', 'week_02_article_01', 'week_03_textbook_ch02_p3_to_end', 'week_03_article_01',
            'week_04_textbook_ch03', 'week_04_article_01']
-FOOT_ONLY = ['week_05_textbook_ch04', 'week_05_article_01']   # 이미 비전공자판 — 바닥글 소개 주소만 맞춤
+FOOT_ONLY = ['week_05_textbook_ch04', 'week_05_article_01', 'week_06_textbook_ch05_01', 'week_06_article_01']   # 이미 비전공자판 — 바닥글 소개 주소만 맞춤
 ABOUT = 'https://adminmrobo.github.io/who_am_i/who_am_i.html'
 S, E = '<!--ext:s-->', '<!--ext:e-->'
 

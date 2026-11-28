@@ -164,3 +164,14 @@ def clean_terms(page):
                  ('핵심 칸', '핵심 단계'), ('천장 사다리', '천장 겹겹'), ('인스턴스 칸막이', '인스턴스 구획'), ('한 칸씩', '한 겹씩'), ('칸막이', '구획')]:
         page = page.replace(a, b)
     return page
+
+
+def finish(page, skill='ai-lab-explainer-plain 1.6'):
+    """6주차부터: 스킬 표기 메타(기본 스킬 12-1-1)와 픽셀 깨짐 보정(px-fix v1)을 </head> 앞에 넣는다."""
+    import os
+    px = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pxfix.html'), encoding='utf-8').read()
+    if 'name="ahnboat:skill"' not in page:
+        page = page.replace('<meta name="author"', '<meta name="ahnboat:skill" content="%s"><meta name="author"' % skill, 1)
+    if 'px-fix v1' not in page:
+        page = page.replace('</head>', px + '</head>', 1)
+    return page

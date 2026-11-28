@@ -69,6 +69,16 @@
     "path": "week_05_textbook_ch04/index.html",
     "kg": true,
     "export": true
+   },
+   {
+    "path": "week_06_article_01/index.html",
+    "kg": true,
+    "export": true
+   },
+   {
+    "path": "week_06_textbook_ch05_01/index.html",
+    "kg": true,
+    "export": true
    }
   ],
   "files": []
@@ -78,7 +88,7 @@
    "ko"
   ],
   "pages": {
-   "ko": 13
+   "ko": 15
   },
   "readme_langs": [
    "ko"
@@ -360,7 +370,55 @@
    "prompt_en": "Website top cover illustration, wide 16:9.\nArt style: 16-bit RPG style pixel art, bold dark outline, 2-3 tone shading, small highlights; match the attached reference images exactly.\nBackground: pure white or very light, bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents.\nScene: a bright engine control room inside the lab with a tall four-tier control console: bottom tier a glowing circuit breaker panel, second tier a tool wall, third tier three different engine turbines, top tier a dispatch hub with cables to many machines; a stopwatch test bench on the side.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the third tier with three engines;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, checking a clipboard next to the tool wall;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, arms crossed beside the stopwatch test bench;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, pressing many buttons at once on the console;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, holding a floor map of the four tiers;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, writing notes in a notebook;\n  plus three small mysterious silhouette audience members sitting in the front row: one with a pink ribbon (X1), one wearing a beret and teal glasses (X2), one with cat ears and yellow bells (X3); all pure black silhouettes with tiny cute faces.\nVisual metaphor of the topic: four stacked glowing tiers of a control console from hardware at the bottom to a dispatch hub at the top, plus a measuring bench with a stopwatch and dot chart.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no real brands.",
    "source_of": null,
    "status": "todo"
+  },
+  {
+   "id": "week_06_article_01/cover_dflash",
+   "role": "cover",
+   "path": "week_06_article_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa",
+    "x1",
+    "x2",
+    "x3"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9, drawn directly at 1600px or wider.\nArt style: high-resolution 16-bit RPG style pixel art with small, dense pixels (faces, hands and props finely detailed), bold dark outline, 2-3 tone shading, small highlights; match the attached reference images exactly.\nBackground: pure white or very light, bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents.\nScene: a bright lab with a long workbench holding a big form sheet of sixteen empty glowing boxes being stamped all at once by a giant rubber stamp, and an editor desk with a tall memo board pinned with glowing notes connected by thin light threads to every shelf of a small five-tier drafting rack.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, sitting at the editor desk checking the stamped form with a red pen;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, pulling thin glowing memo threads from the memo board toward the drafting rack;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, peering at the stamped boxes with a magnifier, skeptical;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, raising its abacus proudly next to the giant stamp;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, holding a clipboard and counting accepted boxes with green check marks;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, placing a fresh blank form on the workbench and smiling;\n  plus three small mysterious silhouette audience members sitting in the front row: one with a pink ribbon (X1), one wearing a beret and teal glasses (X2), one with cat ears and yellow bells (X3); all pure black silhouettes with tiny cute faces.\nVisual metaphor of the topic: a giant stamp filling sixteen empty boxes in one press, versus a long row of boxes being hand-written one by one on the other side; glowing memo threads from a big editor desk into every tier of a small rack.\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no real brands.",
+   "source_of": null,
+   "status": "todo"
+  },
+  {
+   "id": "week_06_textbook_ch05_01/cover_ch05a",
+   "role": "cover",
+   "path": "week_06_textbook_ch05_01/index.html#cover",
+   "size": [
+    1600,
+    900
+   ],
+   "characters": [
+    "doc",
+    "asst",
+    "fly",
+    "jupanbot",
+    "sia",
+    "moa",
+    "x1",
+    "x2",
+    "x3"
+   ],
+   "robot": "jupanbot-v2",
+   "prompt_en": "Website top cover illustration, wide 16:9, drawn directly at 1600px or wider.\nArt style: high-resolution 16-bit RPG style pixel art with small, dense pixels (faces, hands and props finely detailed), bold dark outline, 2-3 tone shading, small highlights; match the attached reference images exactly.\nBackground: pure white or very light, bright daytime laboratory mood, soft natural sunlight through large windows, clean white walls, light lavender, mint and pink accents.\nScene: a bright tuning workshop inside the lab: on the left a hydraulic press squeezing big number blocks into smaller glowing cubes, a shelf of number-format boxes with colored bit stripes, a balance scale gauge; on the right twin conveyor lines where a small machine writes draft cards and a big machine stamps them with green checks and one red cross.\nAll six characters together:\n  chibi scientist, thin teal rectangular glasses, spiky black hair with one white streak, small ponytail at the back, white lab coat over black vest and tie, center back, pointing at the twin conveyor lines;\n  girl researcher, long pink hair with two round buns and a navy streak, blue eyes, white lab coat over lavender hoodie, jeans, reading a gauge needle next to the balance scale;\n  anthropomorphic fruit fly researcher, black body, big red compound eyes, blue helmet with a gold stripe and pink and blue cables, white lab coat over a black vest, black gloves, transparent wings, on the left facing right, inspecting a pressed cube with a magnifier, arms half crossed;\n  boxy beige retro CRT-monitor robot, dark green screen face with mint pixel eyes and mouth, short antenna topped with a red-brown abacus bead, gray segmented arms, two small tank treads, holding a wooden abacus, on the right facing left, cheering in front of the press, holding its abacus high;\n  calm girl maid intern, long straight jet-black hair with side-swept bangs, gray eyes, small silver drop earrings, charcoal-black long-sleeved maid dress, large gray bow, long white frilled apron, front left, sorting number-format boxes on the shelf;\n  gentle girl maid intern, long ash-beige wavy hair, white frilled maid headband with a ribbon over the left ear, amber-brown eyes, red and navy plaid bow tie, camel knit cardigan, white frilled apron, black skirt, front right, catching accepted draft cards at the end of the conveyor and smiling;\n  plus three small mysterious silhouette audience members sitting in the front row: one with a pink ribbon (X1), one wearing a beret and teal glasses (X2), one with cat ears and yellow bells (X3); all pure black silhouettes with tiny cute faces.\nVisual metaphor of the topic: big number blocks pressed into half-size cubes (quantization) beside twin draft-and-verify conveyor lines where several cards pass at once (speculative decoding).\nComposition: keep every face and hand inside the central safe area (12% margin left and right, 10% top, 18% bottom); keep the bottom-left corner plain, bright and simple.\nMood: curious, friendly rivalry, the moment before the result.\nNo text, no letters, no numbers, no logos, no weapons, no real brands.",
+   "source_of": null,
+   "status": "todo"
   }
  ],
- "updated": "2026-11-21"
+ "updated": "2026-11-28"
 }

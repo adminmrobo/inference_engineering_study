@@ -37,8 +37,8 @@ WEEKS = [
         {'kind': 'textbook', 'folder': 'week_05_textbook_ch04', 'label': '4장', 'title': '엔진 제어실 — 추론 소프트웨어 네 층', 'range': 'Chapter 4 Software 4.1–4.5', 'status': 'done'},
         {'kind': 'article', 'folder': 'week_05_article_01', 'label': '논문 1', 'title': '페이지드 어텐션 — KV 캐시를 서랍처럼 나눠 담는다', 'range': 'Kwon et al. (2023) PagedAttention · vLLM (SOSP 2023)', 'status': 'done'}]},
     {'no': 6, 'title': '양자화와 추측 디코딩', 'items': [
-        {'kind': 'textbook', 'folder': 'week_06_textbook_ch05_p1_p2', 'label': '5장 전반', 'title': '최적화 기법 ① 양자화·추측 디코딩', 'range': 'Chapter 5 Techniques 5.1–5.2', 'status': 'plan'},
-        {'kind': 'article', 'folder': 'week_06_article_01', 'label': '논문 1', 'title': '추측 디코딩 논문 (예정)', 'range': 'DFlash (2026)', 'status': 'plan'}]},
+        {'kind': 'textbook', 'folder': 'week_06_textbook_ch05_01', 'label': '5장 전반', 'title': '튜닝 공방 ① — 숫자를 줄이고, 초안을 먼저 쓴다', 'range': 'Chapter 5 Techniques 도입 · 5.1–5.2', 'status': 'done'},
+        {'kind': 'article', 'folder': 'week_06_article_01', 'label': '논문 1', 'title': '한 번에 쓰는 초안 — DFlash 추측 디코딩', 'range': 'Chen, Liang & Liu (ICML 2026) DFlash', 'status': 'done'}]},
     {'no': 7, 'title': '캐시 재사용과 모델 병렬화', 'items': [
         {'kind': 'textbook', 'folder': 'week_07_textbook_ch05_p3_to_end', 'label': '5장 후반', 'title': '최적화 기법 ② 캐시·병렬화·분리', 'range': 'Chapter 5 Techniques 5.3–5.5', 'status': 'plan'},
         {'kind': 'article', 'folder': 'week_07_article_01', 'label': '논문 1', 'title': 'SGLang (예정)', 'range': 'Zheng et al. (2023) SGLang', 'status': 'plan'}]},
@@ -126,4 +126,13 @@ CARDS = {
         flow=['dial'], dials={'kv': 'KV 캐시를 16토큰짜리 블록으로 나눠 필요할 때만 꺼내 씁니다. 낭비가 4% 안쪽으로 줄어요.',
                               'batch': '메모리에 자리가 남으니 한 번에 묶는 요청 수가 2~4배 늘어 처리량이 오릅니다.'},
         so='KV 캐시 다이얼을 "어떻게 쌓을까"까지 내려가 본 편입니다. 같은 GPU, 같은 모델로 동시에 받는 손님 수가 늘어요.'),
+    'week_06_textbook_ch05_01': dict(chap='5장', card='이 편을 읽으면 숫자를 작게 담는 양자화로 무엇을 얻고 무엇을 조심할지, 작은 모델이 초안을 쓰고 큰 모델이 검수하는 추측 디코딩이 언제 빨라지는지 설명할 수 있습니다.',
+        flow=['dial', 'measure'], dials={'precision': '양자화 — 16비트를 8 · 4비트로. 한 단계 내리면 보통 30~50% 빨라지고, 품질은 세 가지 시험으로 다시 잽니다.',
+                                         'kv': 'KV 캐시도 양자화할 수 있어요. 더 많이 담고 더 빨리 읽지만, 오차가 토큰마다 쌓일 수 있어요.',
+                                         'batch': '추측 디코딩은 배치가 작아 계산기가 놀 때만 이득이에요. 배치가 크면 꺼야 할 수도 있어요.'},
+        so='같은 기계 · 같은 모델로 더 빨리 — 정밀도 다이얼(양자화)과, 노는 계산기로 여러 토큰을 한 번에 검수하는 추측 디코딩을 돌려 봅니다.'),
+    'week_06_article_01': dict(chap='5장', paper='DFlash', card='이 편을 읽으면 추측 디코딩의 초안을 빈자리 채우기(디퓨전)로 한 번에 쓰고, 큰 모델의 속 메모를 건네 품질 손해 없이 최대 6배 남짓 빨라지는 원리와 그 조건을 설명할 수 있습니다.',
+        flow=['dial', 'measure'], dials={'batch': '손님이 적을 때 노는 계산기로 검수해요. 손님 1명 5.1배 → 32명 2.8배로 배치가 커지면 이득이 줄어요.',
+                                         'kv': '큰 모델의 속 메모를 초안 작가 모든 층의 KV 자리에 꽂아 줍니다(약 42MB).'},
+        so='추측 디코딩 다이얼의 새 손잡이입니다. 초안을 한 번에 쓰니 초안 비용이 거의 늘지 않고, 받아들인 길이가 길어져요.'),
 }

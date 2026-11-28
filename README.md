@@ -76,8 +76,8 @@ python3 cards.py ../.. --shots <three@0.170.0 패키지 폴더>   # 썸네일 ·
 | 4주차 | 논문 · 논문 1 | 루프라인 — 지붕 두 개로 성능의 상한을 그린다 | [week_04_article_01](week_04_article_01/) | 연구실판 완성 (확장판) |
 | 5주차 | 교재 · 4장 | 엔진 제어실 — 추론 소프트웨어 네 층 | [week_05_textbook_ch04](week_05_textbook_ch04/) | 연구실판 완성 (비전공자판) |
 | 5주차 | 논문 · 논문 1 | 페이지드 어텐션 — KV 캐시를 서랍처럼 나눠 담는다 | [week_05_article_01](week_05_article_01/) | 연구실판 완성 (비전공자판) |
-| 6주차 | 교재 · 5장 전반 | 최적화 기법 ① 양자화·추측 디코딩 | `week_06_textbook_ch05_p1_p2/` (예정) | 준비 중 |
-| 6주차 | 논문 · 논문 1 | 추측 디코딩 논문 (예정) | `week_06_article_01/` (예정) | 준비 중 |
+| 6주차 | 교재 · 5장 전반 | 튜닝 공방 ① — 숫자를 줄이고, 초안을 먼저 쓴다 | [week_06_textbook_ch05_01](week_06_textbook_ch05_01/) | 연구실판 완성 (비전공자판) |
+| 6주차 | 논문 · 논문 1 | 한 번에 쓰는 초안 — DFlash 추측 디코딩 | [week_06_article_01](week_06_article_01/) | 연구실판 완성 (비전공자판) |
 | 7주차 | 교재 · 5장 후반 | 최적화 기법 ② 캐시·병렬화·분리 | `week_07_textbook_ch05_p3_to_end/` (예정) | 준비 중 |
 | 7주차 | 논문 · 논문 1 | SGLang (예정) | `week_07_article_01/` (예정) | 준비 중 |
 | 8주차 | 교재 · 6장 | 입출력 유형 | `week_08_textbook_ch06/` (예정) | 준비 중 |
@@ -99,6 +99,7 @@ python3 cards.py ../.. --shots <three@0.170.0 패키지 폴더>   # 썸네일 ·
 - 모든 페이지는 스킬 v1.14 "낮의 연구실"(흰 배경)이다. 생성기로 만드는 페이지(1·4주차, 목차)는 `light.css`를 바로 쓰고, 옮겨 온 2·3주차 페이지는 `daylight.py`로 흰 화면 색을 덧입혔다(그림 코드에 색이 박힌 그래프·도식은 어두운 모니터 화면으로 둠). 외국어판(`*.en.html` 등)은 이전 판 그대로다.
 - 4주차부터 페이지마다 30분 코스(핵심 단계 바로가기)와 강의자용 부록(퀴즈 정답·해설)을 둔다.
 - 1~4주차는 확장판(ai-lab-extend v1.2): 수식 · 기계 장치 이야기가 어렵다는 반응에 맞춰, 본문 틀은 그대로 두고 처음 오신 분께 3줄 상자(영어 약어 풀이 포함), 단계마다 박사의 현장 질문 · 왜 이 방법 · 조수가 대신 묻는 수식(학교 수학 단원 + 숫자로 한 번 해 보기, 값은 모두 코드로 검산) · 기계로 보면(일상 예시) · 실험 앞 대화 · 박사의 업무 해석 · 인턴 다시 말하기, 페이지마다 AI 판단 코너를 덧붙였다. 문구는 `tools/lab_build/ext/<폴더>.py`, 끼우는 도구는 `extend.py`, 약어 사전은 `abbr.py`. 외국어판(`*.en.html` 등)에는 아직 반영되지 않았다.
+- 6주차부터 비전공자판 v1.6: 페이지 머리에 스킬 표기(`ahnboat:skill`)와 픽셀 깨짐 보정(px-fix v1), 교재는 5장을 범위별 폴더(`week_06_textbook_ch05_01` = 도입 · 5.1 · 5.2)로 나눈다.
 - 5주차부터 비전공자판(ai-lab-explainer-plain v1.1): 처음 오신 분께 3줄 요약, 단계마다 왜 이 방법 · 조수가 대신 묻는 수식 · 실험 앞 대화 · 업무에서는 · 인턴 시아 · 모아의 다시 말하기 · 방청석 X1~X3 질문, AI 판단 코너, 코드는 접기 상자로. 공용 조각은 `plain.py`.
 - 페이지는 단일 HTML(외부 요청은 글꼴과, 첫 화면 공장 3D의 three.js뿐 — 불러오지 못해도 층·기계 목록 안내는 그대로 동작), 페이지마다 지식 색인(`#kg`)과 온톨로지·서지 꾸러미(`#export`)가 있다.
 - 글 표지는 지금 대체 표지(여섯 식구 표정 그림 줄 세우기)이고, 그림 지시문은 폴더마다 `COVER_*.md`에 있다.
@@ -108,13 +109,14 @@ python3 cards.py ../.. --shots <three@0.170.0 패키지 폴더>   # 썸네일 ·
 ```bash
 cd tools/lab_build
 python3 build_index.py ../..                    # 목차
-python3 pages/p_preface.py ../..                # 1주차 서문 (p_ch00, p_ch01, p_livebench, 4주차 p_ch03 · p_roofline, 5주차 p_ch04 · p_paged 같은 방식)
+python3 pages/p_preface.py ../..                # 1주차 서문 (p_ch00, p_ch01, p_livebench, 4주차 p_ch03 · p_roofline, 5주차 p_ch04 · p_paged, 6주차 p_ch05a · p_dflash 같은 방식)
 python3 run_retrofit.py <옛 저장소 사본 폴더> ../..  # 2·3주차 페이지에 식구 전원 더하기
 python3 factory.py ../..                        # 모든 해설 페이지 첫 화면에 공장 층 안내 (층·기계 정의는 factory.py)
 python3 build_index.py ../..                    # 목차 다시 (공장 3D 상태 반영)
 python3 docs.py ../..                           # README·표지 지시문·cover_manifest.json
 python3 daylight.py ../..                       # 2·3주차 옮겨 온 페이지와 목차를 흰 배경(낮의 연구실)으로
 python3 extend.py ../..                         # 1~4주차 확장판 블록 · 용어 정리 · 바닥글 소개 주소 — 맨 마지막에 (다시 돌려도 됨)
+python3 cards.py ../..                          # 목록 카드 og 메타 · catalog_cards.json (썸네일은 --shots <three.js 폴더>)
 ```
 
 캐릭터 그림은 `adminmrobo/ahnboat_lab_explainer`의 캐릭터 팩(`LAB_PACK` 환경 변수로 위치 지정)에서 읽습니다.
